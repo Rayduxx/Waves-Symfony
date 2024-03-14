@@ -1,0 +1,89 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Account Profile
+{% endblock %}
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+							<h5 class="card-header">Profile Details</h5>
+							<div class="card-body">
+								<div class="d-flex justify-content-center align-items-sm-center gap-4">
+									<img src="../assets/pdp/{{app.user.image}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
+								</div>
+							</div>
+							<hr class="my-0">
+							<div class="card-body">
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Name :</label>
+									<label class="col-sm-10" for="basic-default-company">{{app.user.name}}</label>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Preame :</label>
+									<label class="col-sm-10" for="basic-default-company">{{app.user.prename}}</label>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Phone : (+216)</label>
+									<label class="col-sm-10" for="basic-default-company">{{app.user.phone}}</label>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Email :</label>
+									<label class="col-sm-10" for="basic-default-company">{{app.user.username}}</label>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Birthday :</label>
+									<label class="col-sm-10" for="basic-default-company">{{ app.user.birthday ? app.user.birthday|date('d/m/Y') : '' }}</label>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Role :</label>
+									<label class="col-sm-10" for="basic-default-company">
+										{% for role in app.user.roles %}
+											{% if role == "ROLE_USER" %}User
+												{% elseif role == "ROLE_ADMIN" %}Admin
+											{% endif %}
+											{% if not loop.last %},
+											{% endif %}
+										{% endfor %}
+									</label>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-1" for="basic-default-company">Verification :</label>
+									<label class="col-sm-10" for="basic-default-company">
+										{% if app.user.isVerified == 1 %}Verified
+										{% elseif app.user.isVerified == 0 %}
+											Not verified
+										{% endif %}
+									</label>
+								</div>
+								<div class="mt-2">
+									<button type="button" class="btn btn-primary me-2" onclick="location.href='{{ path('app_edit_profile', {'id': app.user.id}) }}'">Edit profile</button>
+									<button type="submit" class="btn btn-warning">Reset password</button>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<h5 class="card-header">Delete Account</h5>
+							<div class="card-body">
+								<div class="alert alert-warning">
+									<h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
+								</div>
+								<form id="formAccountDeactivation" onsubmit="return false">
+									<div class="form-check mb-3">
+										<input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
+										<label class="form-check-label" for="accountActivation">I confirm deleting my account</label>
+									</div>
+									<button type="submit" class="btn btn-danger deactivate-account">Delete Account</button>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="content-backdrop fade"></div>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}
+
