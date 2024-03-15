@@ -2,13 +2,21 @@
 	<img src="..\assets\img\images\Logo.png" alt="waves" class="w-px-40 h-auto" style="margin-right: 20px;">
 	<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 		<div class="navbar-nav me-auto">
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-home'></i>Acceuil</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-group'></i>Utilisateurs</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-calendar-event' ></i>	Evenements</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-book-content' ></i>Contenus</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-store-alt' ></i>Marché</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-music' ></i>Production</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}"><i class='bx bx-chalkboard' ></i>Formations</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-home'></i>Acceuil</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-group'></i>Utilisateurs</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-calendar-event'></i>
+				Evenements</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-book-content'></i>Contenus</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-store-alt'></i>Marché</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-music'></i>Production</a>
+			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
+				<i class='bx bx-chalkboard'></i>Formations</a>
 		</div>
 		<ul class="navbar-nav flex-row align-items-center ms-auto">
 			{% if app.user %}
@@ -80,7 +88,7 @@
 					</li>
 				</ul>
 			{% else %}
-				<button class="btn btn-outline-primary" type="button">Connection</button>
+				<a class="btn btn-outline-primary" href="{{ path('app_login') }}" type="button">Connection</a>
 			{% endif %}
 		</ul>
 	</div>
