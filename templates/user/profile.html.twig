@@ -51,20 +51,20 @@
 								<div class="row mb-3">
 									<label class="col-sm-1" for="basic-default-company">Verification :</label>
 									<label class="col-sm-10" for="basic-default-company">
-										{% if app.user.isVerified == 1 %}Verified
+										{% if app.user.isVerified == 1 %}Vérifié
 										{% elseif app.user.isVerified == 0 %}
-											Not verified
+											Not vérifié
 										{% endif %}
 									</label>
 								</div>
 								<div class="mt-2">
-									<button type="button" class="btn btn-primary me-2" onclick="location.href='{{ path('app_edit_profile', {'id': app.user.id}) }}'">Edit profile</button>
+									<button type="button" class="btn btn-primary me-2" onclick="location.href='{{ path('app_edit_profile', {'id': app.user.id}) }}'">Modifier</button>
 									<button type="submit" class="btn btn-warning">Reset password</button>
 								</div>
 							</div>
 						</div>
 						<div class="card">
-							<h5 class="card-header">Delete Account</h5>
+							<h5 class="card-header">Supprimer le compte</h5>
 							<div class="card-body">
 								<div class="alert alert-warning">
 									<h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
