@@ -25,14 +25,13 @@
 				<div class="authentication-inner">
 					<div class="card">
 						<div class="card-body">
-						<a href="{{ path('app_homepage') }}">
-							<div class="app-brand justify-content-center">
+							<a href="{{ path('app_homepage') }}">
+								<div class="app-brand justify-content-center">
 									<img src="../assets/img/images/Waves.png" alt="Waves" class="app-brand-logo me-2">
-							</div>
+								</div>
 							</a>
 							<h4 class="mb-2">Bienvenue sur Waves! 👋</h4>
 							<p class="mb-4">Veuillez vous connecter à votre compte et commencer l'aventure</p>
-
 							<form id="formAuthentication" class="mb-3" method="POST">
 								{% if error %}
 									<div class="alert alert-warning alert-dismissible" role="alert">
@@ -41,7 +40,9 @@
 									</div>
 									{% if app.user %}
 										<div class="mb-3">
-											<div class="alert alert-secondary" role="alert">Connecter en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+											<div class="alert alert-secondary" role="alert">Connecter en tant que
+												{{ app.user.username }},
+												<a href="{{ path('app_logout') }}">Logout</a>
 											</div>
 										</div>
 									{% endif %}
@@ -53,7 +54,7 @@
 								<div class="mb-2 form-password-toggle">
 									<div class="d-flex justify-content-between">
 										<label class="form-label" for="password">Mot de passe</label>
-										<a href="auth-forgot-password-basic.html">
+										<a href="{{path('app_forgot_password_request')}}">
 											<small>Mot de passe oublié?</small>
 										</a>
 									</div>
@@ -68,7 +69,6 @@
 										<button class="btn btn-primary d-grid w-100" type="submit">Connecter</button>
 									</div>
 								</form>
-
 								<p class="text-center">
 									<span>Nouveau sur notre plateforme ?</span>
 									<a href="{{ path('app_register') }}">
