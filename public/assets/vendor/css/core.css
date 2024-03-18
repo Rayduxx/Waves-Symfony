@@ -10996,6 +10996,14 @@ button.list-group-item-gray.active {
   padding-top: 3rem !important;
 }
 
+.pt-6 {
+  padding-top: 6rem !important;
+}
+
+.pt-7 {
+  padding-top: 12rem !important;
+}
+
 .pb-0 {
   padding-bottom: 0 !important;
 }
