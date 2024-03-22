@@ -21,20 +21,20 @@
 														{{ form_row(form.image) }}
 													</div>
 													<div class="row mb-3">
-														{{ form_row(form.name, {'value': app.user.name}) }}
+														{{ form_row(form.name, {'value': userinfo.name}) }}
 													</div>
 													<div class="row mb-3">
-														{{ form_row(form.prename, {'value': app.user.prename}) }}
+														{{ form_row(form.prename, {'value': userinfo.prename}) }}
 													</div>
 													<div class="row mb-3">
-														{{ form_row(form.phone, {'value': app.user.phone}) }}
+														{{ form_row(form.phone, {'value': userinfo.phone}) }}
 													</div>
 													<div class="row mb-3">
-														{{ form_row(form.email, {'value': app.user.email}) }}
+														{{ form_row(form.email, {'value': userinfo.email}) }}
 													</div>
 													<div class="row mb-3">
 														<label class="col-sm-2" for="basic-default-company">Birthday :</label>
-														{{ form_row(form.birthday, {'value': app.user.birthday ? app.user.birthday.format('Y-m-d') : null }) }}
+														{{ form_row(form.birthday, {'value': userinfo.birthday ? userinfo.birthday.format('Y-m-d') : null }) }}
 													</div>
 													<div class="mt-2">
 														<button class="btn btn-primary me-2">{{ button_label|default('Save changes') }}</button>
@@ -45,7 +45,7 @@
 										</div>
 										<div class="col-md-4">
 											<div class="card-body">
-												<img src="../assets/pdp/{{app.user.image}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
+												<img src="../assets/pdp/{{userinfo.image}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
 											</div>
 										</div>
 									</div>
@@ -57,16 +57,5 @@
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}{#<div class="row mb-3">
-																																										<label class="col-sm-1" for="basic-default-company">Role :</label>
-																																											<label class="col-sm-10" for="basic-default-company">
-																																												{% for role in app.user.roles %}
-																																													{% if role == "ROLE_USER" %}User
-																																														{% elseif role == "ROLE_ADMIN" %}Admin
-																																													{% endif %}
-																																													{% if not loop.last %},
-																																													{% endif %}
-																																												{% endfor %}
-																																											</label>
-																																										</div>#}
+</div>{% endblock %}
 

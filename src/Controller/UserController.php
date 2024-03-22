@@ -47,13 +47,12 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit-profile', name: 'app_edit_profile')]
-    public function editProfile(Request $request, User $user, $id): Response
+    public function editProfile(Request $request,UserRepository $userRepository, User $user, $id): Response
     {
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProfileEditType::class, $user);
         $form->handleRequest($request);
+        $userinfo=$userRepository->find($id);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $PofilePicFile = $form->get('image')->getData();
             if ($PofilePicFile) {
                 $originalFilename = pathinfo($PofilePicFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -65,6 +64,8 @@ class UserController extends AbstractController
                 }
                 $user->setImage($newFilename);
             }
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('app_profile', [
@@ -72,7 +73,7 @@ class UserController extends AbstractController
             ]);
         }
         return $this->render('user/profileEdit.html.twig', [
-            'user' => $user,
+            'userinfo'=>$userinfo,
             'form' => $form->createView()
         ]);
     }
