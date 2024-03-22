@@ -9,7 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\File;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 class ProfileEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -55,6 +56,25 @@ class ProfileEditType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'id' => 'phone',
+                ],
+            ])
+            ->add('email', TextType::class, [
+                'label' => 'Email :',
+                'disabled' => true,
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'email',
+                ],
+            ])
+            ->add('birthday', DateType::class, [
+                'required' => false,
+                'label' => false,
+                'html5' => true,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'html5-date-input'
                 ],
             ]);
     }

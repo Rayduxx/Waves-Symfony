@@ -18,7 +18,6 @@
 		<script src="../assets/vendor/js/helpers.js"></script>
 		<script src="../assets/js/config.js"></script>
 	</head>
-
 	<body>
 		<div class="container-xxl">
 			<div class="authentication-wrapper authentication-basic container-p-y">
@@ -30,7 +29,6 @@
 									<img src="../assets/img/images/Waves.png" alt="Waves" class="app-brand-logo me-2">
 								</div>
 							</a>
-							
 							{% for flash_error in app.flashes('reset_password_error') %}
 								<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 							{% endfor %}
@@ -41,6 +39,7 @@
 								<div class="mb-3">
 									<label for="email" class="form-label">Email</label>
 									{{ form_row(requestForm.email) }}
+									{{ form_widget(requestForm._token) }}
 								</div>
 								<button class="btn btn-primary d-grid w-100">Envoyer</button>
 							</form>
@@ -51,7 +50,6 @@
 								</a>
 							</div>
 							{{ form_end(requestForm) }}
-
 						</div>
 					</div>
 				</div>
@@ -66,3 +64,4 @@
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
 	</body>
 </html>
+

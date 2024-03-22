@@ -47,13 +47,24 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit-profile', name: 'app_edit_profile')]
-    public function editProfile(Request $request, User $user): Response
+    public function editProfile(Request $request, User $user, $id): Response
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProfileEditType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
+            $PofilePicFile = $form->get('image')->getData();
+            if ($PofilePicFile) {
+                $originalFilename = pathinfo($PofilePicFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$PofilePicFile->guessExtension();
+                try {
+                    $PofilePicFile->move($this->getParameter('images_directory'),$newFilename);
+                } catch (FileException $e) {
+                }
+                $user->setImage($newFilename);
+            }
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('app_profile', [
