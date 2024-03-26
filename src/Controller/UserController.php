@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Security\EmailVerifier;
 use App\Form\RegisterType;
 use App\Form\ProfileEditType;
-use App\Form\User\EditProfileType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,10 +20,10 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Vich\UploaderBundle\FileAbstraction\ReplacingFile;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 class UserController extends AbstractController
 {
@@ -47,33 +46,39 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit-profile', name: 'app_edit_profile')]
-    public function editProfile(Request $request,UserRepository $userRepository, User $user, $id): Response
+    public function editProfile(Request $request, UserRepository $userRepository, SluggerInterface $slugger, User $user, $id): Response
     {
         $form = $this->createForm(ProfileEditType::class, $user);
         $form->handleRequest($request);
-        $userinfo=$userRepository->find($id);
+        $userinfo = $userRepository->find($id);
         if ($form->isSubmitted() && $form->isValid()) {
-            $PofilePicFile = $form->get('image')->getData();
-            if ($PofilePicFile) {
-                $originalFilename = pathinfo($PofilePicFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$PofilePicFile->guessExtension();
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
                 try {
-                    $PofilePicFile->move($this->getParameter('images_directory'),$newFilename);
+                    $imageFile->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
                 } catch (FileException $e) {
                 }
-                $user->setImage($newFilename);
+                $user->setImage(
+                    new File($this->getParameter('images_directory') . '/' . $user->getImage())
+                );
             }
-
+            //dd($form);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            //$em->persist($user);
             $em->flush();
             return $this->redirectToRoute('app_profile', [
                 'id' => $user->getId(),
             ]);
         }
         return $this->render('user/profileEdit.html.twig', [
-            'userinfo'=>$userinfo,
+            'userinfo' => $userinfo,
             'form' => $form->createView()
         ]);
     }
@@ -85,7 +90,7 @@ class UserController extends AbstractController
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($userPasswordHasher->hashPassword($user,$form->get('password')->getData()));
+            $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
             $randomImageNumber = rand(1, 20);
             $randomImageFilename = $randomImageNumber . '.png';
             $user->setImage($randomImageFilename);
