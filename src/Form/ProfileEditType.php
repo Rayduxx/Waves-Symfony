@@ -16,22 +16,13 @@ class ProfileEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            /*->add('imageFile', VichImageType::class, [
+            ->add('image', FileType::class, [
                 'label' => 'Image de profil :',
                 'required' => false,
                 'mapped' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'id' => 'imageFile',
-                ],
-            ])*/
-            ->add('image',FileType::class,[
-                'label' => 'Photo de profile:',
-                'mapped' => false,
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control',
-                    'id' => 'formFile',
                 ],
             ])
             ->add('name', TextType::class, [

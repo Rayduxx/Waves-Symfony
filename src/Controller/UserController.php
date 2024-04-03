@@ -57,22 +57,28 @@ class UserController extends AbstractController
             $password = $form->get('password')->getData();
             if (empty($password)) {
                 $user->setPassword($userinfo->getPassword());
-            }else {
+            } else {
                 $userPasswordHasher->hashPassword(
                     $user,
                     $password
                 );
             }
             $imageFile = $form['image']->getData();
-            if($imageFile){
-                $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
-                $imageFile->move($this->getParameter('images_directory'),$filename);
-                $user->setImage($filename);
+            if ($imageFile) {
+                try {
+                    $destinationFolder = $this->getParameter('images_directory');
+                    $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                    $imageFile->move($destinationFolder, $filename);
+                    $userinfo->setImage($filename);
+                    $this->addFlash('success', 'Profile updated successfully');
+                } catch (\Exception $e) {
+                    $this->addFlash('error', 'Error uploading image: ' . $e->getMessage());
+                }
             }
             $this->addFlash('success', 'Profile updated successfully');
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-            dump($this->getUser());
+            dump($imageFile);
             //return $this->redirectToRoute('app_profile');
         }
         return $this->render('user/profileEdit.html.twig', [
@@ -93,9 +99,9 @@ class UserController extends AbstractController
             $randomImageFilename = $randomImageNumber . '.png';
             //$user->set($randomImageFilename);
             $imageFile = $form['image']->getData();
-            if($imageFile){
+            if ($imageFile) {
                 $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
-                $imageFile->move($this->getParameter('images_directory'),$filename);
+                $imageFile->move($this->getParameter('images_directory'), $filename);
                 $user->setImage($filename);
             }
             $user->setRoles(array("ROLE_USER"));

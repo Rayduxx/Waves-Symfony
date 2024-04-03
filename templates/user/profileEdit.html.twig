@@ -23,8 +23,8 @@
 								<h5 class="card-header">Details du compte</h5>
 								<div class="row row-bordered g-0">
 									<div class="col-md-8">
-										<div class="card-body" enctype="multipart/form-data">
-											<form method="POST">
+										<div class="card-body" >
+											<form method="POST" enctype="multipart/form-data">
 												{{ form_start(form) }}
 												<div class="row mb-3">
 													{{ form_row(form.name, {'value': userinfo.name}) }}
@@ -58,8 +58,6 @@
 									</div>
 									<div class="col-md-4">
 										<div class="card-body">
-											{#<img src="{{ vich_uploader_asset(userinfo, 'imageFile') }}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
-											<img src="../assets/pdp/{{userinfo.image}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">#}
 											<img src="{{asset('uploads/' ~ userinfo.image)}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
 										</div>
 									</div>

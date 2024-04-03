@@ -21,13 +21,13 @@ class AdminController extends AbstractController
     {
         $searchTerm = $request->query->get('searchTerm', '');
         $queryBuilder = $userRepository->findBySearchTerm($searchTerm);
-        $authors = $paginator->paginate(
+        $users = $paginator->paginate(
             $queryBuilder,
             $request->query->getInt('page', 1),
             4
         );
         return $this->render('dashboard/userdashboard.html.twig', [
-        'user' => $userRepository->findAll(),
+        'user' => $users,
         ]);
     }
 

@@ -64,28 +64,5 @@
 			</div>
 			<div class="content-backdrop fade"></div>
 		</div>
-		<script>
-        $(document).ready(function(){
-            $('#searchbarinput').keyup(function(){
-                search_table($(this).val());
-            });
-            function search_table(value){
-                $('#tableac tbody tr').each(function(){
-                    var found = false;
-                    $(this).find('td:first-child').each(function(){
-                        if($(this).text().toLowerCase().includes(value.toLowerCase())){
-                            found = true;
-                            return false;
-                        }
-                    });
-                    if(found){
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            }
-        });
-    </script>
 	{% endblock %}
 
