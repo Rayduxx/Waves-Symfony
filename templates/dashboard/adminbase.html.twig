@@ -98,7 +98,7 @@
 							<div class="navbar-nav align-items-center">
 								<div class="nav-item d-flex align-items-center">
 									<i class="bx bx-search fs-4 lh-0"></i>
-									<input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."/>
+									<input type="text" id="searchbarinput" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."/>
 								</div>
 							</div>
 							<ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -107,7 +107,7 @@
 										<li class="nav-item navbar-dropdown dropdown-user dropdown">
 											<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
 												<div class="avatar">
-													<img src="../assets/pdp/{{app.user.image}}" alt="" class="w-px-40 h-auto rounded-circle">
+													<img src="{{asset('uploads/' ~ app.user.image)}}" alt="" class="w-px-40 h-auto rounded-circle">
 												</div>
 											</a>
 											<ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
@@ -116,7 +116,7 @@
 														<div class="d-flex">
 															<div class="flex-shrink-0 me-3">
 																<div class="avatar">
-																	<img src="../assets/pdp/{{app.user.image}}" alt="" class="w-px-40 h-auto rounded-circle">
+																	<img src="{{asset('uploads/' ~ app.user.image)}}" alt="" class="w-px-40 h-auto rounded-circle">
 																</div>
 															</div>
 															<div class="flex-grow-1">
@@ -181,6 +181,7 @@
 			</div>
 			<div class="layout-overlay layout-menu-toggle"></div>
 		</div>
+
 		<script src="../assets/vendor/libs/jquery/jquery.js"></script>
 		<script src="../assets/vendor/libs/popper/popper.js"></script>
 		<script src="../assets/vendor/js/bootstrap.js"></script>
@@ -188,6 +189,7 @@
 		<script src="../assets/vendor/js/menu.js"></script>
 		<script src="../assets/js/main.js"></script>
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
+		
 	</body>
 </html>
 

@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Doctrine\ORM\QueryBuilder;
+
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -37,6 +39,27 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
+    }
+    public function findBySearchQuery(\Symfony\Component\HttpFoundation\InputBag|float|bool|int|string|null $searchQuery): \Doctrine\ORM\Query
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        if (!empty($searchQuery)) {
+            $qb->andWhere('u.name LIKE :search OR u.email LIKE :search')
+                ->setParameter('search', '%' . $searchQuery . '%');
+        }
+
+        return $qb->getQuery();
+
+    }
+
+    public function findBySearchTerm(string $searchTerm): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.name LIKE :term OR u.email LIKE :term')
+            ->setParameter('term', '%' . $searchTerm . '%');
+
+        return $qb;
     }
 
 //    /**

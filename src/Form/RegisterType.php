@@ -11,13 +11,15 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\File;
+
 class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        /*->add('ProfilePicture', FileType::class, [
+            /*->add('ProfilePicture', FileType::class, [
             'mapped' => false,
             'required' => false,
             'label' => 'Profile picture :',
@@ -34,7 +36,25 @@ class RegisterType extends AbstractType
                     'mimeTypesMessage' => 'Please upload a valid image file',
                 ])
             ],
+        ])
+        ->add('imageFile', VichImageType::class, [
+            'label' => 'Photo de Profile :',
+            'required' => false,
+            'mapped' => false,
+            'attr' => [
+                'class' => 'form-control',
+                'id' => 'imageFile',
+            ],
         ])*/
+            ->add('image',FileType::class,[
+                'label' => 'Photo de profile:',
+                'mapped' => false,
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'formFile',
+                ],
+            ])
             ->add('name', null, [
                 'label' => 'Nom',
                 'attr' => [
@@ -43,7 +63,7 @@ class RegisterType extends AbstractType
                     'id' => 'nameBasic'
                 ],
                 'constraints' => [new NotBlank()]
-                ])
+            ])
             ->add('prename', null, [
                 'label' => 'Prenom',
                 'attr' => [
@@ -52,7 +72,7 @@ class RegisterType extends AbstractType
                     'id' => 'nameBasic',
                 ],
                 'constraints' => [new NotBlank()]
-                ])
+            ])
             ->add('email', null, [
                 'label' => 'Email',
                 'attr' => [
@@ -61,7 +81,7 @@ class RegisterType extends AbstractType
                     'id' => 'email',
                 ],
                 'constraints' => [new NotBlank()]
-                ])
+            ])
             ->add('phone', TelType::class, [
                 'label' => 'N° Telephone',
                 'attr' => [
@@ -70,7 +90,7 @@ class RegisterType extends AbstractType
                     'id' => 'tel',
                 ],
                 'constraints' => [new NotBlank()]
-                ])
+            ])
             ->add('birthday', DateType::class, [
                 'label' => 'Date de naissance',
                 'html5' => true,
@@ -80,7 +100,7 @@ class RegisterType extends AbstractType
                     'id' => 'html5-date-input'
                 ],
                 'constraints' => [new NotBlank()]
-                ])
+            ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'attr' => [

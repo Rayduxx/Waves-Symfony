@@ -19,11 +19,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\File;
 
 class UserController extends AbstractController
 {
@@ -44,38 +40,40 @@ class UserController extends AbstractController
     {
         return $this->render('user/profile.html.twig');
     }
-
-    #[Route('/{id}/edit-profile', name: 'app_edit_profile')]
-    public function editProfile(Request $request, UserRepository $userRepository, SluggerInterface $slugger, User $user, $id): Response
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
     {
-        $form = $this->createForm(ProfileEditType::class, $user);
+        return md5(uniqid());
+    }
+    #[Route('/edit-profile', name: 'app_edit_profile')]
+    public function editProfile(Request $request, UserPasswordHasherInterface $userPasswordHasher, User $user): Response
+    {
+        $userinfo =  $this->getUser();
+        $form = $this->createForm(ProfileEditType::class, $userinfo);
         $form->handleRequest($request);
-        $userinfo = $userRepository->find($id);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageFile = $form->get('image')->getData();
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
-                try {
-                    $imageFile->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                }
-                $user->setImage(
-                    new File($this->getParameter('images_directory') . '/' . $user->getImage())
+            $password = $form->get('password')->getData();
+            if (empty($password)) {
+                $user->setPassword($userinfo->getPassword());
+            }else {
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $password
                 );
             }
-            //dd($form);
-            $em = $this->getDoctrine()->getManager();
-            //$em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('app_profile', [
-                'id' => $user->getId(),
-            ]);
+            $imageFile = $form['image']->getData();
+            if($imageFile){
+                $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                $imageFile->move($this->getParameter('images_directory'),$filename);
+                $user->setImage($filename);
+            }
+            $this->addFlash('success', 'Profile updated successfully');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            dump($this->getUser());
+            //return $this->redirectToRoute('app_profile');
         }
         return $this->render('user/profileEdit.html.twig', [
             'userinfo' => $userinfo,
@@ -93,7 +91,13 @@ class UserController extends AbstractController
             $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
             $randomImageNumber = rand(1, 20);
             $randomImageFilename = $randomImageNumber . '.png';
-            $user->setImage($randomImageFilename);
+            //$user->set($randomImageFilename);
+            $imageFile = $form['image']->getData();
+            if($imageFile){
+                $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                $imageFile->move($this->getParameter('images_directory'),$filename);
+                $user->setImage($filename);
+            }
             $user->setRoles(array("ROLE_USER"));
             $entityManager->persist($user);
             $entityManager->flush();

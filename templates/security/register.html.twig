@@ -32,7 +32,7 @@
 								</div>
 							</a>
 							<h4 class="mb-2">L'aventure commence ici 🚀</h4>
-							<p class="mb-4">Apprendre, Créer et découvrir la musique</p>
+							<p class="mb-2">Apprendre, Créer et découvrir la musique</p>
 							<form id="formAuthentication" class="mb-3" method="POST">
 								{{ form_start(form) }}
 								{% if form_errors(form) %}
@@ -57,9 +57,9 @@
 										{{ form_row(form.birthday) }}
 									</div>
 								</div>
-								{#<div class="mb-3">
-																	{{ form_row(form.ProfilePicture) }}
-																</div>#}
+								<div class="mb-2">
+										{{ form_row(form.image) }}
+								</div>
 								<div class="mb-3">
 									{{ form_row(form.email) }}
 								</div>

@@ -6,32 +6,32 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 class ProfileEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('image', FileType::class, [
+            /*->add('imageFile', VichImageType::class, [
+                'label' => 'Image de profil :',
+                'required' => false,
+                'mapped' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'imageFile',
+                ],
+            ])*/
+            ->add('image',FileType::class,[
+                'label' => 'Photo de profile:',
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Photo de profile :',
                 'attr' => [
                     'class' => 'form-control',
                     'id' => 'formFile',
-                ],
-                'constraints' => [
-                    new File([
-                        'maxSize' => '40M',
-                        'mimeTypes' => [
-                            'image/*',"image/jpeg" , "image/png" , "image/tiff" , "image/svg+xml", "image/gif", "image/webp",
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid image file',
-                    ])
                 ],
             ])
             ->add('name', TextType::class, [
@@ -60,11 +60,18 @@ class ProfileEditType extends AbstractType
             ])
             ->add('email', TextType::class, [
                 'label' => 'Email :',
-                'disabled' => true,
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'id' => 'email',
+                ],
+            ])
+            ->add('password', TextType::class, [
+                'label' => 'Mot de passe :',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'password',
                 ],
             ])
             ->add('birthday', DateType::class, [

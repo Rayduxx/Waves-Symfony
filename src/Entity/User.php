@@ -8,12 +8,14 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[Vich\Uploadable]
 #[ORM\Table(name: "user")]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-
+//#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -21,7 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 250, unique: true)]
+    #[ORM\Column(length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -49,18 +51,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $image = null;
-
-    public function getImage()
+    private  $image;
+    public function getImage(): ?string
     {
         return $this->image;
     }
-    public function setImage($image): self
+
+    public function setImage(string $image): self
     {
         $this->image = $image;
+
         return $this;
     }
-
     public function getName(): ?string
     {
         return $this->name;
