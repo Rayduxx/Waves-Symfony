@@ -74,6 +74,8 @@ class UserController extends AbstractController
                 } catch (\Exception $e) {
                     $this->addFlash('error', 'Error uploading image: ' . $e->getMessage());
                 }
+            }else{
+                $userinfo->setImage("default.png");
             }
             $this->addFlash('success', 'Profile updated successfully');
             $entityManager = $this->getDoctrine()->getManager();

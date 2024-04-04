@@ -12,6 +12,7 @@
 							<thead>
 								<tr>
 									<th>ID</th>
+									<th>PDP</th>
 									<th>Nom</th>
 									<th>Prenom</th>
 									<th>Email</th>
@@ -24,8 +25,13 @@
 							<tbody class="table-border-bottom-0">
 								{% for user in user %}
 									<tr>
+										<td>{{ user.id }}</td>
 										<td>
-											{{ user.id }}
+											<ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+												<li class="avatar avatar-xs">
+													<img src="{{asset('uploads/' ~ user.image)}}" alt="Avatar" class="rounded-circle">
+												</li>
+											</ul>
 										</td>
 										<td>{{ user.name}}</td>
 										<td>{{ user.prename}}</td>

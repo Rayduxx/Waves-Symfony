@@ -11,8 +11,7 @@
 							<h5 class="card-header">Profile Details</h5>
 							<div class="card-body">
 								<div class="d-flex justify-content-center align-items-sm-center gap-4">
-									<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
-									{#<img src="../assets/pdp/{{app.user.image}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">#}
+									<img src="{{asset('uploads/' ~ app.user.image)}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
 								</div>
 							</div>
 							<hr class="my-0">

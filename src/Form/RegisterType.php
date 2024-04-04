@@ -19,33 +19,6 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            /*->add('ProfilePicture', FileType::class, [
-            'mapped' => false,
-            'required' => false,
-            'label' => 'Profile picture :',
-            'attr' => [
-                'class' => 'form-control',
-                'id' => 'formFile',
-            ],
-            'constraints' => [
-                new File([
-                    'maxSize' => '1024k',
-                    'mimeTypes' => [
-                        'image/*',"image/jpeg" , "image/png" , "image/tiff" , "image/svg+xml", "image/gif", "image/webp",
-                    ],
-                    'mimeTypesMessage' => 'Please upload a valid image file',
-                ])
-            ],
-        ])
-        ->add('imageFile', VichImageType::class, [
-            'label' => 'Photo de Profile :',
-            'required' => false,
-            'mapped' => false,
-            'attr' => [
-                'class' => 'form-control',
-                'id' => 'imageFile',
-            ],
-        ])*/
             ->add('image',FileType::class,[
                 'label' => 'Photo de profile:',
                 'mapped' => false,
