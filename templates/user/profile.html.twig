@@ -17,27 +17,27 @@
 							<hr class="my-0">
 							<div class="card-body">
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Name :</label>
+									<label class="col-sm-2" for="basic-default-company">Nom :</label>
 									<label class="col-sm-10" for="basic-default-company">{{app.user.name}}</label>
 								</div>
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Preame :</label>
+									<label class="col-sm-2" for="basic-default-company">Prenom :</label>
 									<label class="col-sm-10" for="basic-default-company">{{app.user.prename}}</label>
 								</div>
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Phone : (+216)</label>
-									<label class="col-sm-10" for="basic-default-company">{{app.user.phone}}</label>
+									<label class="col-sm-2" for="basic-default-company">Telephone : (+216)</label>
+									<label class="col-sm-10" for="basic-default-company">{% if app.user.phone %}{{app.user.phone}}{% else %}Non disponible{% endif %}</label>
 								</div>
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Email :</label>
+									<label class="col-sm-2" for="basic-default-company">Email :</label>
 									<label class="col-sm-10" for="basic-default-company">{{app.user.username}}</label>
 								</div>
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Birthday :</label>
-									<label class="col-sm-10" for="basic-default-company">{{ app.user.birthday ? app.user.birthday|date('d/m/Y') : '' }}</label>
+									<label class="col-sm-2" for="basic-default-company">Date de naissance :</label>
+									<label class="col-sm-10" for="basic-default-company">{% if app.user.birthday %}{{ app.user.birthday ? app.user.birthday|date('d/m/Y') : '' }}{% else %}Non disponible{% endif %}</label>
 								</div>
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Role :</label>
+									<label class="col-sm-2" for="basic-default-company">Role :</label>
 									<label class="col-sm-10" for="basic-default-company">
 										{% for role in app.user.roles %}
 											{% if role == "ROLE_USER" %}User
@@ -49,7 +49,7 @@
 									</label>
 								</div>
 								<div class="row mb-3">
-									<label class="col-sm-1" for="basic-default-company">Verification :</label>
+									<label class="col-sm-2" for="basic-default-company">Verification :</label>
 									<label class="col-sm-10" for="basic-default-company">
 										{% if app.user.isVerified == 1 %}Vérifié
 										{% elseif app.user.isVerified == 0 %}
