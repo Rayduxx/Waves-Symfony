@@ -74,8 +74,6 @@ class UserController extends AbstractController
                 } catch (\Exception $e) {
                     $this->addFlash('error', 'Error uploading image: ' . $e->getMessage());
                 }
-            }else{
-                $userinfo->setImage("default.png");
             }
             $this->addFlash('success', 'Profile updated successfully');
             $entityManager = $this->getDoctrine()->getManager();
@@ -97,14 +95,13 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
-            $randomImageNumber = rand(1, 20);
-            $randomImageFilename = $randomImageNumber . '.png';
-            //$user->set($randomImageFilename);
             $imageFile = $form['image']->getData();
             if ($imageFile) {
                 $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
                 $imageFile->move($this->getParameter('images_directory'), $filename);
                 $user->setImage($filename);
+            }else{
+                $user->setImage("default.png");
             }
             $user->setRoles(array("ROLE_USER"));
             $entityManager->persist($user);

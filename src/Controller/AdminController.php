@@ -24,7 +24,6 @@ class AdminController extends AbstractController
         $users = $paginator->paginate(
             $queryBuilder,
             $request->query->getInt('page', 1),
-            4
         );
         return $this->render('dashboard/userdashboard.html.twig', [
         'user' => $userRepository->findAll(),

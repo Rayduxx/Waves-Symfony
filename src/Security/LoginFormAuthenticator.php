@@ -103,7 +103,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
+        if (!$user->isVerified()) {
+            throw new CustomUserMessageAuthenticationException('Votre compte n’est pas vérifié.');
+        }
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
