@@ -18,4 +18,3 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-public/files/Waves.exe
