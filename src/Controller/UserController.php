@@ -79,7 +79,7 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
             dump($imageFile);
-            //return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('app_profile');
         }
         return $this->render('user/profileEdit.html.twig', [
             'userinfo' => $userinfo,

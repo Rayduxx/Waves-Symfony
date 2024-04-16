@@ -33,7 +33,7 @@
 							</a>
 							<h4 class="mb-2">L'aventure commence ici 🚀</h4>
 							<p class="mb-2">Apprendre, Créer et découvrir la musique</p>
-							<form id="formAuthentication" class="mb-3" method="POST">
+							<form id="formAuthentication" class="mb-3" enctype="multipart/form-data" method="POST">
 								{{ form_start(form) }}
 								{% if form_errors(form) %}
 									<div class="alert alert-warning alert-dismissible" role="alert">

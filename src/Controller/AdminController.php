@@ -29,8 +29,6 @@ class AdminController extends AbstractController
         'user' => $userRepository->findAll(),
         ]);
     }
-
-    
     #[Route('/userEditDash/{id}', name: 'app_userEdit_dashboard')]
     public function EditUser($id,UserRepository $userRepository, User $user, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {

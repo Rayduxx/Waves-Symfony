@@ -41,13 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $phone = null;
 
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private $isVerified = false;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
