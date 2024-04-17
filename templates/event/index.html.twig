@@ -35,8 +35,8 @@
                 <td>{{ event.date }}</td>
                 <td>{{ event.image }}</td>
                 <td>
-                    <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
-                    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
+                    <a href="{{ path('app_event_show', {'id': event.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bx-show"></i></a>
+					<a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bxs-edit"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -54,4 +54,6 @@
     </div>
     </div>
     </div>
+    
 {% endblock %}
+

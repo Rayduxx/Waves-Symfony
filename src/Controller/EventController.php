@@ -21,6 +21,15 @@ class EventController extends AbstractController
             'events' => $eventRepository->findAll(),
         ]);
     }
+    #[Route('/cards', name: 'app_event_card')]
+    public function indexcard(EventRepository $eventRepository): Response
+    {
+        return $this->render('event/card.html.twig', [
+            'events' => $eventRepository->findAll(),
+        ]);
+    }
+
+ 
 
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
