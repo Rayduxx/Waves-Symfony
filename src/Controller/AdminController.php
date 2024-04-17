@@ -32,9 +32,9 @@ class AdminController extends AbstractController
     #[Route('/userEditDash/{id}', name: 'app_userEdit_dashboard')]
     public function EditUser($id,UserRepository $userRepository, User $user, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        $form = $this->createForm(AdminUserEditType::class, $user);
-        $form->handleRequest($request);
         $userinfo=$userRepository->find($id);
+        $form = $this->createForm(AdminUserEditType::class, $userinfo);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $form->get('password')->getData();
             if (empty($password)) {
@@ -46,7 +46,7 @@ class AdminController extends AbstractController
                 );
             }
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $entityManager->persist($userinfo);
             $entityManager->flush();
             $this->addFlash('message', 'Utilisateur modifié avec succès');
             return $this->redirectToRoute('app_user_dashboard');
