@@ -1,0 +1,25 @@
+{% extends "_bases/base.html.twig" %}
+
+{% block main %}
+    {% block title %}New Poste{% endblock %}
+
+    {% block body %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offsets-md-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="card-title">Create new Poste</h1>
+                        </div>
+                        <div class="card-body">
+                            {{ include('poste/_form.html.twig') }}
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_poste_index') }}" class="btn btn-secondary">Back to list</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

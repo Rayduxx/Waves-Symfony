@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Poste{% endblock %}
+
+{% block body %}
+    <h1>Edit Poste</h1>
+
+    {{ include('poste/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_poste_index') }}">back to list</a>
+
+    {{ include('poste/_delete_form.html.twig') }}
+{% endblock %}

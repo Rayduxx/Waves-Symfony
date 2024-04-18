@@ -13,23 +13,13 @@
               Votre studio partout. Créez et enregistrez facilement avec des outils<br class="d-none d-lg-block" />
               et des sons puissants, le tout au même endroit.
             </h2>
-            {% if app.user %}
             <div class="landing-hero-btn d-inline-block position-relative">
               <span class="hero-btn-item position-absolute d-none d-md-flex text-heading" style="inset-inline-start: -222%;">Téléchargez notre application
                 <img src="../nav/img/front-pages/icons/Join-community-arrow.png" alt="Join now arrow"
                   class="scaleX-n1-rtl" /></span>
-              <a href="{{ path('download_waves') }}" class="btn btn-primary">Téléchargez</a>
+              <a href="#landingPricing" class="btn btn-primary">Téléchargez</a>
             </div>
           </div>
-          {% else %}
-            <div class="landing-hero-btn d-inline-block position-relative">
-              <span class="hero-btn-item position-absolute d-none d-md-flex text-heading" style="inset-inline-start: -181%;">Inscrivez-vous pour télécharger notre application
-                <img src="../nav/img/front-pages/icons/Join-community-arrow.png" alt="Join now arrow"
-                  class="scaleX-n1-rtl" /></span>
-              <a href="{{ path('app_login') }}" class="btn btn-primary">inscrivez-vous maintenant</a>
-            </div>
-          </div>
-          {% endif %}
           <div id="heroDashboardAnimation" class="hero-animation-img">
               <div id="heroAnimationImg" class="position-relative hero-dashboard-img">
                 <img src="../nav/img/front-pages/landing-page/hero-dashboard-light.png" alt="hero dashboard"
