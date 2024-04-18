@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit Production</title>
+
+{% block body %}
+    <h1>Edit Production</h1>
+
+    {{ include('production/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_production_index') }}">back to list</a>
+
+    {{ include('production/_delete_form.html.twig') }}
+{% endblock %}

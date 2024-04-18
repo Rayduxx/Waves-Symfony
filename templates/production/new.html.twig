@@ -1,0 +1,12 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Account Profile
+{% endblock %}
+
+
+{% block content %}
+    <h1>Create new Production</h1>
+
+    {{ include('production/_form.html.twig') }}
+
+    <a href="{{ path('app_production_index') }}">back to list</a>
+{% endblock %}

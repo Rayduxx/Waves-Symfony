@@ -1,0 +1,44 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Account Profile
+{% endblock %}
+
+
+{% block content %}
+
+
+    <h1>Production index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Genre</th>
+                <th>Description</th>
+                <th>Moodtag</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for production in productions %}
+            <tr>
+                <td>{{ production.id }}</td>
+                <td>{{ production.nom }}</td>
+                <td>{{ production.genre }}</td>
+                <td>{{ production.description }}</td>
+                <td>{{ production.moodtag }}</td>
+                <td>
+                    <a href="{{ path('app_production_show', {'id': production.id}) }}">show</a>
+                    <a href="{{ path('app_production_edit', {'id': production.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_production_new') }}">Create new</a>
+{% endblock %}

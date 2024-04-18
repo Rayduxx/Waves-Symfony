@@ -17,7 +17,7 @@ class ProfileEditType extends AbstractType
     {
         $builder
             ->add('image', FileType::class, [
-                'label' => 'Image de profil :',
+                'label' => 'Image de profile :',
                 'required' => false,
                 'mapped' => false,
                 'attr' => [
