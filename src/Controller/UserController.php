@@ -100,7 +100,7 @@ class UserController extends AbstractController
                 $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
                 $imageFile->move($this->getParameter('images_directory'), $filename);
                 $user->setImage($filename);
-            }else{
+            } else {
                 $user->setImage("default.png");
             }
             $user->setRoles(array("ROLE_USER"));
@@ -148,8 +148,20 @@ class UserController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
     #[Route('/users', name: 'app_user_list')]
-    public function UsersList()
+    public function UsersList(UserRepository $userRepository)
     {
-        return $this->render('user/listusers.html.twig');
+        return $this->render('user/listusers.html.twig',[
+                'users' => $userRepository->findAll(),
+            ]
+        );
+    }
+    #[Route('/userprofile/{id}', name: 'app_userprofile')]
+    public function UserProfile($id,UserRepository $userRepository)
+    {
+        $UserDetails=$userRepository->find($id);
+        return $this->render('user/UserProfile.html.twig', [
+            'UserController' => 'UserController',
+            'UserDetail'=>$UserDetails,
+        ]);
     }
 }
