@@ -20,6 +20,7 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class UserController extends AbstractController
 {
@@ -86,7 +87,17 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    private function getGeolocationData($ipAddress)
+    {
+        $apiKey = 'c4bb000a19b44b68835667f36ab461f6';
+        $apiUrl = "https://api.ipgeolocation.io/ipgeo?apiKey=$apiKey&ip=$ipAddress";
+        $response = file_get_contents($apiUrl);
+        if ($response !== false) {
+            return json_decode($response, true);
+        } else {
+            return null;
+        }
+    }
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, GuardAuthenticatorHandler $guardHandler): Response
     {
@@ -104,6 +115,16 @@ class UserController extends AbstractController
                 $user->setImage("default.png");
             }
             $user->setRoles(array("ROLE_USER"));
+            $ipAddress = $request->getClientIp();
+            
+            if (IpUtils::checkIp($ipAddress, ['127.0.0.1', '::1'])) {
+                $country = "Tunisia";
+            } else {
+                $geolocationData = $this->getGeolocationData($ipAddress);
+                $country = $geolocationData['country'];
+            }
+            $user->setCountry($country);
+            $user->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($user);
             $entityManager->flush();
             $this->emailVerifier->sendEmailConfirmation(
@@ -150,18 +171,20 @@ class UserController extends AbstractController
     #[Route('/users', name: 'app_user_list')]
     public function UsersList(UserRepository $userRepository)
     {
-        return $this->render('user/listusers.html.twig',[
+        return $this->render(
+            'user/listusers.html.twig',
+            [
                 'users' => $userRepository->findAll(),
             ]
         );
     }
     #[Route('/userprofile/{id}', name: 'app_userprofile')]
-    public function UserProfile($id,UserRepository $userRepository)
+    public function UserProfile($id, UserRepository $userRepository)
     {
-        $UserDetails=$userRepository->find($id);
+        $UserDetails = $userRepository->find($id);
         return $this->render('user/UserProfile.html.twig', [
             'UserController' => 'UserController',
-            'UserDetail'=>$UserDetails,
+            'UserDetail' => $UserDetails,
         ]);
     }
 }

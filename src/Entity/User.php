@@ -32,6 +32,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prename = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $country = null;
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -86,6 +89,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrename(string $prename): self
     {
         $this->prename = $prename;
+
+        return $this;
+    }
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
