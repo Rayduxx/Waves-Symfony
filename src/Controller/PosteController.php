@@ -122,15 +122,5 @@ class PosteController extends AbstractController
         return $this->redirectToRoute('app_poste_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/front', name: 'app_poste_postefront', methods: ['GET'])]
-public function list(PosteRepository $posteRepository): Response
-{
-            
-        $postes = $posteRepository->findAll();
-        
-            return $this->render('poste/posteFront.html.twig', [
-                'postes' => $postes,
-            ]);
-    
-}
+ 
 }

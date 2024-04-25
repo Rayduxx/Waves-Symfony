@@ -1,0 +1,19 @@
+ {% extends "_bases/base.html.twig" %}
+{% block main %}
+ <div class="container">
+            <div class="row">
+                <div class="col-md-8 offsets-md-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="card-title">Create new comment</h1>
+                        </div>
+                        <div class="card-body">
+                            {{ include('Front/_form.html.twig') }}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}

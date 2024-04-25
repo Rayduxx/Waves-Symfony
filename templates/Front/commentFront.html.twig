@@ -1,0 +1,27 @@
+{% extends "_bases/base.html.twig" %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block main %}
+
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="comment-list">
+                    {% for commentaire in commentaires %}
+                        <div class="comment-item">
+                            <div class="comment-header">
+                                <h3>{{ commentaire.iduser }}</h3>
+                               
+                            </div>
+                            <div class="comment-body">
+                                <p>{{ commentaire.comment }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}                               
+                      <a href="{{ path('app_commentaireFront_new', {'idposte': poste.idposte}) }}" class="btn btn-primary">ajouter</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

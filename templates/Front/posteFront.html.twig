@@ -1,0 +1,33 @@
+{% extends "_bases/base.html.twig" %}
+{% block main %}
+    {% block title %}Liste des Postes{% endblock %}
+
+    {% block body %}
+       
+        <div class="row justify-content-center">
+            {% for poste in postes %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card mx-auto">
+                        {% if poste.image %}
+                            <img src="{{ asset('uploads/images/' ~ poste.image) }}" class="card-img-top img-fluid" alt="Image du poste {{ poste.titre }}">
+                        {% else %}
+                            <div class="text-center py-5">
+                                Pas d'image associée
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ poste.titre }}</h5>
+                            <p class="card-text">{{ poste.artiste }}</p>
+                            <audio controls>
+                                <source src="{{ asset('uploads/audio/' ~ poste.morceau) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <p class="card-text">{{ poste.description }}</p>
+                            <a href="{{ path('app_commentFront_indexC', {'idposte': poste.idposte}) }}" class="btn btn-primary">Commentaires</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
+{% endblock %}
