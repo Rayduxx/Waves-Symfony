@@ -41,8 +41,8 @@
 									</span>
 									<div class="d-flex align-items-center justify-content-around my-4 py-2">
 										<div>
-											<h4 class="mb-1">0</h4>
 											<span>Projects</span>
+											<h4 class="mb-1">{% if user.projets==null %}0{% else %}{{user.projets}}{% endif %}</h4>
 										</div>
 									</div>
 								</div>

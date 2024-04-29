@@ -46,6 +46,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $projets = 0;
 
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private $isVerified = false;
@@ -130,6 +132,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(int $phone): self
     {
         $this->phone = $phone;
+        return $this;
+    }
+    public function getProjets(): ?int
+    {
+        return $this->projets;
+    }
+    public function setProjets(int $projets): self
+    {
+        $this->projets = $projets;
         return $this;
     }
     public function getId(): ?int

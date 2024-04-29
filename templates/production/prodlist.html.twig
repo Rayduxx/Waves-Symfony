@@ -23,8 +23,12 @@
 										</div>
 									</div>
 									<div class="d-flex align-items-center justify-content-center">
-										<a href="javascript:;" class="btn btn-label-primary d-flex align-items-center me-3">
-											<i class="bx bxs-user-rectangle me-1"></i>Producteur</a>
+										<a href="{{ path('app_userprofile',{'id':prod.user.id}) }}" class="btn btn-label-primary d-flex align-items-center me-3">
+											<i class="bx bxs-user-rectangle me-1"></i>{{prod.user.name}} {{prod.user.prename}}</a>
+											{% if app.user.id == prod.user.id %}
+										<a href="{{ path('app_userprofile',{'id':prod.user.id}) }}" class="btn btn-label-primary d-flex align-items-center me-3">
+											<i class="bx bx-edit-alt me-1"></i></a>
+											{% endif %}
 									</div>
 								</div>
 							</div>
@@ -34,5 +38,7 @@
 			</div>
 		</section>
 	</div>
+    <div class="buy-now">
+      <a href="{{path('app_production_new')}}" class="btn btn-primary btn-buy-now">Créer un nouveau projet</a>
+    </div>
 {% endblock %}
-

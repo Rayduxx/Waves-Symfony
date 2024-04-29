@@ -114,7 +114,7 @@
 										</span>
 										<div class="timeline-event">
 											<div class="timeline-header mb-1">
-												<h6 class="mb-0">Projets: 0</h6>
+												<h6 class="mb-0">Projets: {% if UserDetail.projets==null %}0{% else %}{{UserDetail.projets}}{% endif %}</h6>
 											</div>
 										</div>
 									</li>									

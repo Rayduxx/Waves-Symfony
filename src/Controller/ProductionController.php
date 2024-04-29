@@ -27,16 +27,20 @@ class ProductionController extends AbstractController
         $prod = new Production();
         $form = $this->createForm(NewProdType::class, $prod);
         $form->handleRequest($request);
-        $Coverfile = $form['cover']->getData();
-        if ($Coverfile) {
-            $filename = md5(uniqid()) . '.' . $Coverfile->guessExtension();
-            $Coverfile->move($this->getParameter('images_directory'), $filename);
-            $prod->setCover($filename);
-        }
         if ($form->isSubmitted() && $form->isValid()) {
+            $Coverfile = $form['cover']->getData();
+            if ($Coverfile) {
+                $filename = md5(uniqid()) . '.' . $Coverfile->guessExtension();
+                $Coverfile->move($this->getParameter('images_directory'), $filename);
+                $prod->setCover($filename);
+            }
+            $user = $this->getUser();
+            $prod->setUser($user);
+            $user->setProjets($user->getProjets() + 1);
             $entityManager->persist($prod);
+            $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('app_studio');
+            return $this->redirectToRoute('app_production_list');
         }
         return $this->render('production/newprod.html.twig', ['form' => $form->createView(),]);
     }
@@ -44,8 +48,10 @@ class ProductionController extends AbstractController
     public function ProdList(ProductionRepository $productionRepository): Response
     {
         return $this->render(
-            'production/prodlist.html.twig',[
+            'production/prodlist.html.twig',
+            [
                 'prods' => $productionRepository->findAll(),
-            ]);
+            ]
+        );
     }
 }

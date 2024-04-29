@@ -139,7 +139,8 @@ class UserController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('security/register-done.html.twig')
             );
-            return $guardHandler->authenticateUserAndHandleSuccess($user, $request, $authenticator, 'main');
+            return $this->redirectToRoute('app_register');
+            //return $guardHandler->authenticateUserAndHandleSuccess($user, $request, $authenticator, 'main');
         }
         return $this->render('security/register.html.twig', ['form' => $form->createView(),]);
     }
@@ -183,6 +184,7 @@ class UserController extends AbstractController
     public function UserProfile($id, UserRepository $userRepository)
     {
         $UserDetails = $userRepository->find($id);
+        
         return $this->render('user/UserProfile.html.twig', [
             'UserController' => 'UserController',
             'UserDetail' => $UserDetails,
