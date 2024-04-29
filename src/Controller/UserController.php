@@ -55,6 +55,7 @@ class UserController extends AbstractController
         $form = $this->createForm(ProfileEditType::class, $userinfo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $password = $form->get('password')->getData();
             if (empty($password)) {
                 $user->setPassword($userinfo->getPassword());
@@ -87,6 +88,7 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    
     private function getGeolocationData($ipAddress)
     {
         $apiKey = 'c4bb000a19b44b68835667f36ab461f6';
@@ -98,6 +100,7 @@ class UserController extends AbstractController
             return null;
         }
     }
+    
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, GuardAuthenticatorHandler $guardHandler): Response
     {
@@ -172,11 +175,9 @@ class UserController extends AbstractController
     public function UsersList(UserRepository $userRepository)
     {
         return $this->render(
-            'user/listusers.html.twig',
-            [
+            'user/listusers.html.twig',[
                 'users' => $userRepository->findAll(),
-            ]
-        );
+            ]);
     }
     #[Route('/userprofile/{id}', name: 'app_userprofile')]
     public function UserProfile($id, UserRepository $userRepository)

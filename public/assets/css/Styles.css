@@ -428,3 +428,8 @@ a.bg-google-plus:focus {
         width: 100px
     }
 }
+.btn-label-primary {
+    color: #dc69ff;
+    border-color: rgba(0,0,0,0);
+    background: #fbe7ff
+}
