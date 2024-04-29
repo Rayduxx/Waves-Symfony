@@ -15,16 +15,44 @@ class Production
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
+    
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $moodtag = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private  $cover;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "idUser", referencedColumnName: "id")]
+    private ?User $user = null;
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+ 
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+ 
+        return $this;
+    }
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -42,6 +70,18 @@ class Production
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     public function getGenre(): ?string
     {
         return $this->genre;
@@ -53,16 +93,6 @@ class Production
 
         return $this;
     }
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-        return $this;
-    }
 
     public function getMoodtag(): ?string
     {
@@ -72,6 +102,7 @@ class Production
     public function setMoodtag(string $moodtag): static
     {
         $this->moodtag = $moodtag;
+
         return $this;
     }
 }

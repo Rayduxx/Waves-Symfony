@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProfileEditType extends AbstractType
@@ -17,7 +16,7 @@ class ProfileEditType extends AbstractType
     {
         $builder
             ->add('image', FileType::class, [
-                'label' => 'Image de profile :',
+                'label' => 'Image de profil :',
                 'required' => false,
                 'mapped' => false,
                 'attr' => [

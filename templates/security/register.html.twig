@@ -49,29 +49,35 @@
 							{% endif %}
 							<div class="row g-2 mb-3">
 								<div class="col mb-0">
-									{{ form_row(form.name) }}
+									{{form_row(form.name)}}
+									{{form_errors(form.name)}}
 								</div>
 								<div class="col mb-0">
-									{{ form_row(form.prename) }}
+									{{form_row(form.prename)}}
+									{{form_errors(form.prename)}}
 								</div>
 							</div>
 							<div class="row g-2 mb-3">
 								<div class="col mb-0">
 									{{ form_row(form.phone) }}
+									{{form_errors(form.phone)}}
 								</div>
 								<div class="col mb-0">
 									{{ form_row(form.birthday) }}
+									{{form_errors(form.birthday)}}
 								</div>
 							</div>
 							<div class="mb-2">
-								{{ form_row(form.image) }}
+								{{form_row(form.image)}}
+								{{form_errors(form.image)}}
 							</div>
 							<div class="mb-3">
 								{{ form_row(form.email) }}
+								{{form_errors(form.image)}}
 							</div>
 							<div class="mb-2 form-password-toggle">
-								{{ form_row(form.password, {'attr': {'id': 'passwordInput', 'oninput':
-								'updatePasswordStrength(this.value)'}}) }}
+								{{ form_row(form.password, {'attr': {'id': 'passwordInput', 'oninput':'updatePasswordStrength(this.value)'}}) }}
+								{{form_errors(form.password)}}
 							</div>
 							<div class="progress mb-3">
 								<div id="PwdMeter" class="progress-bar" role="progressbar" style="width: 0%"
