@@ -98,7 +98,7 @@
 							<div class="navbar-nav align-items-center">
 								<div class="nav-item d-flex align-items-center">
 									<i class="bx bx-search fs-4 lh-0"></i>
-									<input type="text" id="searchbarinput" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."/>
+									<input type="text" id="search" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."/>
 								</div>
 							</div>
 							<ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -183,29 +183,6 @@
 			</div>
 			<div class="layout-overlay layout-menu-toggle"></div>
 		</div>
-<script>
-        $(document).ready(function(){
-            $('#searchbarinput').keyup(function(){
-                search_table($(this).val());
-            });
-            function search_table(value){
-                $('#tableac tbody tr').each(function(){
-                    var found = false;
-                    $(this).find('td:first-child').each(function(){
-                        if($(this).text().toLowerCase().includes(value.toLowerCase())){
-                            found = true;
-                            return false;
-                        }
-                    });
-                    if(found){
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            }
-        });
-    </script>
 		<script src="../assets/vendor/libs/jquery/jquery.js"></script>
 		<script src="../assets/vendor/libs/popper/popper.js"></script>
 		<script src="../assets/vendor/js/bootstrap.js"></script>
