@@ -88,7 +88,6 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    
     private function getGeolocationData($ipAddress)
     {
         $apiKey = 'c4bb000a19b44b68835667f36ab461f6';
@@ -100,7 +99,7 @@ class UserController extends AbstractController
             return null;
         }
     }
-    
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, GuardAuthenticatorHandler $guardHandler): Response
     {
@@ -144,8 +143,7 @@ class UserController extends AbstractController
         }
         return $this->render('security/register.html.twig', ['form' => $form->createView(),]);
     }
-
-    #[Route('/verify/email', name: 'app_verify_email')]
+    #[Route('/verify/email', name: 'app_verify_email')]    
     public function verifyUserEmail(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -158,7 +156,6 @@ class UserController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
         return $this->redirectToRoute('app_homepage');
     }
-
     #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {

@@ -72,8 +72,8 @@
 								<div data-i18n="Analytics">Contenus</div>
 							</a>
 						</li>
-						<li class="menu-item">
-							<a href="" class="menu-link">
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_prod_dashboard' or app.request.attributes.get('_route') == 'app_prodEdit_dashboard' ? 'active' }}">
+							<a href="{{path('app_prod_dashboard')}}" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-music"></i>
 								<div data-i18n="Analytics">Productions</div>
 							</a>

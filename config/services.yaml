@@ -26,3 +26,7 @@ services:
     App\Entity\User:
         autowire: true
         autoconfigure: true
+        
+    App\Entity\Production:
+        autowire: true
+        autoconfigure: true

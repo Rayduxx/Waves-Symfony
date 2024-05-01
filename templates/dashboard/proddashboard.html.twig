@@ -1,0 +1,61 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Production
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card">
+					<h5 class="card-header">Liste des productions</h5>
+					<table class="datatables-products table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1391px;">
+						<thead>
+							<tr>
+								<th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=""></th>
+								<th class="sorting sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 276px;" aria-label="product: activate to sort column descending" aria-sort="ascending">Titre</th>
+								<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 500px;" aria-label="category: activate to sort column ascending">Description</th>
+								<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 51px;" aria-label="sku: activate to sort column ascending">Genre</th>
+								<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 81px;" aria-label="price: activate to sort column ascending">Mood tag</th>
+								<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 76px;" aria-label="Actions">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for prod in prod %}
+								<tr class="odd">
+									<td class="  control" tabindex="0" style="display: none;"></td>
+									<td class="sorting_1">
+										<div class="d-flex justify-content-start align-items-center product-name">
+											<div class="avatar-wrapper">
+												<div class="avatar avatar me-2 rounded-2 bg-label-secondary"><img src="{{asset('uploads/' ~ prod.cover)}}" alt="Product-9" class="rounded-2"></div>
+											</div>
+											<div class="d-flex flex-column">
+												<h6 class="text-body text-nowrap mb-0">{{prod.nom}}</h6>
+												<small class="text-muted text-truncate d-none d-sm-block">{{prod.user.name}}
+													{{prod.user.prename}}</small>
+											</div>
+										</div>
+									</td>
+									<td>
+										<span class="text-truncate d-flex align-items-center">
+											<span>{{prod.description}}</span>
+										</td>
+									</td>
+									<td>
+										<span class="badge bg-label-primary">{{prod.genre}}</span>
+									</td>
+									<td>
+										<span class="badge bg-label-warning">{{prod.moodtag}}</span>
+									</td>
+									<td>
+										<a href="{{ path('app_prodSupp_dashboard',{'id':prod.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bx-trash"></i></a>
+										<a href="{{ path('app_prodEdit_dashboard', {'id': prod.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bxs-edit"></i></a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}
+

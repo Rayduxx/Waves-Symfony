@@ -1,0 +1,65 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Modifier projet
+{% endblock %}
+{% block content %}
+	<div data-bs-spy="scroll" class="scrollspy-example">
+		<section id="landingFeatures" class="section-py landing-features" style=" padding: 7rem 0;">
+			<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100"/>
+			<div class="container-xxl flex-grow-1 container-p-y">
+				<div class="row">
+					<div class="col-12">
+						<div class="card mb-4">
+							<div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
+								<div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+									<img src="{{asset('uploads/' ~ prodProd.cover)}}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+								</div>
+								<div class="flex-grow-1 mt-3 mt-sm-5">
+									<div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+										<div class="user-profile-info">
+											<h4>{{prodProd.nom}}</h4>
+											<ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+												<li class="list-inline-item fw-medium">
+													Créer par : {{prodProd.user.name}} {{prodProd.user.prename}}
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<h5 class="card-header">Modifier votre projet</h5>
+					<div class="row row-bordered g-0">
+						<div class="card-body">
+							<form method="POST" enctype="multipart/form-data">
+								{{ form_start(form) }}
+								<div class="row mb-3">
+									{{ form_row(form.nom, {'value': prodProd.nom}) }}
+								</div>
+								<div class="row mb-3">
+									{{ form_row(form.description, {'value': prodProd.description}) }}
+								</div>
+								<div class="row mb-3">
+									{{ form_row(form.genre, {'value': prodProd.genre}) }}
+								</div>
+								<div class="row mb-3">
+									{{ form_row(form.moodtag, {'value': prodProd.moodtag}) }}
+								</div>
+								<div class="row mb-3">
+									{{ form_row(form.cover) }}
+								</div>
+								<div class="mt-2">
+									<button class="btn btn-primary me-2">{{ button_ltabel|default('Enregistrer') }}</button>
+								</div>
+								{{ form_end(form) }}
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}
+
