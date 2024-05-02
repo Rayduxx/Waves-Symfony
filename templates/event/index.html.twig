@@ -50,13 +50,49 @@
                             <div class="col-md-6">
                                 <a href="{{ path('app_reservation_index') }}" class="btn btn-primary">voir la liste des reservations</a>
                             </div>
+                        <br>
+                        <div style="text-align : center">
+                        <h1>Statistiques des réservations</h1>
                         </div>
+    <canvas id="reservationChart" width="400" height="200"></canvas>
+    </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
 </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('reservationChart').getContext('2d');
+            var chartData = {{ chartData|json_encode|raw }};
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(chartData),
+                    datasets: [{
+                        label: 'Nombre de réservations par événement',
+                        data: Object.values(chartData),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
 <!-- Inclusion de jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

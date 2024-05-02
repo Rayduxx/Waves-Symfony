@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     #[Route('/', name: 'app_event_index', methods: ['GET'])]
-    public function index(EventRepository $eventRepository): Response
+    public function index(EventRepository $eventRepository,ReservationRepository $reservationRepository): Response
     {
+       
+        // Récupérer le nombre de réservations par événement
+        $reservationCountByEvent = $reservationRepository->countReservationsByEvent();
+    
+        // Créer un tableau pour stocker les données pour le graphique
+        $chartData = [];
+        foreach ($reservationCountByEvent as $result) {
+            // Récupérer l'identifiant de l'événement et le nombre de réservations à partir du résultat
+            $eventId = $result['eventId'];
+            $reservationCount = $result['reservationCount'];
+    
+            // Vous pouvez également utiliser l'ID de l'événement pour récupérer son nom à partir de la base de données si nécessaire
+    
+            // Ajouter les données au tableau $chartData
+            $chartData[$eventId] = $reservationCount;
+        }
+    
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findAll(),
+            'chartData' => $chartData,
         ]);
     }
     #[Route('/cards', name: 'app_event_card')]

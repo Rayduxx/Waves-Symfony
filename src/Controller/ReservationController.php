@@ -205,29 +205,4 @@ public function processPayment(Request $request): Response
         return new Response('Le paiement de test a échoué : ' . $e->getMessage());
     }
 }
-
-    public function statistics(ReservationRepository $reservationRepository): Response
-    {
-        // Récupérer le nombre de réservations par événement
-        $reservationCountByEvent = $reservationRepository->countReservationsByEvent();
-    
-        // Créer un tableau pour stocker les données pour le graphique
-        $chartData = [];
-        foreach ($reservationCountByEvent as $result) {
-            // Récupérer l'identifiant de l'événement et le nombre de réservations à partir du résultat
-            $eventId = $result['eventId'];
-            $reservationCount = $result['reservationCount'];
-    
-            // Vous pouvez également utiliser l'ID de l'événement pour récupérer son nom à partir de la base de données si nécessaire
-    
-            // Ajouter les données au tableau $chartData
-            $chartData[$eventId] = $reservationCount;
-        }
-    
-        // Passer les données au template
-        return $this->render('reservation/statistics.html.twig', [
-            'chartData' => $chartData,
-        ]);
-    }
-    
 }
