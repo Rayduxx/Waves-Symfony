@@ -29,6 +29,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    
  
 
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
@@ -87,4 +88,29 @@ class EventController extends AbstractController
 
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/rechercheAjax', name: 'rechercheAjax', methods: ['GET'])]
+    public function searchAjax(Request $request, EventRepository $repo)
+    {
+        // Récupérez le paramètre de recherche depuis la requête
+        $query = $request->query->get('q');
+    
+        // Récupérez les activites correspondants depuis la base de données
+        $events = $repo->findEventByName($query);
+        
+    
+        // Rendre la vue des activites correspondants
+        $html = $this->renderView("event/index.html.twig", 
+        [
+            "events" => $events,
+        ]);
+    
+        // Renvoyer la réponse avec le HTML rendu
+        return new Response($html);
+    }
+
+
+
+
 }
+

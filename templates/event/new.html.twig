@@ -1,9 +1,5 @@
 {% extends "dashboard/adminbase.html.twig" %}
-{% block title %}AFFICHAGE{% endblock %}
-
-
-
-
+{% block title %}new{% endblock %}
 {% block AdminContent %}
     <div class="layout-wrapper layout-content-navbar layout-without-menu">
         <img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
@@ -14,8 +10,9 @@
 						<div class="card mb-4">
 
     {{ include('event/_form.html.twig') }}
-
-    <a href="{{ path('app_event_index') }}">back to list</a>
+<div>
+    <a href="{{ path('app_event_index') }}" class="btn btn-primary">back to list</a>
+    </div>
     </div>
       </div>
         </div>

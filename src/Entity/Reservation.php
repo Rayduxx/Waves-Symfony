@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ReservationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -14,24 +17,43 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+
     private ?int $Eid = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Positive()]
+
     private ?string $date_reservation = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 5   )]
     private ?string $statut = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern:"/^[a-zA-ZÀ-ÿ '-]+$/u"
+    )]
+
     private ?string $Nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern:"/^[a-zA-ZÀ-ÿ '-]+$/u"
+    )]
+
     private ?string $Prenom = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
     private ?int $NbPersonne = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email()]
     private ?string $Email = null;
 
     public function getId(): ?int

@@ -1,0 +1,38 @@
+{% extends "_bases/base.html.twig" %}
+
+{% block title %}Statistiques des réservations{% endblock %}
+
+{% block body %}
+    <h1>Statistiques des réservations</h1>
+
+    <canvas id="reservationChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('reservationChart').getContext('2d');
+            var chartData = {{ chartData|json_encode|raw }};
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(chartData),
+                    datasets: [{
+                        label: 'Nombre de réservations par événement',
+                        data: Object.values(chartData),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

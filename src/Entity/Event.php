@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use GuzzleHttp\Psr7\Message;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,20 +16,30 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255 )]
+    #[Assert\Regex(
+        pattern:"/^[a-zA-ZÀ-ÿ '-]+$/u"
+    )]
     private ?string $nomE = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $adrE = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 5   )]
     private ?string $descr = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+  
     private ?string $date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
-
     public function getId(): ?int
     {
         return $this->id;

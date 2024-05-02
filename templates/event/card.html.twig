@@ -1,44 +1,36 @@
-
-{% extends "dashboard/adminbase.html.twig" %}
-{% block title %}AFFICHAGE{% endblock %}
-
-
-
-{% block AdminContent %}
-
-  <div class="layout-wrapper layout-content-navbar layout-without-menu">
+{% extends "_bases/base.html.twig" %}
+{% block title %}Liste des evenements{% endblock %}
+{% block content %}
+    <div class="layout-wrapper layout-content-navbar layout-without-menu">
         <img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
-		<div class="layout-container">
-			<div class="layout-page">
-				<div class="content-wrapper">
-					<div class="container-xxl flex-grow-1 container-p-y">
-						<div class="card mb-4">
-
-<div class="row">
-							{% for events in events %}
-								<div class="col-md-6 col-xl-4">
-									<div class="card shadow-none bg-transparent border border-primary mb-3">
-										<div class="card-body">
-											<h5 class="card-title">{{events.nomE}}</h5>
-											<p class="card-text">Adresse: {{ events.adrE }}</p>
-											<p class="card-text">Description: {{ events.descr }}</p>
-											<p class="card-text">Image: {{ events.image }}</p>
-											<p class="card-text">Date: {{ events.date }}</p>
-                                              <a href="" class="btn btn-primary">Reserver</a>
-										</div>
-									</div>
-								</div>
-                               
-							{% endfor %}
-						</div>
+        <div class="layout-container">
+            <div class="layout-page">
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="card mb-4" style="padding: 9px;">
+                            <h5 class="card-header">Events</h5>
+                            <div class="row">
+                                {% for event in events %}
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="card shadow-none bg-transparent border border-primary mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ event.nomE }}</h5>
+                                                <p class="card-text">Adresse: {{ event.adrE }}</p>
+                                                <p class="card-text">Description: {{ event.descr }}</p>
+                                                <p class="card-text">Image: {{ event.image }}</p>
+                                                <p class="card-text">Date: {{ event.date }}</p>
+                                                <!-- Utilisation d'un lien avec l'ID de l'événement dans l'URL -->
+                                                <a href="{{ path('app_reservation_new', {'eventId': event.id}) }}" class="btn btn-primary">Reserver</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                                                </div>
-
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-
-
-                        
+                    </div>
+                </div>
+                <div class="content-backdrop fade"></div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

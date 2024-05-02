@@ -1,59 +1,86 @@
 {% extends "dashboard/adminbase.html.twig" %}
 {% block title %}AFFICHAGE{% endblock %}
 
-
-
 {% block AdminContent %}
 <div class="layout-wrapper layout-content-navbar layout-without-menu">
-        <img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
-		<div class="layout-container">
-			<div class="layout-page">
-				<div class="content-wrapper">
-					<div class="container-xxl flex-grow-1 container-p-y">
-						<div class="card mb-4">
-   
+    <img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+    <div class="layout-container">
+        <div class="layout-page">
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="card mb-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom de l'event</th>
+                                    <th>Adresse</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Image</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabv">
+                                
+                                {% for event in events %}
+                                    <tr>
+                                        <td>{{ event.id }}</td>
+                                        <td>{{ event.nomE }}</td>
+                                        <td>{{ event.adrE }}</td>
+                                        <td>{{ event.descr }}</td>
+                                        <td>{{ event.date }}</td>
+                                        <td>{{ event.image }}</td>
+                                        <td>
+                                            <a href="{{ path('app_event_show', {'id': event.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bx-show"></i></a>
+                                            <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bxs-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{ path('app_event_new') }}" class="btn btn-primary">Ajouter un évenement</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ path('app_reservation_index') }}" class="btn btn-primary">voir la liste des reservations</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom de l'event</th>
-                <th>Adresse</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td>{{ event.id }}</td>
-                <td>{{ event.nomE }}</td>
-                <td>{{ event.adrE }}</td>
-                <td>{{ event.descr }}</td>
-                <td>{{ event.date }}</td>
-                <td>{{ event.image }}</td>
-                <td>
-                    <a href="{{ path('app_event_show', {'id': event.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bx-show"></i></a>
-					<a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-sm btn-icon item-edit"><i class="bx bxs-edit"></i></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<!-- Inclusion de jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <a href="{{ path('app_event_new') }}">Create new</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    
+<!-- Script JavaScript pour la recherche AJAX -->
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val(); // Get the search query
+            console.log(query);
+            $.ajax({
+                url: '{{ path('rechercheAjax') }}',
+                type: 'GET',
+                data: { q: query }, // Pass the search query as 'q' parameter
+                success: function(response) {
+                    console.log(response);
+                    $('#tabv').html(''); // Clear previous search results
+                    // Iterate over each event in the response and append its details to the table
+                    response.forEach(function(event) {
+                    });
+                }
+            });
+        });
+    });
+</script>
+
 {% endblock %}
-

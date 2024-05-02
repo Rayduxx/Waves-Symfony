@@ -20,11 +20,11 @@
             <tr>
                 <th>Id</th>
                 <th>Eid</th>
-                <th>Date_reservation</th>
+                <th>Date de reservation</th>
                 <th>Statut</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>NbPersonne</th>
+                <th>Nombre de Personnes</th>
                 <th>Email</th>
                 <th>actions</th>
             </tr>
@@ -41,8 +41,8 @@
                 <td>{{ reservation.NbPersonne }}</td>
                 <td>{{ reservation.Email }}</td>
                 <td>
-                    <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">edit</a>
+                    <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}"><i class="bx bx-show"></i></a>
+                    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}"><i class="bx bxs-edit"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -53,7 +53,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_reservation_new') }}">Create new</a>
     </div>
         </div>
     </div>

@@ -21,6 +21,16 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
+    public function findEventByName($descr)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.descr LIKE :descr')
+            ->setParameter('descr', '%' . $descr . '%');
+        
+        return $qb->getQuery()->getResult();
+    }
+
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

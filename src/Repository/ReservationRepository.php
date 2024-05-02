@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Reservation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Event;
 
 /**
  * @extends ServiceEntityRepository<Reservation>
@@ -20,6 +21,24 @@ class ReservationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Reservation::class);
     }
+    public function findReservationById(int $id): ?Reservation
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+    public function countReservationsByEvent(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.Eid AS eventId, COUNT(r.Eid) AS reservationCount')
+            ->groupBy('r.Eid') // Groupement par l'ID de l'événement
+            ->getQuery()
+            ->getResult();
+    }
+    
+    
 
 //    /**
 //     * @return Reservation[] Returns an array of Reservation objects
