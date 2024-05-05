@@ -17,7 +17,7 @@
                                                 <h5 class="card-title">{{ event.nomE }}</h5>
                                                 <p class="card-text">Adresse: {{ event.adrE }}</p>
                                                 <p class="card-text">Description: {{ event.descr }}</p>
-                                                <p class="card-text">Image: {{ event.image }}</p>
+                                                <p class="card-text">Type: {{ event.image }}</p>
                                                 <p class="card-text">Date: {{ event.date }}</p>
                                                 <!-- Utilisation d'un lien avec l'ID de l'événement dans l'URL -->
                                                 <a href="{{ path('app_reservation_new', {'eventId': event.id}) }}" class="btn btn-primary">Reserver</a>
