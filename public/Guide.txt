@@ -1,4 +1,4 @@
-composer require symfony/runtime //download all files of the bunldes li masboubin aand moussa fel pc
+//download all files of the bunldes li masboubin aand moussa fel pc
 
 symfony console doctrine:database:create //taamel database b esm eli fel .env
 

@@ -63,7 +63,7 @@ class ProductionController extends AbstractController
             $entityManager->persist($prod);
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('app_production_list');
+            return $this->redirectToRoute('app_studio');
         }
         return $this->render('production/newprod.html.twig', ['form' => $form->createView(),]);
     }
