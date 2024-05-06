@@ -20,12 +20,19 @@ class AdminController extends AbstractController
             'user' => $userRepository->findAll(),
         ]);
     }
+
+    
     #[Route('/userEditDash/{id}', name: 'app_userEdit_dashboard')]
     public function EditUser($id, UserRepository $userRepository, User $user, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
+<<<<<<< Updated upstream
         $userinfo = $userRepository->find($id);
         $form = $this->createForm(AdminUserEditType::class, $userinfo);
+=======
+        $form = $this->createForm(AdminUserEditType::class, $user);
+>>>>>>> Stashed changes
         $form->handleRequest($request);
+        $userinfo=$userRepository->find($id);
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $form->get('password')->getData();
             if (empty($password)) {
@@ -37,7 +44,7 @@ class AdminController extends AbstractController
                 );
             }
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($userinfo);
+            $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('message', 'Utilisateur modifié avec succès');
             return $this->redirectToRoute('app_user_dashboard');
@@ -57,4 +64,9 @@ class AdminController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_user_dashboard');
     }
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 }

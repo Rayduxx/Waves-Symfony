@@ -20,7 +20,6 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\HttpFoundation\IpUtils;
 
 class UserController extends AbstractController
 {
@@ -55,7 +54,6 @@ class UserController extends AbstractController
         $form = $this->createForm(ProfileEditType::class, $userinfo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $form->get('password')->getData();
             if (empty($password)) {
                 $user->setPassword($userinfo->getPassword());
@@ -81,13 +79,14 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
             dump($imageFile);
-            return $this->redirectToRoute('app_profile');
+            //return $this->redirectToRoute('app_profile');
         }
         return $this->render('user/profileEdit.html.twig', [
             'userinfo' => $userinfo,
             'form' => $form->createView()
         ]);
     }
+<<<<<<< Updated upstream
     private function getGeolocationData($ipAddress)
     {
         $apiKey = 'c4bb000a19b44b68835667f36ab461f6';
@@ -99,6 +98,8 @@ class UserController extends AbstractController
             return null;
         }
     }
+=======
+>>>>>>> Stashed changes
 
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, GuardAuthenticatorHandler $guardHandler): Response
@@ -113,20 +114,10 @@ class UserController extends AbstractController
                 $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
                 $imageFile->move($this->getParameter('images_directory'), $filename);
                 $user->setImage($filename);
-            } else {
+            }else{
                 $user->setImage("default.png");
             }
             $user->setRoles(array("ROLE_USER"));
-            $ipAddress = $request->getClientIp();
-            
-            if (IpUtils::checkIp($ipAddress, ['127.0.0.1', '::1'])) {
-                $country = "Tunisia";
-            } else {
-                $geolocationData = $this->getGeolocationData($ipAddress);
-                $country = $geolocationData['country'];
-            }
-            $user->setCountry($country);
-            $user->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($user);
             $entityManager->flush();
             $this->emailVerifier->sendEmailConfirmation(
@@ -138,8 +129,7 @@ class UserController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('security/register-done.html.twig')
             );
-            return $this->redirectToRoute('app_register');
-            //return $guardHandler->authenticateUserAndHandleSuccess($user, $request, $authenticator, 'main');
+            return $guardHandler->authenticateUserAndHandleSuccess($user, $request, $authenticator, 'main');
         }
         return $this->render('security/register.html.twig', ['form' => $form->createView(),]);
     }
@@ -168,23 +158,5 @@ class UserController extends AbstractController
     public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-    }
-    #[Route('/users', name: 'app_user_list')]
-    public function UsersList(UserRepository $userRepository)
-    {
-        return $this->render(
-            'user/listusers.html.twig',[
-                'users' => $userRepository->findAll(),
-            ]);
-    }
-    #[Route('/userprofile/{id}', name: 'app_userprofile')]
-    public function UserProfile($id, UserRepository $userRepository)
-    {
-        $UserDetails = $userRepository->find($id);
-        
-        return $this->render('user/UserProfile.html.twig', [
-            'UserController' => 'UserController',
-            'UserDetail' => $UserDetails,
-        ]);
     }
 }

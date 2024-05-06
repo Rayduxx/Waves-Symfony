@@ -31,9 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prename = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $country = null;
-
     #[ORM\Column]
     private array $roles = [];
 
@@ -43,19 +40,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $phone = null;
-    #[ORM\Column(nullable: true)]
-    private ?int $projets = 0;
 
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private $isVerified = false;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
-    
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private  $image;
@@ -93,17 +85,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
-    }
     public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
@@ -114,15 +95,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->birthday = $birthday;
         return $this;
     }
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
     public function getPhone(): ?int
     {
         return $this->phone;
@@ -131,15 +103,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(int $phone): self
     {
         $this->phone = $phone;
-        return $this;
-    }
-    public function getProjets(): ?int
-    {
-        return $this->projets;
-    }
-    public function setProjets(int $projets): self
-    {
-        $this->projets = $projets;
         return $this;
     }
     public function getId(): ?int
