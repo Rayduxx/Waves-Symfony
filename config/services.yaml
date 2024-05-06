@@ -25,4 +25,27 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Entity\User:
         autowire: true
+<<<<<<< Updated upstream
+=======
+        autoconfigure: true
+        
+    App\Entity\Production:
+        autowire: true
+        autoconfigure: true
+    
+    App\Entity\Event:
+        autowire: true
+        autoconfigure: true
+    
+    App\Entity\Reservation:
+        autowire: true
+        autoconfigure: true
+
+    App\Entity\Item:
+        autowire: true
+        autoconfigure: true
+
+    App\Entity\Commande:
+        autowire: true
+>>>>>>> Stashed changes
         autoconfigure: true
