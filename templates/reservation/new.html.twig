@@ -1,0 +1,102 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Ajouter reservation{% endblock %}
+{% block main %}
+<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" style="height: 911px;" class=" position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100">
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="row">
+							<div class="card mb-4">
+								<div class="card-header d-flex align-items-center justify-content-between">
+									<h5 class="mb-0">Ajouter votre reservation</h5>
+								</div>
+								<div class="card-body">
+									<form method="POST" enctype="multipart/form-data">
+										{{ form_start(form) }}
+										<div class="row mb-3">
+											<label class="col-sm-2 col-form-label" for="basic-default-name">Nom</label>
+											<div class="col-sm-10">
+												{{ form_row(form.Nom) }}
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label class="col-sm-2 col-form-label" for="basic-default-name">Prenom</label>
+											<div class="col-sm-10">
+												{{ form_row(form.Prenom)}}
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label class="col-sm-2 col-form-label" for="basic-default-name">Email</label>
+											<div class="col-sm-10">
+												{{ form_row(form.Email) }}
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label class="col-sm-2 col-form-label" for="basic-default-name">N° Personnes</label>
+											<div class="col-sm-10">
+												{{ form_row(form.NbPersonne) }}
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label class="col-sm-2 col-form-label" for="basic-default-name">statut</label>
+											<div class="col-sm-10">
+												{{ form_row(form.statut) }}
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label class="col-sm-2 col-form-label" for="basic-default-name">Date de la reservation</label>
+											<div class="col-sm-10">
+												{{ form_row(form.date_reservation, {'attr': {'placeholder': 'YYYY-MM-DD'}}) }}
+											</div>
+										</div>
+										<div class="mt-2">
+											<button class="btn btn-primary me-2">{{ button_ltabel|default('Reserver') }}</button>
+										</div>
+										{{ form_end(form) }}
+									</form>
+									{% for message in app.flashes('success') %}
+                                        <div class="alert alert-succes" role="alert">
+                                            {{ message }}
+                                            <a class="btn btn-primary"  href="{{ path('app_generer_pdf',{'id':eventId}) }}">extract PDF</a>
+                                            <button id="payment-button" class="btn btn-primary">Procéder au paiement</button>
+                                        </div>
+                                    {% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content-backdrop fade"></div>
+			</div>
+		</div>
+	</div>
+<script>
+
+    {# <div class="layout-wrapper layout-content-navbar layout-without-menu">
+        <img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+        <div class="layout-container">
+            <div class="layout-page">
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="card mb-4">
+                            {{ include('reservation/_form.html.twig') }}
+                            {% for message in app.flashes('success') %}
+                                        <div class="alert alert-succes" role="alert">
+                                            {{ message }}
+                                            <a class="btn btn-primary"  href="{{ path('app_generer_pdf',{'id':eventId}) }}">extract PDF</a>
+                                            <button id="payment-button" class="btn btn-primary">Procéder au paiement</button>
+
+                                        </div>
+                                    {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> #}
+    
+{% endblock %}
+
+

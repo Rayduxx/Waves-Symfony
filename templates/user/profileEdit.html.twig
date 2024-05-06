@@ -1,0 +1,64 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Edit profile
+{% endblock %}
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 104%% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card-body">
+							<div class="card">
+								<h5 class="card-header">Details du compte</h5>
+								<div class="row row-bordered g-0">
+									<div class="col-md-8">
+										<div class="card-body" >
+											<form method="POST" enctype="multipart/form-data">
+												{{ form_start(form) }}
+												<div class="row mb-3">
+													{{ form_row(form.name, {'value': userinfo.name}) }}
+												</div>
+												<div class="row mb-3">
+													{{ form_row(form.prename, {'value': userinfo.prename}) }}
+												</div>
+												<div class="row mb-3">
+													{{ form_row(form.phone, {'value': userinfo.phone}) }}
+												</div>
+												<div class="row mb-3">
+													{{ form_row(form.email, {'value': userinfo.email}) }}
+												</div>
+												<div class="row mb-3">
+													{{ form_row(form.password, {'value': ''}) }}
+													<div class="form-text">vous pouvez le laisser vide si vous ne voulez pas le changer</div>
+												</div>
+												<div class="row mb-3">
+													<label class="col-sm-2" for="basic-default-company">Birthday :</label>
+													{{ form_row(form.birthday, {'value': userinfo.birthday ? userinfo.birthday.format('Y-m-d') : null }) }}
+												</div>
+												<div class="row mb-3">
+													{{ form_row(form.image) }}
+												</div>
+												<div class="mt-2">
+													<button class="btn btn-primary me-2">{{ button_ltabel|default('Enregisrer') }}</button>
+												</div>
+												{{ form_end(form) }}
+											</form>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card-body">
+											<img src="{{asset('uploads/' ~ userinfo.image)}}" alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content-backdrop fade"></div>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}
+
