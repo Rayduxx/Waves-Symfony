@@ -30,3 +30,11 @@ services:
     App\Entity\Production:
         autowire: true
         autoconfigure: true
+    
+    App\Entity\Event:
+        autowire: true
+        autoconfigure: true
+    
+    App\Entity\Reservation:
+        autowire: true
+        autoconfigure: true

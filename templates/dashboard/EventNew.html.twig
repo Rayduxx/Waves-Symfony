@@ -1,0 +1,68 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Evenement
+{% endblock %}
+{% block AdminContent %}
+	{#<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				{{ include('event/_form.html.twig') }}
+				<div>
+					<a href="{{ path('app_event_index') }}" class="btn btn-primary">back to list</a>
+				</div>
+			</div>
+		</div>
+	</div>#}
+
+<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card-header d-flex align-items-center justify-content-between">
+					<h5 class="mb-0">Ajouter un evenement</h5>
+				</div>
+				<div class="card-body">
+					<form id="formAuthentication" enctype="multipart/form-data" class="mb-3" method="POST">
+						{{ form_start(form) }}
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-name">Nom</label>
+							<div class="col-sm-10">
+								{{ form_row(form.nomE) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-name">Adresse</label>
+							<div class="col-sm-10">
+								{{ form_row(form.adrE) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-company">Description</label>
+							<div class="col-sm-10">
+								{{ form_row(form.descr) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-company">Date</label>
+							<div class="col-sm-10">
+								{{ form_row(form.date) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-phone">Image</label>
+							<div class="col-sm-10">
+								{{ form_row(form.image) }}
+							</div>
+						</div>
+						<div class="row justify-content-end">
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-primary">Ajouter</button>
+								<a href="{{ path('app_event_index') }}" class="btn btn-info">Liste</a>
+							</div>
+						</div>
+						{{ form_end(form) }}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

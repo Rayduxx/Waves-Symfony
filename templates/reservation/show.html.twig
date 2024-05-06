@@ -1,0 +1,66 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}AFFICHAGE{% endblock %}
+
+
+{% block AdminContent %}
+<div class="layout-wrapper layout-content-navbar layout-without-menu">
+        <img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>Eid</th>
+                <td>{{ reservation.Eid }}</td>
+            </tr>
+            <tr>
+                <th>Date_reservation</th>
+                <td>{{ reservation.dateReservation }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ reservation.statut }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ reservation.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ reservation.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>NbPersonne</th>
+                <td>{{ reservation.NbPersonne }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ reservation.Email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row justify-content-end">
+							<div class="col-sm-10">
+    <a href="{{ path('app_reservation_index') }}" class="btn btn-primary" >back to list</a>
+    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}" class="btn btn-primary">edit</a>
+    </div>
+    </div>
+    
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

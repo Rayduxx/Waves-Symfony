@@ -7,3 +7,4 @@ window.onload = function () {
   setHeight();
   window.addEventListener("resize", setHeight);
 };
+

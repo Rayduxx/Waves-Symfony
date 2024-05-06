@@ -12,7 +12,7 @@
 					</span>
 					<span class="app-brand-text demo menu-text fw-bolder ms-4" style="background: linear-gradient(90deg, #6094EA 0%, #F02FC2 100%);text-transform:none;-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Waves</span>
 				</a>
-			</div>
+			</div>{% if app.user %}
 			<div class="collapse navbar-collapse landing-nav-menu" id="navbarSupportedContent">
 				<button class="navbar-toggler border-0 text-heading position-absolute end-0 top-0 scaleX-n1-rtl" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="tf-icons bx bx-x bx-sm"></i>
@@ -25,7 +25,7 @@
 						<a class="nav-link fw-medium" href="{{path('app_user_list')}}">Utilisateurs</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fw-medium" href="{{path('app_homepage')}}">Evenements</a>
+						<a class="nav-link fw-medium " href="{{path('app_event_card')}}">Evenements</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link fw-medium" href="{{path('app_homepage')}}">Contenus</a>
@@ -41,6 +41,7 @@
 					</li>
 				</ul>
 			</div>
+			{% endif %}
 			<div class="landing-menu-overlay d-lg-none"></div>
 			<ul class="navbar-nav flex-row align-items-center ms-auto">
 				{% if app.user %}
