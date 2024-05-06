@@ -1,0 +1,20 @@
+{% extends '_bases/base.html.twig' %}
+
+{% block title %}New Commande
+{% endblock %}
+
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu" style="background: url({{ asset('nav/img/front-pages/backgrounds/cta-bg-light.png') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+		<div class="layout-page">
+			<div class="content-wrapper">
+				<div class="container-xxl flex-grow-1 container-p-y">
+					<h1>Create new Commande</h1>
+
+					{{ include('commande/_form.html.twig') }}
+
+					<a href="{{ path('app_item_indexUser') }}">back to list</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

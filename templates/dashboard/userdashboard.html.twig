@@ -1,0 +1,74 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Account Profile
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card">
+					<h5 class="card-header">Liste des utilisateurs</h5>
+					<div class="table-responsive text-nowrap">
+						<table class="table table-hover" id="tableac">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>PDP</th>
+									<th>Nom</th>
+									<th>Prenom</th>
+									<th>Email</th>
+									<th>Role</th>
+									<th>Tel</th>
+									<th>Verifier</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody class="table-border-bottom-0">
+								{% for user in user %}
+									<tr>
+										<td>{{ user.id }}</td>
+										<td>
+											<ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+												<li class="avatar avatar-xs">
+													<img src="{{asset('uploads/' ~ user.image)}}" alt="Avatar" class="rounded-circle">
+												</li>
+											</ul>
+										</td>
+										<td>{{ user.name}}</td>
+										<td>{{ user.prename}}</td>
+										<td>{{ user.email}}</td>
+										<td>
+											{% for role in user.roles %}
+												{% if role == "ROLE_USER" %}User
+													{% elseif role == "ROLE_ADMIN" %}Admin
+												{% endif %}
+												{% if not loop.last %},
+												{% endif %}
+											{% endfor %}
+										</td>
+										<td>{{ user.phone}}</td>
+										<td>
+											{% if user.isVerified == 1 %}
+												<span class="badge bg-label-success">Vérifié</span>
+											{% elseif user.isVerified == 0 %}
+												<span class="badge bg-label-danger">Non vérifié</span>
+											{% endif %}
+										</td>
+										<td>
+											<a type="button" class="badge badge-center bg-label-primary modify-btn" href="{{ path('app_userEdit_dashboard', {'id': user.id}) }}">
+												<span class="tf-icons bx bx-edit-alt"></span>
+											</a>
+											<a class="badge badge-center bg-label-primary" href="{{ path('app_userSupp_dashboard',{'id':user.id}) }}">
+												<span class="tf-icons bx bx-trash"></span>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="content-backdrop fade"></div>
+		</div>
+	{% endblock %}
+
