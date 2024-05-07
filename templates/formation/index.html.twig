@@ -1,0 +1,74 @@
+{% extends "dashboard/adminbase.html.twig" %}
+
+{% block title %}Formation index
+{% endblock %}
+
+{% block AdminContent %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+							<div class="card">
+								<div style="display: flex; justify-content: space-between;">
+									<h5 style="order: 1;">Formation
+									</h5>
+									<a href="{{ path('app_formation_new') }}" class="btn btn-primary" style="order: 2;">Create new</a>
+									<a href="{{ path('generate_formations_pdf') }}" class="btn btn-primary" style="order: 2;">Generate PDF</a>
+								</div>
+
+								<br>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Titre</th>
+											<th>Description</th>
+											<th>Affiche</th>
+											<th>Video</th>
+											<th>actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for formation in formations %}
+											<tr>
+												<td>{{ formation.id }}</td>
+												<td>{{ formation.titre }}</td>
+												<td>{{ formation.description }}</td>
+												<td>
+													{% if formation.affiche %}
+														<img src="{{ asset('uploads/images/' ~ formation.affiche) }}" alt="Image de la formation {{ formation.titre }}" style="max-width: 100px; max-height: 100px;">
+													{% else %}
+														Pas d'image associée
+													{% endif %}
+												</td>
+												<td>{{ formation.video }}</td>
+												<td>
+													<a href="{{ path('app_formation_show', {'id': formation.id}) }}">show</a>
+													<a href="{{ path('app_formation_edit', {'id': formation.id}) }}">edit</a>
+												</td>
+											</tr>
+										{% else %}
+											<tr>
+												<td colspan="6">no records found</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+								{# Pagination #}
+								<div class="pagination-container" style="text-align: center; margin-top: 20px;">
+									{{ knp_pagination_render(formations) }}
+								</div>
+								{# End Pagination #}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

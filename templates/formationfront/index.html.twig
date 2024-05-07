@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+{% block main %}
+    {% block title %}Liste des Formation{% endblock %}
+
+    {% block body %}
+
+    <div>
+        <input type="text" id="search" name="search" placeholder="Recherche par titre">
+    </div>
+       
+        <div class="row justify-content-center" >
+            {% for formation in formations %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div id="results" class="card mx-auto">
+                        {% if formation.affiche %}
+                            <img src="{{ asset('uploads/images/' ~ formation.affiche) }}" class="card-img-top img-fluid" alt="Image de la formation {{ formation.titre }}">
+                        {% else %}
+                            <div class="text-center py-5">
+                                Pas d'image associée
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ formation.titre }}</h5>
+                            <p class="card-text">{{ formation.description }}</p>
+                            <h5 class="card-title">{{ formation.video }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            var query = $(this).val();
+            $.ajax({
+                url: "{{ path('app_formation_searchFront') }}",
+                type: "POST",
+                data: {query: query},
+                success: function(data) {
+                    $('#results').html(data);
+                    $('#results').css('width', '100%');
+                    $('#results').css('position', 'static');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+    {% endblock %}
+{% endblock %}

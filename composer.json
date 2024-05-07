@@ -12,6 +12,7 @@
     "doctrine/doctrine-bundle": "^2.11",
     "doctrine/doctrine-migrations-bundle": "^3.3",
     "doctrine/orm": "^2.17",
+    "dompdf/dompdf": "^2.0",
     "gedmo/doctrine-extensions": "^3.13",
     "jwilsson/spotify-web-api-php": "^6.0",
     "knplabs/knp-paginator-bundle": "^5.9",

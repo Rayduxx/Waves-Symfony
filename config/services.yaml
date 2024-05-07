@@ -38,3 +38,11 @@ services:
     App\Entity\Reservation:
         autowire: true
         autoconfigure: true
+
+    App\Entity\Cours:
+        autowire: true
+        autoconfigure: true
+
+    App\Entity\Formation:
+        autowire: true
+        autoconfigure: true
