@@ -116,7 +116,7 @@ a.bg-primary:hover, a.bg-primary:focus {
 }
 
 .bg-label-primary {
-  background-color: #ffe7ff !important;
+  background-color: #e7e7ff !important;
   color: #d069ff !important;
 }
 
@@ -759,7 +759,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 .bg-menu-theme .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle):before {
   background-color: #d069ff !important;
-  border: 3px solid #ffe7ff !important;
+  border: 3px solid #e7e7ff !important;
 }
 
 .app-brand .layout-menu-toggle {

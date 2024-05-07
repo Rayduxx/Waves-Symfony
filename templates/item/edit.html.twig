@@ -1,0 +1,30 @@
+{% extends 'dashboard/adminbase.html.twig' %}
+
+{% block title %}Edit Item
+{% endblock %}
+
+{% block AdminContent %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+							<div class="card">
+								<h5>Edit Item</h5>
+								<div class="table-responsive text-nowrap">
+									<table class="table table-hover" id="tableac">
+										{{ include('item/_form.html.twig', {'button_label': 'Update'}) }}
+										{{ include('item/_delete_form.html.twig') }}
+									</table>
+									<a href="{{ path('app_item_index') }}">back to list</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

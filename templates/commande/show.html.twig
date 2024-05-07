@@ -1,0 +1,42 @@
+{% extends '_bases/base.html.twig' %}
+
+{% block title %}Commande
+{% endblock %}
+
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu" style="background: url({{ asset('nav/img/front-pages/backgrounds/cta-bg-light.png') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+		<div class="layout-page">
+			<div class="content-wrapper">
+				<div class="container-xxl flex-grow-1 container-p-y">
+					<h5>Votre Panier</h5>
+					<div class="card mb-4" style="width: 50%;">
+						{% for commande in commandes %}
+							<table class="table" style="table-layout: fixed; width: 100%;">
+								<tbody>
+									<tr>
+										<th>{{ commande.item.titre }}</th>
+										<td>{{ commande.total }} dt</td>
+										<td>
+											{{ include('commande/_delete_form.html.twig') }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						{% else %}
+							<h1>No commandes found</h1>
+						{% endfor %}
+						<h5 style="margin-left: 20px; margin-top: 20px;">Total :
+							{% set total = 0 %}
+							{% for commande in commandes %}
+								{% set total = total + commande.total %}
+							{% endfor %}
+							{{ total }}
+							dt
+						</h5>
+					</div>
+					<a href="{{ path('app_item_indexUser') }}">back to list</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
