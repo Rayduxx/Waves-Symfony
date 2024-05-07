@@ -78,7 +78,7 @@
 								<div data-i18n="Analytics">Productions</div>
 							</a>
 						</li>
-						<li class="menu-item">
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_formation_index ' or app.request.attributes.get('_route') == 'app_prodEdit_dashboard' ? 'active' }}">
 							<a href="{{path('app_formation_index')}}" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-chalkboard"></i>
 								<div data-i18n="Analytics">Formations</div>

@@ -32,8 +32,8 @@ class FormationController extends AbstractController
             $request->query->getInt('page', 1), // Current page number
             2 // Number of items per page
         );
-        
-        return $this->render('formation/index.html.twig', [
+    
+        return $this->render('dashboard/formationdashboard.html.twig', [
             'formations' => $formations, // Pass paginated results to the template
             'formationNotif' => $formationNotif
         ]);
