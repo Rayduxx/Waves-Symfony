@@ -25,14 +25,11 @@ class FormationController extends AbstractController
     public function index(FormationRepository $formationRepository, FormationService $formationService, Request $request, PaginatorInterface $paginator): Response
     {
         $formationNotif = $formationService->Notif();
-        
-        // Paginate the results
         $formations = $paginator->paginate(
             $formationRepository->findAll(), // Query to paginate
             $request->query->getInt('page', 1), // Current page number
             2 // Number of items per page
         );
-    
         return $this->render('dashboard/formationdashboard.html.twig', [
             'formations' => $formations, // Pass paginated results to the template
             'formationNotif' => $formationNotif
@@ -75,7 +72,7 @@ class FormationController extends AbstractController
             return $this->redirectToRoute('app_formation_index', ["formationNotif" => $formationNotif], Response::HTTP_SEE_OTHER);
         }
         $formationNotif =$formationService->Notif();
-        return $this->renderForm('formation/new.html.twig', [
+        return $this->renderForm('dashboard/FormationNewAdmin.html.twig', [
             'formation' => $formation,
             'form' => $form,
             'formationNotif' => $formationNotif

@@ -16,3 +16,13 @@ formation_display_sorted_by_nom_asc:
 formation_display_sorted_by_nom_desc:
     path: '/tri/sorted_by_nom_desc'
     controller: App\Controller\TriController::displaySortedByNomDESC
+
+    #  Tri titre asc
+commentaire_display_sorted_by_Poste_asc:
+    path: '/sorted_by_Poste_asc'
+    controller: App\Controller\TriController::displaySortedByPosteASC
+#  Tri nom desc
+commentaire_display_sorted_by_Poste_desc:
+    path: '/sorted_by_Poste_desc'
+    controller: App\Controller\TriController::displaySortedByPosteDESC
+

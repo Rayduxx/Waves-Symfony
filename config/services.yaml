@@ -6,6 +6,8 @@
 parameters:
     # images_directory: '%kernel.project_dir%/public/images/users'
      images_directory: '%kernel.project_dir%/public/uploads/'
+     audio_directory: '%kernel.project_dir%/public/uploads/audio'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -44,5 +46,13 @@ services:
         autoconfigure: true
 
     App\Entity\Formation:
+        autowire: true
+        autoconfigure: true
+
+    App\Entity\Poste:
+        autowire: true
+        autoconfigure: true
+    
+    App\Entity\Commentaire:
         autowire: true
         autoconfigure: true

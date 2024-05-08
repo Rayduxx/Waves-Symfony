@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CoursRepository;
 use App\Service\FormationService;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\CommentaireRepository;
+use App\Entity\Commentaire;
 
 
 
@@ -42,5 +44,22 @@ class TriController extends AbstractController
             'formationNotif' => $formationNotif,
         ]);
     }
-   
+    public function displaySortedByPosteASC(CommentaireRepository $commentaireRepository)
+    {
+        $commentaires = $this->getDoctrine()->getRepository(Commentaire::class)->findBy([], ['idPoste' => 'ASC']);
+
+        return $this->render('commentaire/index.html.twig', [
+            'commentaires' => $commentaires,
+        ]);
+    }
+
+    
+    public function displaySortedByPosteDESC(CommentaireRepository $commentaireRepository)
+    {
+        $commentaires = $this->getDoctrine()->getRepository(Commentaire::class)->findBy([], ['idPoste' => 'DESC']);
+
+        return $this->render('commentaire/index.html.twig', [
+            'commentaires' => $commentaires,
+        ]);
+    }
 }

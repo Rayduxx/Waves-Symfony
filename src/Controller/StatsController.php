@@ -5,6 +5,7 @@ use App\Entity\Formation;
 
 use App\Repository\FormationRepository;
 use App\Repository\CoursRepository;
+use App\Repository\CommentaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,6 +24,15 @@ class StatsController extends AbstractController
     return $this->render('cours/stats.html.twig', [
         'stats' => $stats,
         'formationNotif' => $formationNotif
+    ]);
+    }
+    #[Route('/statsComs', name: 'app_poste_stat')]
+    public function statsComs(CommentaireRepository $commentaireRepository)
+    {
+    $stats = $commentaireRepository->getStatsByType();
+
+    return $this->render('commentaire/stats.html.twig', [
+        'stats' => $stats,
     ]);
     }
 }

@@ -12,7 +12,7 @@
 					</span>
 					<span class="app-brand-text demo menu-text fw-bolder ms-4" style="background: linear-gradient(90deg, #6094EA 0%, #F02FC2 100%);text-transform:none;-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Waves</span>
 				</a>
-			</div>
+			</div>{% if app.user %}
 			<div class="collapse navbar-collapse landing-nav-menu" id="navbarSupportedContent">
 				<button class="navbar-toggler border-0 text-heading position-absolute end-0 top-0 scaleX-n1-rtl" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="tf-icons bx bx-x bx-sm"></i>
@@ -28,7 +28,7 @@
 						<a class="nav-link fw-medium " href="{{path('app_event_card')}}">Evenements</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fw-medium" href="{{path('app_homepage')}}">Contenus</a>
+						<a class="nav-link fw-medium" href="{{path('app_posteFront_index')}}">Contenus</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link fw-medium" href="{{path('app_item_indexUser')}}">Marché</a>
@@ -41,6 +41,7 @@
 					</li>
 				</ul>
 			</div>
+			{% endif %}
 			<div class="landing-menu-overlay d-lg-none"></div>
 			<ul class="navbar-nav flex-row align-items-center ms-auto">
 			<div class="dropdown">
@@ -129,7 +130,7 @@
 					</ul>
 				{% else %}
 					<li>
-						<a href="" class="btn btn-primary">
+						<a href="{{ path('app_login') }}" class="btn btn-primary">
 							<span class="d-none d-md-block">
 								<span class="tf-icons bx bx-user me-md-1"></span>Connection</span>
 						</a>
@@ -149,102 +150,3 @@
     }
   });
 </script>
-<br><br><br><br><br><br>
-{#
-<nav class="layout-navbar container-lg navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme mb-3" id="layout-navbar">
-	<img src="..\assets\img\images\Logo.png" alt="waves" class="w-px-40 h-auto" style="margin-right: 20px;">
-	<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-		<div class="navbar-nav me-auto">
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-home'></i>Acceuil</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-group'></i>Utilisateurs</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-calendar-event'></i>
-				Evenements</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-book-content'></i>Contenus</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-store-alt'></i>Marché</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-music'></i>Production</a>
-			<a style="margin-right: 10px; background-color: #fbf2ff !important; line-height: 1.7;" class="badge bg-label-primary" href="{{path('app_homepage')}}">
-				<i class='bx bx-chalkboard'></i>Formations</a>
-		</div>
-		<ul class="navbar-nav flex-row align-items-center ms-auto">
-			{% if app.user %}
-				<ul class="navbar-nav">
-					<li class="nav-item navbar-dropdown dropdown-user dropdown">
-						<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-							<div class="avatar">
-								<img src="../assets/pdp/{{app.user.image}}" alt="" class="w-px-40 h-auto rounded-circle">
-							</div>
-						</a>
-						<ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-							<li>
-								<a class="dropdown-item" href="{{path('app_profile')}}">
-									<div class="d-flex">
-										<div class="flex-shrink-0 me-3">
-											<div class="avatar">
-												<img src="../assets/pdp/{{app.user.image}}" alt="" class="w-px-40 h-auto rounded-circle">
-											</div>
-										</div>
-										<div class="flex-grow-1">
-											<span class="fw-semibold d-block">{{app.user.name}}
-												{{app.user.prename}}</span>
-											<small class="text-muted">
-												{% for role in app.user.roles %}
-													{% if role == "ROLE_USER" %}User
-														{% elseif role == "ROLE_ADMIN" %}Admin
-													{% endif %}
-													{% if not loop.last %},
-													{% endif %}
-												{% endfor %}
-											</small>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<div class="dropdown-divider"></div>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('app_profile') }}">
-									<i class="bx bx-user me-2"></i>
-									<span class="align-middle">Mon profile</span>
-								</a>
-							</li>
-							{% if is_granted('ROLE_ADMIN') %}
-								<li>
-									<a class="dropdown-item" href="{{path('app_user_dashboard')}}">
-										<i class="bx bxs-dashboard me-2"></i>
-										<span class="align-middle">Panel Admin</span>
-									</a>
-								</li>
-							{% endif %}
-							<li>
-								<a class="dropdown-item" href="{{ path('app_edit_profile', {'id': app.user.id}) }}">
-									<i class="bx bx-cog me-2"></i>
-									<span class="align-middle">Parametres</span>
-								</a>
-							</li>
-							<li>
-								<div class="dropdown-divider"></div>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('app_logout') }}">
-									<i class="bx bx-power-off me-2"></i>
-									<span class="align-middle">Deconnection</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			{% else %}
-				<a class="btn btn-outline-primary" href="{{ path('app_login') }}" type="button">Connection</a>
-			{% endif %}
-		</ul>
-	</div>
-</nav>
-#}
-
