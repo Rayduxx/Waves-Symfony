@@ -113,16 +113,17 @@ class PosteController extends AbstractController
     }
 
     #[Route('/{idposte}', name: 'app_poste_show', methods: ['GET'])]
-    public function show(Poste $poste): Response
+    public function show($idposte,PosteRepository $PosteRepository): Response
     {
         return $this->render('poste/show.html.twig', [
-            'poste' => $poste,
+            'poste' => $PosteRepository->find($idposte),
         ]);
     }
 
     #[Route('/{idposte}/edit', name: 'app_poste_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Poste $poste, EntityManagerInterface $entityManager): Response
-    {
+    public function edit($idposte, Request $request, PosteRepository $posteRepository, EntityManagerInterface $entityManager): Response
+    {   
+        $poste = $posteRepository->find($idposte);
         $form = $this->createForm(PosteType::class, $poste);
         $form->handleRequest($request);
 

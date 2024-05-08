@@ -62,10 +62,10 @@ class CommentaireController extends AbstractController
     }
 
     #[Route('/{idcomm}', name: 'app_commentaire_show', methods: ['GET'])]
-    public function show(Commentaire $commentaire): Response
+    public function show($idcomm,Commentaire $commentaire,CommentaireRepository $CommentaireRepository): Response
     {
         return $this->render('commentaire/show.html.twig', [
-            'commentaire' => $commentaire,
+            'commentaire' => $CommentaireRepository->find($idcomm),
         ]);
     }
 
@@ -88,12 +88,12 @@ class CommentaireController extends AbstractController
     }
 
     #[Route('/{idcomm}', name: 'app_commentaire_delete', methods: ['POST'])]
-    public function delete(Request $request, Commentaire $commentaire, EntityManagerInterface $entityManager): Response
+    public function delete($idcomm): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commentaire->getIdcomm(), $request->request->get('_token'))) {
-            $entityManager->remove($commentaire);
-            $entityManager->flush();
-        }
+        $user = $this->getDoctrine()->getRepository(Commentaire::class)->find($idcomm);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
 
         return $this->redirectToRoute('app_commentaire_index', [], Response::HTTP_SEE_OTHER);
     }

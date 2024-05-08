@@ -66,7 +66,7 @@
 								<div data-i18n="Analytics">Marché</div>
 							</a>
 						</li>
-						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_poste_index' or app.request.attributes.get('_route') == 'app_poste_new' ? 'active' }}">
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_poste_index' or app.request.attributes.get('_route') == 'app_poste_new' or app.request.attributes.get('_route') == 'app_poste_show' ? 'active' }}">
 							<a href="{{path('app_poste_index')}}" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-book-content"></i>
 								<div data-i18n="Analytics">Contenus</div>
