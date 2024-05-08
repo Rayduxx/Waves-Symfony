@@ -66,10 +66,16 @@
 								<div data-i18n="Analytics">Marché</div>
 							</a>
 						</li>
-						<li class="menu-item">
-							<a href="" class="menu-link">
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_poste_index' or app.request.attributes.get('_route') == 'app_poste_new' ? 'active' }}">
+							<a href="{{path('app_poste_index')}}" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-book-content"></i>
 								<div data-i18n="Analytics">Contenus</div>
+							</a>
+						</li>
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_commentaire_index' or app.request.attributes.get('_route') == 'app_commentaire_new' or app.request.attributes.get('_route') == 'app_poste_stat' ? 'active' }}">
+							<a href="{{path('app_commentaire_index')}}" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-comment-detail"></i>
+								<div data-i18n="Analytics">Commentaires</div>
 							</a>
 						</li>
 						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_prod_dashboard' or app.request.attributes.get('_route') == 'app_prodEdit_dashboard' ? 'active' }}">
@@ -78,10 +84,16 @@
 								<div data-i18n="Analytics">Productions</div>
 							</a>
 						</li>
-						<li class="menu-item">
-							<a href="" class="menu-link">
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_formation_index' or app.request.attributes.get('_route') == 'app_formation_new' ? 'active' }}">
+							<a href="{{path('app_formation_index')}}" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-chalkboard"></i>
 								<div data-i18n="Analytics">Formations</div>
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="{{path('app_cours_index')}}" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-book-bookmark"></i>
+								<div data-i18n="Analytics">Cours</div>
 							</a>
 						</li>
 					</ul>

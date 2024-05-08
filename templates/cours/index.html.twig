@@ -1,0 +1,152 @@
+{% extends 'dashboard/adminbase.html.twig' %}
+
+{% block title %}Cours index
+{% endblock %}
+
+{% block AdminContent %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+							<div class="card">
+								<h5>Cours</h5>
+								<div>
+									<input type="text" id="search" name="search" placeholder="Recherche par titre">
+								</div>
+								<div class="input-group">
+									<div class="col-md-6">
+										<select id="tri" onchange="sortcours()" class="btn btn-primary dropdown-toggle">
+											<option value="">Trier les cours selon ...</option>
+											<option value="{{ path('formation_display_sorted_by_nom_asc') }}">titre croissant</option>
+											<option value="{{ path('formation_display_sorted_by_nom_desc') }}">titre décroissant</option>
+										</select>
+									</div>
+								</div>
+								<table id="results" class="table">
+									<thead>
+										<tr>
+											<th>IdCours</th>
+											<th>TitreCours</th>
+											<th>DureeCours</th>
+											<th>actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for cour in cours %}
+											<tr>
+												<td>{{ cour.idCours }}</td>
+												<td>{{ cour.titreCours }}</td>
+												<td>{{ cour.dureeCours }}</td>
+												<td>
+													<a href="{{ path('app_cours_show', {'idCours': cour.idCours}) }}">show</a>
+													<a href="{{ path('app_cours_edit', {'idCours': cour.idCours}) }}">edit</a>
+												</td>
+											</tr>
+										{% else %}
+											<tr>
+												<td colspan="4">no records found</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+
+								<a href="{{ path('app_cours_new') }}">Create new</a>
+								<a href="{{ path('app_formation_stat') }}">Generate Statistics</a>
+
+
+								{% block javascripts %}
+									<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+									<script>
+										$(document).ready(function () {
+
+
+
+
+
+$('#search').keyup(function () {
+
+
+
+
+
+var query = $(this).val();
+$.ajax({
+
+
+
+
+
+url: "{{ path('app_cours_search') }}",
+type: "POST",
+data: {
+
+
+
+
+
+query: query
+
+
+
+
+
+},
+success: function (data) {
+
+
+
+
+
+$('#results').html(data);
+$('#results').css('width', '100%');
+$('#results').css('position', 'static');
+
+
+
+
+
+}
+
+});
+
+
+
+
+
+});
+
+
+
+
+
+});
+									</script>
+									<script>
+										function sortcours() {
+
+
+
+
+
+var select = document.getElementById("tri");
+var selectedOption = select.options[select.selectedIndex];
+window.location.href = selectedOption.value;
+
+
+
+
+
+}
+									</script>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endblock %}

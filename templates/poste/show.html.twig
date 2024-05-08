@@ -1,0 +1,32 @@
+{% extends "_bases/base.html.twig" %}
+
+{% block title %}Poste{% endblock %}
+
+{% block main %}
+    <h1>Poste</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">ID Poste: {{ poste.idPoste }}</h5>
+            <p class="card-text">Titre: {{ poste.titre }}</p>
+            <p class="card-text">Artiste: {{ poste.artiste }}</p>
+            
+            {% if poste.image %}
+                <img src="{{ asset('uploads/images/' ~ poste.image) }}" class="card-img-top" alt="Image" style="max-width: 200px; max-height: 200px;">
+            {% else %}
+                <p class="card-text">Pas d'image associée</p>
+            {% endif %}
+            
+            {% if poste.morceau %}
+                <audio controls>
+                    <source src="{{ asset('uploads/audio/' ~ poste.morceau) }}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            {% else %}
+                <p class="card-text">Pas de morceau associé</p>
+            {% endif %}
+            
+            <p class="card-text">Description: {{ poste.description }}</p>
+        </div>
+    </div>
+{% endblock %}

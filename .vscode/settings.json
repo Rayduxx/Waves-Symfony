@@ -2,5 +2,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": false,
-  "twig-language-2.braceLine": true
+  "twig-language-2.braceLine": true,
+  "[twig]": {
+    "editor.defaultFormatter": "mblode.twig-language-2"
+  }
 }

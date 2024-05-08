@@ -1,0 +1,58 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Commentaires
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card">
+					<h5 class="card-header">Liste des commentaires</h5>
+					<br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idcomm</th>
+                <th>Comment</th>
+                <th>Iduser</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.idcomm }}</td>
+                <td>{{ commentaire.comment }}</td>
+                <td>{{ commentaire.iduser }}</td>
+                <td>
+                    <a href="{{ path('app_commentaire_show', {'idcomm': commentaire.idcomm}) }}">show</a>
+                    <a href="{{ path('app_commentaire_edit', {'idcomm': commentaire.idcomm}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ 
+ <select id="tri" onchange="sortSinistres()" class="form-select">
+    <option value="">Trier les commentaires selon ...</option>
+    <option value="{{ path('commentaire_display_sorted_by_Poste_asc') }}">Poste croissant</option>
+    <option value="{{ path('commentaire_display_sorted_by_Poste_desc') }}">Poste décroissant</option>
+
+</select>
+<div class="buy-now">
+		<a href="{{path('app_commentaire_new')}}" class="btn btn-primary btn-buy-now">Create new</a>
+		<a href="{{path('app_poste_stat')}}" style="right: 243px;" class="btn btn-primary btn-buy-now">Statistiques</a>
+	</div>
+<script>
+function sortSinistres() {
+  var select = document.getElementById("tri");
+  var selectedOption = select.options[select.selectedIndex];
+  window.location.href = selectedOption.value;
+}
+
+</script>
+{% endblock %}
+

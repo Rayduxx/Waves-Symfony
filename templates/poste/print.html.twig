@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Postes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .poste {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .poste h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+
+        .poste p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    {% for poste in postes %}
+        <div class="poste">
+            <h2>{{ poste.titre }}</h2>
+            <p>Artiste : {{ poste.artiste }}</p>
+            <p>Description : {{ poste.description }}</p>
+            <p>Image : {{ poste.image }}</p>
+            <p>Morceau : {{ poste.morceau }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
