@@ -30,10 +30,10 @@
 											</li>
 										</ul>
 									</div>
-									<input class="form-control me-2" id="search" placeholder="Search..." style="width: auto; margin-left: 10px">
+									<input class="form-control me-2" id="searchItem" placeholder="Search..." style="width: auto; margin-left: 10px">
 								</form>
 								<div class="table-responsive text-nowrap">
-									<table class="table table-hover" id="tableac">
+									<table class="table table-hover" id="tableitem">
 										<thead>
 											<tr>
 												<th>Titre</th>
@@ -76,20 +76,20 @@
 										</button>
 										<ul class="dropdown-menu">
 											<li>
-												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'titre'}) }}">Titre</a>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'titre'}) }}">Utilisateur</a>
 											</li>
 											<li>
-												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'auteur'}) }}">Auteur</a>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'auteur'}) }}">Prix</a>
 											</li>
 											<li>
-												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'prix'}) }}">Prix</a>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'prix'}) }}">Date</a>
 											</li>
 										</ul>
 									</div>
-									<input class="form-control me-2" id="search" placeholder="Search..." style="width: auto; margin-left: 10px">
+									<input class="form-control me-2" id="searchCommande" placeholder="Search..." style="width: auto; margin-left: 10px">
 								</form>
 								<div class="table-responsive text-nowrap">
-									<table class="table table-hover" id="tableac">
+									<table class="table table-hover" id="tablecommande">
 										<thead>
 											<tr>
 												<th>Utilisateur</th>
@@ -112,12 +112,18 @@
 													<td>{{ groupedCommande.total }}</td>
 													<td>{{ groupedCommande.dateC|date('Y-m-d H:i:s') }}</td>
 													<td>
-														<a href="{{ path('app_commande_showAdmin', {'id': userId}) }}">show</a>
-														<form method="post" action="{{ path('app_commande_delete_group', {'id': userId}) }}">
-															<input type="hidden" name="_method" value="DELETE">
-															<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userId) }}">
-															<button type="submit">Delete</button>
-														</form>
+														<div class="d-flex">
+															<div class="mr-2" style="margin-right: 10px">
+																<a class="btn btn-primary" href="{{ path('app_commande_showAdmin', {'id': userId}) }}">show</a>
+															</div>
+															<div>
+																<form method="post" action="{{ path('app_commande_delete_group', {'id': userId}) }}">
+																	<input type="hidden" name="_method" value="DELETE">
+																	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userId) }}">
+																	<button type="submit" class="btn btn-primary">Delete</button>
+																</form>
+															</div>
+														</div>
 													</td>
 												</tr>
 											{% else %}
@@ -189,25 +195,107 @@
 		</div>
 	</div>
 	<script>
-		document.getElementById('search').addEventListener('input', function () {
-var searchQuery = this.value.toLowerCase();
-var table = document.getElementById('tableac');
-var rows = table.getElementsByTagName('tr');
+		document.getElementById('searchItem').addEventListener('input', function (e) {
 
-for (var i = 1; i < rows.length; i++) { // Skip the header row
+
+
+
+
+var searchQuery = e.target.value.toLowerCase();
+var rows = document.getElementById('tableitem').getElementsByTagName('tr');
+
+for (var i = 1; i < rows.length; i++) {
+
+
+
+
+
 var cells = rows[i].getElementsByTagName('td');
-var match = false;
+var found = false;
 
-for (var j = 0; j < cells.length; j++) {
+for (var j = 0; j < cells.length && ! found; j++) {
+
+
+
+
+
 var cellText = cells[j].textContent.toLowerCase();
 if (cellText.includes(searchQuery)) {
-match = true;
-break;
-}
+
+
+
+
+
+found = true;
+
+
+
+
+
 }
 
-rows[i].style.display = match ? '' : 'none';
 }
+
+rows[i].style.display = found ? '' : 'none';
+
+
+
+
+
+}
+
+});
+	</script>
+	<script>
+		document.getElementById('searchCommande').addEventListener('input', function (e) {
+
+
+
+
+
+var searchQuery = e.target.value.toLowerCase();
+var rows = document.getElementById('tablecommande').getElementsByTagName('tr');
+
+for (var i = 1; i < rows.length; i++) {
+
+
+
+
+
+var cells = rows[i].getElementsByTagName('td');
+var found = false;
+
+for (var j = 0; j < cells.length && ! found; j++) {
+
+
+
+
+
+var cellText = cells[j].textContent.toLowerCase();
+if (cellText.includes(searchQuery)) {
+
+
+
+
+
+found = true;
+
+
+
+
+
+}
+
+}
+
+rows[i].style.display = found ? '' : 'none';
+
+
+
+
+
+}
+
 });
 	</script>
 {% endblock %}

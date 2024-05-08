@@ -12,18 +12,16 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card mb-4">
 							<div class="card">
-								<h5>Cours</h5>
-								<div>
-									<input type="text" id="search" name="search" placeholder="Recherche par titre">
-								</div>
-								<div class="input-group">
-									<div class="col-md-6">
+								<h5 class="card-header">Cours</h5>
+								<div style="display: flex; align-items: right; margin-left: 15px;">
+									<div>
 										<select id="tri" onchange="sortcours()" class="btn btn-primary dropdown-toggle">
-											<option value="">Trier les cours selon ...</option>
+											<option value="">Trier</option>
 											<option value="{{ path('formation_display_sorted_by_nom_asc') }}">titre croissant</option>
 											<option value="{{ path('formation_display_sorted_by_nom_desc') }}">titre décroissant</option>
 										</select>
 									</div>
+									<input class="form-control me-2" type="text" id="search" name="search" placeholder="Recherche par titre" style="width: auto; margin-left: 10px">	
 								</div>
 								<table id="results" class="table">
 									<thead>
@@ -52,10 +50,10 @@
 										{% endfor %}
 									</tbody>
 								</table>
-
-								<a href="{{ path('app_cours_new') }}">Create new</a>
-								<a href="{{ path('app_formation_stat') }}">Generate Statistics</a>
-
+								<div style="margin-left: 15px">
+									<a href="{{ path('app_cours_new') }}" class="btn btn-primary">Create new</a>
+									<a href="{{ path('app_formation_stat') }}" class="btn btn-primary">Generate Statistics</a>
+								</div>
 
 								{% block javascripts %}
 									<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
