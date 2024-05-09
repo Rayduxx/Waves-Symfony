@@ -139,13 +139,13 @@ class PosteController extends AbstractController
         ]);
     }
 
-    #[Route('/{idposte}', name: 'app_poste_delete', methods: ['POST'])]
-    public function delete(Request $request, Poste $poste, EntityManagerInterface $entityManager): Response
+    #[Route('/delete/{idposte}', name: 'app_poste_delete')]
+    public function delete($idposte): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$poste->getIdposte(), $request->request->get('_token'))) {
-            $entityManager->remove($poste);
-            $entityManager->flush();
-        }
+        $event = $this->getDoctrine()->getRepository(Poste::class)->find($idposte);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($event);
+        $em->flush();
 
         return $this->redirectToRoute('app_poste_index', [], Response::HTTP_SEE_OTHER);
     }

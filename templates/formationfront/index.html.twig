@@ -16,7 +16,7 @@
 								<div class="col-md-6 col-lg-4 mb-4">
 									<div id="results" class="card mx-auto">
 										{% if formation.affiche %}
-											<img src="{{ asset('uploads/images/' ~ formation.affiche) }}" class="card-img-top img-fluid" alt="Image de la formation {{ formation.titre }}">
+											<img src="{{ asset('uploads/' ~ formation.affiche) }}" class="card-img-top img-fluid" alt="Image de la formation {{ formation.titre }}">
 										{% else %}
 											<div class="text-center py-5">
 												Pas d'image associée

@@ -60,7 +60,7 @@
 								<div data-i18n="Analytics">Evenements</div>
 							</a>
 						</li>
-						<li class="menu-item">
+						<li class="menu-item {{ app.request.attributes.get('_route') == 'app_item_index'  ? 'active' }}">
 							<a href="{{path('app_item_index')}}" class="menu-link">
 								<i class="menu-icon tf-icons bx bx-store-alt"></i>
 								<div data-i18n="Analytics">Marché</div>

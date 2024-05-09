@@ -12,33 +12,30 @@
 							<h5 class="card-header">Postes</h5>
 							<input type="text" id="search" name="search" class="form-control" placeholder="Recherche par titre">
 							<div id="results" class="container">
-								<div class="row justify-content-center" id="postes">
+								<div class="row mb-5" id="postes">
 									{% for poste in postes %}
-										<div id="results" class="col" id="poste-{{ poste.idposte }}">
-											<div id="results" class="card">
-												<div class="card-header">
+										<div class="col-md-6 col-lg-4 mb-3">
+											<div class="card h-100">
+												{% if poste.image %}
+													<img src="{{ asset('uploads/' ~ poste.image) }}" style="max-width: 445.328;max-height: 445.328;" class="card-img-top img-fluid post-image" alt="Image du poste {{ poste.titre }}">
+												{% else %}
+													<div class="text-center py-5">
+														Pas d'image associée
+													</div>
+												{% endif %}
+												<div class="card-body">	
 													<h5 class="card-title">{{ poste.titre }}</h5>
-												</div>
-												<div class="card-body">
-													{% if poste.image %}
-														<img src="{{ asset('uploads/images/' ~ poste.image) }}" class="card-img-top img-fluid post-image" alt="Image du poste {{ poste.titre }}">
-													{% else %}
-														<div class="text-center py-5">
-															Pas d'image associée
-														</div>
-													{% endif %}
-													<p class="card-text">{{ poste.artiste }}</p>
+													<h5 class="card-title">{{ poste.artiste }}</h6>
+													<p class="card-text">{{ poste.description }}</p>
 													<audio controls>
 														<source src="{{ asset('uploads/audio/' ~ poste.morceau) }}" type="audio/mpeg">
 														Your browser does not support the audio element.
 													</audio>
-													<p class="card-text">{{ poste.description }}</p>
-												</div>
-												<div class="card-footer">
-													<a href="{{ path('app_commentFront_indexC', {'idposte': poste.idposte}) }}" class="btn btn-primary">Commentaires</a>
+													<a href="{{ path('app_commentFront_indexC', {'idposte': poste.idposte}) }}" class="btn btn-outline-primary">Commentaires</a>
 												</div>
 											</div>
 										</div>
+
 									{% endfor %}
 								</div>
 							</div>
