@@ -44,22 +44,15 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $imageFile = $form->get('affiche')->getData();
-    
-            
             if ($imageFile) {
-                
                 $newFilename = uniqid().'.'.$imageFile->guessExtension();
-    
-                // Déplacer le fichier vers le répertoire où vous souhaitez le stocker
                 try {
                     $imageFile->move(
                         $this->getParameter('images_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // Gérer l'exception si quelque chose ne va pas lors de l'upload du fichier
                 }
                     $formation->setAffiche($newFilename);
             }
