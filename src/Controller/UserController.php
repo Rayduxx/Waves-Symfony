@@ -41,13 +41,7 @@ class UserController extends AbstractController
     {
         return $this->render('user/profile.html.twig');
     }
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
-    }
+    
     #[Route('/edit-profile', name: 'app_edit_profile')]
     public function editProfile(Request $request, UserPasswordHasherInterface $userPasswordHasher, User $user): Response
     {
@@ -88,6 +82,7 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, GuardAuthenticatorHandler $guardHandler): Response
     {
@@ -95,7 +90,6 @@ class UserController extends AbstractController
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
             $imageFile = $form['image']->getData();
             if ($imageFile) {
                 $filename = md5(uniqid()) . '.' . $imageFile->guessExtension();
@@ -104,6 +98,10 @@ class UserController extends AbstractController
             } else {
                 $user->setImage("default.png");
             }
+            $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('password')->getData()));
+            /*$plainPassword = $form->get('password')->getData();
+            $hashedPassword = hash('sha256', $plainPassword);
+            $user->setPassword($hashedPassword);*/
             $user->setRoles(array("ROLE_USER"));
             $user->setCountry("Tunisia");
             $user->setCreatedAt(new \DateTimeImmutable());
@@ -118,11 +116,12 @@ class UserController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('security/register-done.html.twig')
             );
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('app_login');
             //return $guardHandler->authenticateUserAndHandleSuccess($user, $request, $authenticator, 'main');
         }
         return $this->render('security/register.html.twig', ['form' => $form->createView(),]);
     }
+
     #[Route('/verify/email', name: 'app_verify_email')]    
     public function verifyUserEmail(Request $request): Response
     {
@@ -136,6 +135,7 @@ class UserController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
         return $this->redirectToRoute('app_homepage');
     }
+
     #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -149,6 +149,7 @@ class UserController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
     #[Route('/users', name: 'app_user_list')]
     public function UsersList(UserRepository $userRepository)
     {
@@ -157,6 +158,7 @@ class UserController extends AbstractController
                 'users' => $userRepository->findAll(),
             ]);
     }
+
     #[Route('/userprofile/{id}', name: 'app_userprofile')]
     public function UserProfile($id, UserRepository $userRepository)
     {
