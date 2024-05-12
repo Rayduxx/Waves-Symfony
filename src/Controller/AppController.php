@@ -13,10 +13,12 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Security\EmailVerifier;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mime\Address;
 
 class AppController extends AbstractController
 {
@@ -40,7 +42,7 @@ class AppController extends AbstractController
         return $this->redirect($helper_url);
     }
     #[Route('/fcb-callback', name: 'fcb_callback')]
-    public function fcbCallBack(UserRepository $userDb, Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, EntityManagerInterface $manager): Response
+    public function fcbCallBack(EmailVerifier $emailVerifier, UserRepository $userDb, Request $request,UserPasswordHasherInterface $userPasswordHasher, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, EntityManagerInterface $manager): Response
     {
         $token = $this->provider->getAccessToken('authorization_code', ['code' => $_GET['code']]);
         try {
@@ -66,8 +68,18 @@ class AppController extends AbstractController
                     ->setPrename($prename)
                     ->setEmail($email)
                     ->setRoles(array("ROLE_USER"))
-                    ->setPassword(sha1(str_shuffle('abscdop123390hHHH;:::OOOI')))
+                    ->setPassword($userPasswordHasher->hashPassword($new_user, $name . $prename . 1))
                     ->setImage($filename);
+                    $this->$emailVerifier->sendEmailConfirmation(
+                        'app_verify_email',
+                        $user,
+                        (new TemplatedEmail())
+                            ->from(new Address('admin@security-demo.com', 'Security'))
+                            ->to($new_user->getEmail())
+                            ->subject('Please Confirm your Email')
+                            ->htmlTemplate('security/register-done.html.twig')
+                    );
+                $this->addFlash('info', 'Votre mot de passe : ' . $userPasswordHasher->hashPassword($new_user, $name . $prename . 1));
                 $manager->persist($new_user);
                 $manager->flush();
                 return $this->redirectToRoute('app_login');
