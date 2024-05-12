@@ -1,4 +1,4 @@
-# Project Title
+# Waves (Symfony+Java)
 
 This project is a combination of a PHP Symfony 5 project and a Java FX application project, sharing a common database and an asset uploading service.
 
