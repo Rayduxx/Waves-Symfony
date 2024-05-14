@@ -1,0 +1,112 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Commentaires
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="row">
+				<div class="card mb-4">
+					<canvas id="chart" width="800" height="600"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script>var data = {{ stats|json_encode|raw }};
+var labels = [];
+var values = [];
+
+data.forEach(function (item) {
+
+labels.push(item.poste);
+values.push(item.count);
+
+});
+
+var total = values.reduce(function (a, b) {
+
+return a + b;
+
+});
+
+var percentages = values.map(function (value) {
+
+return(value / total) * 100;
+
+});
+
+var chart = new Chart('chart', {
+
+type: 'pie',
+data: {
+
+labels: labels,
+datasets: [
+{
+
+label: 'Nombre de commentaires par poste',
+data: percentages,
+backgroundColor: [
+'rgba(54, 162, 235, 0.2)',
+'rgba(255, 99, 132, 0.2)',
+'rgba(255, 206, 86, 0.2)',
+'rgba(75, 192, 192, 0.2)',
+'rgba(153, 102, 255, 0.2)',
+'rgba(255, 159, 64, 0.2)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(255, 99, 132, 1)',
+'rgba(255, 206, 86, 1)',
+'rgba(75, 192, 192, 1)',
+'rgba(153, 102, 255, 1)',
+'rgba(255, 159, 64, 1)'
+],
+borderWidth: 1
+
+}
+]
+
+},
+options: {
+
+responsive: true,
+maintainAspectRatio: false,
+aspectRatio: 0.6,
+plugins: {
+
+legend: {
+
+position: 'top'
+
+},
+tooltip: {
+
+callbacks: {
+
+label: function (context) {
+
+var label = context.label || '';
+if (label) {
+
+label += ': ';
+
+}
+var value = context.formattedValue || '';
+if (value) {
+
+label += value + '%';
+
+}
+return label;
+
+}
+
+}
+
+}
+
+}
+
+}
+
+});</script>{% endblock %}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="167.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardCommController">
+   <children>
+      <ImageView fitHeight="136.0" fitWidth="312.0" layoutX="-4.0" layoutY="1.0">
+         <image>
+            <Image url="@pics/Purple%20Modern%20Watercolor%20Flowers%20Thank%20You%20Instagram%20Story.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="2.0" layoutY="1.0" prefHeight="136.0" prefWidth="312.0">
+         <children>
+            <Label fx:id="com" prefHeight="18.0" prefWidth="130.0" text="Label">
+               <VBox.margin>
+                  <Insets left="80.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#supp" prefHeight="26.0" prefWidth="74.0" styleClass="transparent" stylesheets="@style.css" />
+            <Button mnemonicParsing="false" onAction="#upd" prefHeight="26.0" prefWidth="74.0" styleClass="transparent" stylesheets="@style.css">
+               <VBox.margin>
+                  <Insets left="190.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</AnchorPane>

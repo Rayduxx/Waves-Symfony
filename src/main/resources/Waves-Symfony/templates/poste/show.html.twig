@@ -1,0 +1,30 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Postes
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">ID Poste: {{ poste.idPoste }}</h5>
+            <p class="card-text">Titre: {{ poste.titre }}</p>
+            <p class="card-text">Artiste: {{ poste.artiste }}</p>
+            {% if poste.image %}
+                <img src="{{ asset('uploads/' ~ poste.image) }}" class="card-img-top" alt="Image" style="max-width: 200px; max-height: 200px;">
+            {% else %}
+                <p class="card-text">Pas d'image associée</p>
+            {% endif %}
+            
+            {% if poste.morceau %}
+                <audio controls>
+                    <source src="{{ asset('uploads/audio/' ~ poste.morceau) }}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            {% else %}
+                <p class="card-text">Pas de morceau associé</p>
+            {% endif %}
+            
+            <p class="card-text">Description: {{ poste.description }}</p>
+        </div>
+    </div>
+{% endblock %}

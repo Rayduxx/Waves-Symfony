@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.MenuController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="295.0" fitWidth="400.0" layoutX="510.0" layoutY="-47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.png" />
+         </image>
+      </ImageView>
+      <GridPane hgap="27.0" layoutX="138.0" layoutY="302.0" prefHeight="164.0" prefWidth="1040.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#UserInterface" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Utilisateurs" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-users-60.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#EvenetInterface" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Evenements" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Roboto Regular" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-event-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#toMar" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Marché" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Roboto Regular" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-marketplace-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#PosteInterface" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Contenus" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Roboto Regular" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-grid-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#ProdMenu" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Production" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4">
+               <font>
+                  <Font name="Roboto Regular" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-music-notation-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#toForm" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Formations" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="5">
+               <font>
+                  <Font name="Roboto Regular" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-teach-60.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <Button layoutX="14.0" layoutY="721.0" mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons8-logout-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="AdminP" layoutX="1152.0" layoutY="14.0" mnemonicParsing="false" onAction="#PanelAdmin" styleClass="btn" text="Panel Admin">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons8-dashboard-48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

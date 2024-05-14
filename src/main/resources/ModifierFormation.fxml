@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ModifierFormation">
+    <children>
+      <ImageView fitHeight="802.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="222.0" fitWidth="151.0" layoutX="436.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.gif" />
+         </image>
+      </ImageView>
+        <TextField fx:id="titreE" layoutX="511.0" layoutY="235.0" />
+        <TextField fx:id="artisteE" layoutX="510.0" layoutY="484.0" />
+        <TextField fx:id="imageE" layoutX="509.0" layoutY="430.0" prefHeight="26.0" prefWidth="150.0" />
+        <TextField fx:id="descriptionE" layoutX="510.0" layoutY="311.0" prefHeight="90.0" prefWidth="265.0" />
+        <Label layoutX="425.0" layoutY="239.0" text="TITRE" />
+        <Label layoutX="423.0" layoutY="488.0" text="VIDEO" />
+        <Label layoutX="425.0" layoutY="435.0" text="IMAGE" />
+        <Label layoutX="404.0" layoutY="339.0" text="DESCRIPTION" />
+        <Button fx:id="editE" layoutX="630.0" layoutY="543.0" mnemonicParsing="false" onAction="#modifier" styleClass="btn" text="Modifier" />
+        <Button fx:id="picE" layoutX="680.0" layoutY="430.0" mnemonicParsing="false" onAction="#upload" prefHeight="27.0" prefWidth="10.0" styleClass="btn" text="..." />
+      <Button fx:id="retour" layoutX="509.0" layoutY="543.0" mnemonicParsing="false" onAction="#retour" styleClass="btn" text="Retour" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="587.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waves.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>

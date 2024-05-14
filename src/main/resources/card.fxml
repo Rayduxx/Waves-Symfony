@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="582.0" prefWidth="350.0" style="-fx-border-color: #310047;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardController">
+   <children>
+      <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" prefHeight="582.0" prefWidth="350.0" styleClass="secondary-color" stylesheets="@style.css">
+         <children>
+            <ImageView fx:id="imageL" fitHeight="91.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-color">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="90.0" prefWidth="350.0" spacing="23.0">
+               <children>
+                  <Label fx:id="artisteL" text="Label">
+                     <font>
+                        <Font name="ACaslonPro-Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="genreL" text="Label">
+                     <font>
+                        <Font name="ACaslonPro-Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="descriptionL" text="Label" />
+               </children>
+            </VBox>
+            <Separator prefHeight="109.0" prefWidth="350.0" />
+            <HBox alignment="CENTER" spacing="44.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#supprime" text="Supprimer" />
+                  <Button fx:id="modifier" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="71.0" text="modifier" />
+               </children>
+            </HBox>
+            <Separator prefHeight="109.0" prefWidth="350.0" />
+            <HBox spacing="41.0">
+               <children>
+                  <TextField fx:id="AJ" prefHeight="25.0" prefWidth="244.0" />
+                  <Button mnemonicParsing="false" onAction="#AjouterCom" text="ajouter" />
+               </children>
+            </HBox>
+            <Separator prefHeight="109.0" prefWidth="350.0" />
+            <ScrollPane prefHeight="305.0" prefWidth="350.0">
+               <content>
+                  <VBox fx:id="Box" prefHeight="264.0" prefWidth="345.0" />
+               </content>
+            </ScrollPane>
+
+
+         </children>
+      </VBox>
+      <Label fx:id="titreL" alignment="CENTER" contentDisplay="CENTER" layoutX="-147.0" prefHeight="30.0" prefWidth="350.0" text="Label" textAlignment="RIGHT" translateX="148.0">
+         <font>
+            <Font name="ACaslonPro-Semibold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,48 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Evenement
+{% endblock %}
+{% block AdminContent %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th>Image</th>
+										<td>
+											<div class="avatar-wrapper">
+												<div class="avatar me-2"><img src="{{asset('uploads/' ~ event.image)}}" class="avatar-initial rounded-circle">
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>Nom</th>
+										<td>{{ event.nomE }}</td>
+									</tr>
+									<tr>
+										<th>Adresse</th>
+										<td>{{ event.adrE }}</td>
+									</tr>
+									<tr>
+										<th>Description</th>
+										<td>{{ event.descr }}</td>
+									</tr>
+									<tr>
+										<th>Date</th>
+										<td>{{ event.date }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

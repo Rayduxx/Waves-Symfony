@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="Card" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardProdController">
+   <children>
+      <ImageView fitHeight="168.0" fitWidth="332.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@assets/cardbg.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="cardtitre" layoutX="10.0" layoutY="14.0" prefHeight="0.0" prefWidth="176.0" text="Titre">
+         <font>
+            <Font name="Roboto Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="cardgenre" layoutX="10.0" layoutY="37.0" prefHeight="17.0" prefWidth="88.0" text="Genre">
+         <font>
+            <Font name="Roboto Regular" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="carddesc" alignment="TOP_LEFT" layoutX="10.0" layoutY="59.0" prefHeight="95.0" prefWidth="317.0" text="Desc" wrapText="true">
+         <font>
+            <Font name="Roboto Regular" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="cardtag" alignment="CENTER_RIGHT" layoutX="168.0" layoutY="33.0" prefHeight="18.0" prefWidth="45.0" text="Tag">
+         <font>
+            <Font name="Roboto Regular" size="13.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="230.0" layoutY="13.0" prefHeight="25.0" prefWidth="75.0" spacing="22.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#modifprod" style="-fx-opacity: 70%;">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-edit-64.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#suppprod" style="-fx-opacity: 70%;">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-delete-60.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Separator layoutX="8.0" layoutY="54.0" prefHeight="5.0" prefWidth="317.0" />
+   </children>
+</Pane>

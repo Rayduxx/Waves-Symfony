@@ -1,0 +1,29 @@
+{% extends '_bases/base.html.twig' %}
+
+{% block title%}Marketplace
+{% endblock %}
+
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu" style="background: url({{ asset('nav/img/front-pages/backgrounds/cta-bg-light.png') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+		<div class="layout-page">
+			<div class="content-wrapper">
+				<div class="container-xxl flex-grow-1 container-p-y">
+					<div class="row" data-masonry>
+						<div class="card">
+							<div class="card-header">
+								<h3>{{ item.titre }}</h3>
+							</div>
+							<div class="card-body">
+								<p>{{ item.auteur }}</p>
+								<p>{{ item.description }}</p>
+								<p>{{ item.prix }} dt</p>
+							</div>
+						</div>
+					</div>
+					<a href="{{ path('app_item_indexUser') }}" class="btn btn-primary" style="margin-top: 15px">Retour au Marketplace</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

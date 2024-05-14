@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.StatistiqueController">
+    <children>
+      <ImageView fitHeight="768.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+        <BarChart fx:id="barchar" layoutX="83.0" layoutY="140.0" prefHeight="488.0" prefWidth="1150.0">
+            <xAxis>
+                <CategoryAxis label="Event" side="BOTTOM" fx:id="x" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="y" label="Nombre de reservations" side="LEFT" />
+            </yAxis>
+        </BarChart>
+        <Button layoutX="577.0" layoutY="727.0" mnemonicParsing="false" onAction="#AfficherEventAdmin" prefHeight="27.0" prefWidth="161.0" styleClass="btn" text="Retour" />
+      <Label layoutX="496.0" layoutY="58.0" text="Statistique des evenements">
+         <font>
+            <Font name="Roboto Regular" size="26.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

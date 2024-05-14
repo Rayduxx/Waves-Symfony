@@ -1,0 +1,6 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.titreCours, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.dureeCours, {'attr': {'class': 'form-control'}}) }}
+  
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

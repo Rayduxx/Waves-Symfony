@@ -1,0 +1,57 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Productions
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card-header d-flex align-items-center justify-content-between">
+					<h5 class="mb-0">Modifier production</h5>
+				</div>
+				<div class="card-body">
+					<form id="formAuthentication" class="mb-3" method="POST">
+						{{ form_start(form) }}
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-name">Titre</label>
+							<div class="col-sm-10">
+								{{ form_row(form.nom, {'value':  uinfo.nom  }) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-company">Description</label>
+							<div class="col-sm-10">
+								{{ form_row(form.description, {'value':  uinfo.description  }) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-company">Genre</label>
+							<div class="col-sm-10">
+								{{ form_row(form.genre, {'value':  uinfo.genre  }) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-phone">Mood tag</label>
+							<div class="col-sm-10">
+								{{ form_row(form.moodtag, {'value':  uinfo.moodtag  }) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-sm-2 col-form-label" for="basic-default-phone">Cover</label>
+							<div class="col-sm-10">
+								{{ form_row(form.cover) }}
+							</div>
+						</div>
+						<div class="row justify-content-end">
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-primary">Modifier</button>
+							</div>
+						</div>
+						{{ form_end(form) }}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
+

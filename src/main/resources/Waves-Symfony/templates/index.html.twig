@@ -1,0 +1,107 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Acceuil{% endblock %}
+{% block main %}
+
+  <div data-bs-spy="scroll" class="scrollspy-example">
+      <!-- Hero: Start -->
+      <section id="hero-animation" >
+      <div id="landingHero" class="section-py landing-hero position-relative">
+        <div class="container pt-6">
+          <div class="hero-text-box text-center" style="max-width: 41rem;">
+            <h1 class="text-primary hero-title display-4 fw-bold">Découvrir, apprendre et commencer à créer des mélodies</h1>
+            <h2 class="hero-sub-title h6 mb-4 pb-1">
+              Votre studio partout. Créez et enregistrez facilement avec des outils<br class="d-none d-lg-block" />
+              et des sons puissants, le tout au même endroit.
+            </h2>
+            {% if app.user %}
+            <div class="landing-hero-btn d-inline-block position-relative">
+              <span class="hero-btn-item position-absolute d-none d-md-flex text-heading" style="inset-inline-start: -222%;">Téléchargez notre application
+                <img src="../nav/img/front-pages/icons/Join-community-arrow.png" alt="Join now arrow"
+                  class="scaleX-n1-rtl" /></span>
+              <a href="{{ path('download_waves') }}" class="btn btn-primary">Téléchargez</a>
+            </div>
+          </div>
+          {% else %}
+            <div class="landing-hero-btn d-inline-block position-relative">
+              <span class="hero-btn-item position-absolute d-none d-md-flex text-heading" style="inset-inline-start: -181%;">Inscrivez-vous pour télécharger notre application
+                <img src="../nav/img/front-pages/icons/Join-community-arrow.png" alt="Join now arrow"
+                  class="scaleX-n1-rtl" /></span>
+              <a href="{{ path('app_login') }}" class="btn btn-primary">inscrivez-vous maintenant</a>
+            </div>
+          </div>
+          {% endif %}
+          <div id="heroDashboardAnimation" class="hero-animation-img">
+              <div id="heroAnimationImg" class="position-relative hero-dashboard-img">
+                <img src="../nav/img/front-pages/landing-page/hero-dashboard-light.png" alt="hero dashboard"
+                  class="animation-img" data-app-light-img="front-pages/landing-page/hero-dashboard-light.png"
+                  data-app-dark-img="front-pages/landing-page/hero-dashboard-dark.png" />
+                <img src="../nav/img/front-pages/landing-page/hero-elements-light.png" alt="hero elements"
+                  class="position-absolute hero-elements-img animation-img top-0 start-0"
+                  data-app-light-img="front-pages/landing-page/hero-elements-light.png"
+                  data-app-dark-img="front-pages/landing-page/hero-elements-dark.png" />
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="landing-hero-blank"></div>
+    </section>
+    <!-- Hero: End -->
+
+    <!-- Useful features: Start -->
+    <section id="landingFeatures" class="section-py landing-features">
+      <div class="container">
+        <div class="text-center mb-3 pb-1">
+          <span class="badge bg-label-primary">Fonctionnalités utiles</span>
+        </div>
+        <h3 class="text-center mb-1">Tout ce dont vous avez besoin pour démarrer votre prochain projet</h3>
+        <p class="text-center mb-3 mb-md-5 pb-3">
+          Pas seulement un ensemble d’outils, les gestionnaires et les interfaces.
+        </p>
+        <div class="features-icon-wrapper row gx-0 gy-4 g-sm-5">
+          <div class="col-lg-4 col-sm-6 text-center features-icon-box">
+            <div class="text-center mb-3">
+              <img src="../nav/img/front-pages/icons/laptop.png" alt="laptop charging" />
+            </div>
+            <h5 class="mb-3">Code qualité</h5>
+            <p class="features-icon-description">
+            </p>
+          </div>
+          <div class="col-lg-4 col-sm-6 text-center features-icon-box">
+            <div class="text-center mb-3">
+              <img src="../nav/img/front-pages/icons/rocket.png" alt="transition up" />
+            </div>
+            <h5 class="mb-3">Mises à jour continues</h5>
+            <p class="features-icon-description">
+            </p>
+          </div>
+          <div class="col-lg-4 col-sm-6 text-center features-icon-box">
+            <div class="text-center mb-3">
+              <img src="../nav/img/front-pages/icons/paper.png" alt="edit" />
+            </div>
+            <h5 class="mb-3">Des gestionnaires</h5>
+            <p class="features-icon-description">
+            </p>
+          </div>
+          <div class="col-lg-4 col-sm-6 text-center features-icon-box">
+            <div class="text-center mb-3">
+              <img src="../nav/img/front-pages/icons/check.png" alt="3d select solid" />
+            </div>
+            <h5 class="mb-3">Prêt API</h5>
+          </div>
+          <div class="col-lg-4 col-sm-6 text-center features-icon-box">
+            <div class="text-center mb-3">
+              <img src="../nav/img/front-pages/icons/user.png" alt="lifebelt" />
+            </div>
+            <h5 class="mb-3">Excellent support</h5>
+          </div>
+          <div class="col-lg-4 col-sm-6 text-center features-icon-box">
+            <div class="text-center mb-3">
+              <img src="../nav/img/front-pages/icons/keyboard.png" alt="google docs" />
+            </div>
+            <h5 class="mb-3">interface simple</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+
+{% block main %}
+{% block body %}
+    
+
+    <table id="results" class="table">
+        <thead>
+            <tr>
+                <th>IdCours</th>
+                <th>TitreCours</th>
+                <th>DureeCours</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cour in cours %}
+            <tr>
+                <td>{{ cour.idCours }}</td>
+                <td>{{ cour.titreCours }}</td>
+                <td>{{ cour.dureeCours }}</td>
+                <td>
+                    <a href="{{ path('app_cours_show', {'idCours': cour.idCours}) }}">show</a>
+                    <a href="{{ path('app_cours_edit', {'idCours': cour.idCours}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
+
+
+
+{% endblock %}

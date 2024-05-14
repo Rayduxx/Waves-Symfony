@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ProdContoller">
+   <children>
+      <ImageView fitHeight="826.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="70.0" layoutY="449.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="39.0" prefWidth="149.0" styleClass="btn" text="Ajouter" textFill="WHITE" />
+      <GridPane layoutX="70.0" layoutY="166.0" prefHeight="264.0" prefWidth="511.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="31.0" prefWidth="106.0" text="Nom du projet :">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nomtf" prefHeight="39.0" prefWidth="255.0" GridPane.columnIndex="1" />
+            <Label prefHeight="31.0" prefWidth="106.0" text="Genre :" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="genretf" prefHeight="39.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="31.0" prefWidth="106.0" text="Description :" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="desctf" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label prefHeight="31.0" prefWidth="106.0" text="Mood tags:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <RadioButton fx:id="radbonh" mnemonicParsing="false" text="Bonheur" GridPane.columnIndex="1" />
+                  <RadioButton fx:id="radenergie" mnemonicParsing="false" text="Energie" />
+                  <RadioButton fx:id="radsent" mnemonicParsing="false" text="Sentimental" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <RadioButton fx:id="radcalm" mnemonicParsing="false" text="Calme" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+      <Pane prefHeight="83.0" prefWidth="1315.0" styleClass="pane">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/waves.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="571.0" layoutY="24.0" text="Créer un projet">
+               <font>
+                  <Font name="Roboto Bold" size="26.0" />
+               </font>
+            </Label>
+            <Button layoutX="1169.0" layoutY="25.0" mnemonicParsing="false" onAction="#Menu" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Button layoutX="1139.0" layoutY="97.0" mnemonicParsing="false" onAction="#ProdP" prefHeight="39.0" prefWidth="149.0" styleClass="btn" text="Production" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="71.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons8-music-notation-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

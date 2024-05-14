@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherItemsAdmin">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1315.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="table" layoutX="211.0" layoutY="108.0" prefHeight="453.0" prefWidth="481.0">
+         <columns>
+            <TableColumn fx:id="tableTitle" prefWidth="128.79998779296875" text="Titre" />
+            <TableColumn fx:id="tableDesc" prefWidth="154.39996337890625" text="Description" />
+            <TableColumn fx:id="tableAuth" prefWidth="123.9998779296875" text="Auteur" />
+            <TableColumn fx:id="tablePrix" prefWidth="71.9998779296875" text="Prix" />
+         </columns>
+      </TableView>
+      <Button fx:id="addButton" layoutX="326.0" layoutY="577.0" mnemonicParsing="false" onAction="#addbtn" style="-fx-background-color: #b469ff;" text="Add Item" textFill="WHITE" />
+      <Button layoutX="412.0" layoutY="577.0" mnemonicParsing="false" onAction="#deleteItem" style="-fx-background-color: #b469ff;" text="Supprimer" textFill="WHITE" />
+      <Button layoutX="504.0" layoutY="577.0" mnemonicParsing="false" onAction="#modifyItem" style="-fx-background-color: #b469ff;" text="Modifier" textFill="WHITE" />
+      <Pane layoutY="1.0" prefHeight="80.0" prefWidth="1315.0" styleClass="pane">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/waves.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="1033.0" layoutY="26.0" text="Gestion des marché">
+               <font>
+                  <Font name="Roboto Regular" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="81.0" prefHeight="689.0" prefWidth="166.0" styleClass="pane">
+         <children>
+            <VBox layoutX="7.0" layoutY="52.0" spacing="7.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toUserAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Utilisateurs">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-users-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toEventAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Evenement">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-event-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toContAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Contenus">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-grid-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toMarAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Marché">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-marketplace-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toProdAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Production">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-music-notation-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toFormAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Formations">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-teach-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Button layoutX="10.0" layoutY="638.0" mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-logout-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="26.0" layoutY="579.0" mnemonicParsing="false" onAction="#Menu1" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

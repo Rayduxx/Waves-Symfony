@@ -1,0 +1,54 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}List des projets
+{% endblock %}
+{% block content %}
+	<div data-bs-spy="scroll" class="scrollspy-example">
+		<section id="landingFeatures" class="section-py landing-features" style=" padding: 7rem 0;">
+			<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" id="imgbacktemp" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100"/>
+			<div style="margin-left: 80.5px;margin-right: 80.5px;">
+				<div class="row g-4">
+					{% for prod in prods %}
+						<div class="col-xl-3 col-lg-5 col-md-6">
+							{% if app.user.id == prod.user.id %}
+								<div class="card" style="box-shadow: 0 2px 6px 0 rgb(0 255 114);">
+								{% else %}
+									<div class="card">
+									{% endif %}
+									<div class="card-body text-center">
+										<div class="mx-auto mb-3">
+											<img src="{{asset('uploads/' ~ prod.cover)}}" alt="Avatar Image" class="rounded-circle w-px-100">
+										</div>
+										<h5 class="mb-1 card-title">{{prod.nom}}</h5>
+										<span>{{prod.description}}</span>
+										<div class="d-flex align-items-center justify-content-around my-4 py-2">
+											<div>
+												<span class="badge bg-label-primary">{{prod.genre}}</span>
+												<span class="badge bg-label-warning">{{prod.moodtag}}</span>
+											</div>
+										</div>
+										<div class="d-flex align-items-center justify-content-center">
+											<a href="{{ path('app_userprofile',{'id':prod.user.id}) }}" class="btn btn-label-primary d-flex align-items-center me-3">
+												<i class="bx bxs-user-rectangle me-1"></i>
+												{{prod.user.name}}
+												{{prod.user.prename}}</a>
+											{% if app.user.id == prod.user.id %}
+												<a href="{{ path('app_production_edit',{'id':prod.id}) }}" class="btn btn-label-primary d-flex align-items-center me-3">
+													<i class="bx bx-edit-alt me-1"></i>
+												</a>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="buy-now">
+			<a href="{{path('app_production_new')}}" class="btn btn-primary btn-buy-now">Créer un nouveau projet</a>
+					<a href="https://beets.studio/" target="_blank" style="right: 243px;" class="btn btn-primary btn-buy-now">Waves beets</a>
+
+		</div>
+	{% endblock %}
+

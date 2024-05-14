@@ -1,0 +1,55 @@
+{% extends '_bases/base.html.twig' %}
+
+{% block title%}Marketplace
+{% endblock %}
+
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu" style="background: url({{ asset('nav/img/front-pages/backgrounds/cta-bg-light.png') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+		<div class="layout-page">
+			<div class="content-wrapper">
+				<div class="container-xxl flex-grow-1 container-p-y">
+					<div class="row" data-masonry="{&quot;percentPosition&quot;: true }" style="position: relative; height: 570px;">
+						<div class="card mb-4" style="width: 50%; margin: 0 auto;">
+							<h1 style="text-align: center; margin-top: 20px;">Ajouter un Item</h1>
+							<form method="POST">
+								{{ form_start(form) }}
+								<div class="row">
+									<div class="col mb-3">
+										<label for="nameBasic" class="form-label">Titre</label>
+										{{ form_row(form.titre, {'attr': {'class': 'form-control', 'pattern': '[A-Z].*'}}) }}
+									</div>
+								</div>
+								<div class="row g-2">
+									<div class="col mb-0">
+										<label for="emailBasic" class="form-label">Auteur</label>
+										{{ form_row(form.auteur, {'attr': {'class': 'form-control', 'pattern': '[A-Z].*'}}) }}
+									</div>
+									<div class="col mb-0">
+										<label for="dobBasic" class="form-label">Prix</label>
+										<div class="input-group input-group-merge">
+											<span class="input-group-text">TND</span>
+											{{ form_widget(form.prix, {'attr': {'class': 'form-control', 'pattern': '[0-9].*', 'placeholder': '50'}}) }}
+											<span class="input-group-text">
+												.00</span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mb-3">
+										<label for="nameBasic" class="form-label">Description</label>
+										{{ form_row(form.description, {'attr': {'class': 'form-control', 'pattern': '[A-Z].*'}}) }}
+									</div>
+								</div>
+							</div>
+							<div style="text-align: center;">
+								<a href="{{ path('app_item_indexUser') }}" class="btn btn-secondary">Retour au Marketplace</a>
+								<button type="submit" class="btn btn-primary">Enregistrer</button>
+							</div>
+							{{ form_end(form) }}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.adminPosteController">
+    <children>
+        <TableView fx:id="Ctable" layoutX="763.0" layoutY="158.0" onMouseClicked="#selection" prefHeight="254.0" prefWidth="506.0" style="-fx-background-color: #B469FF;">
+            <columns>
+                <TableColumn fx:id="Ctitre" prefWidth="67.0" text="Titre" />
+                <TableColumn fx:id="Cartiste" prefWidth="81.0" text="Artiste" />
+                <TableColumn fx:id="Cgenre" prefWidth="54.0" text="Genre" />
+                <TableColumn fx:id="Cimage" prefWidth="57.0" text="Image" />
+                <TableColumn fx:id="Cmorceau" prefWidth="62.0" text="Morceau" />
+                <TableColumn fx:id="Cdescription" prefWidth="184.0" text="Description" />
+            </columns>
+        </TableView>
+        <Button layoutX="405.0" layoutY="602.0" mnemonicParsing="false" onAction="#supprimer" onMouseClicked="#selection" prefHeight="27.0" prefWidth="89.0" styleClass="btn" stylesheets="@style.css" text="Supprimer" />
+        <Button layoutX="297.0" layoutY="602.0" mnemonicParsing="false" onAction="#modifier" prefHeight="27.0" prefWidth="90.0" styleClass="btn" stylesheets="@style.css" text="Modifier" />
+        <Button layoutX="1227.0" layoutY="114.0" mnemonicParsing="false" onAction="#trier" styleClass="btn" stylesheets="@style.css" text="Trier" />
+        <TextField fx:id="recherche" layoutX="763.0" layoutY="114.0" prefHeight="26.0" prefWidth="237.0" promptText="Recherche par artiste" style="-fx-border-color: #B469FF;" styleClass="upgrade-button" stylesheets="@style.css" />
+        <Button fx:id="nomrech" layoutX="1016.0" layoutY="115.0" mnemonicParsing="false" onAction="#recherche" styleClass="btn" text="Recherche" textAlignment="CENTER" />
+      <BarChart fx:id="genreChart" layoutX="619.0" layoutY="423.0" prefHeight="334.0" prefWidth="642.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Pane layoutY="80.0" prefHeight="701.0" prefWidth="166.0" styleClass="pane">
+         <children>
+            <VBox layoutX="7.0" layoutY="52.0" spacing="7.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toUserAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Utilisateurs">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-users-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toEventAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Evenement">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-event-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toContAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Contenus">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-grid-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toMarAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Marché">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-marketplace-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toProdAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Production">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-music-notation-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toFormAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Formations">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-teach-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Button layoutX="10.0" layoutY="638.0" mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-logout-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="26.0" layoutY="579.0" mnemonicParsing="false" onAction="#Menu1" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="80.0" prefWidth="1318.0" styleClass="pane">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/waves.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="1033.0" layoutY="26.0" text="Gestion des contenus">
+               <font>
+                  <Font name="Roboto Regular" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <GridPane layoutX="190.0" layoutY="163.0" prefHeight="416.0" prefWidth="401.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="116.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="285.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+              <Label text="Titre :" />
+              <TextField fx:id="titreT" style="-fx-border-color: #B469FF;" styleClass="upgrade-button" stylesheets="@style.css" GridPane.columnIndex="1" />
+              <Label text="Artistre :" GridPane.rowIndex="1" />
+              <TextField fx:id="artisteT" style="-fx-border-color: #B469FF;" styleClass="upgrade-button" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              <Label text="Image :" GridPane.rowIndex="2" />
+              <TextField fx:id="imageT" style="-fx-border-color: #B469FF;" styleClass="upgrade-button" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+              <Label text="Morceau :" GridPane.rowIndex="4" />
+              <ChoiceBox fx:id="genreT" prefHeight="25.0" prefWidth="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+              <TextField fx:id="morceauT" style="-fx-border-color: #B469FF;" styleClass="upgrade-button" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+              <Label text="Genre :" GridPane.rowIndex="3" />
+              <Label text="Description :" GridPane.rowIndex="5" />
+              <TextField fx:id="descriptionT" style="-fx-border-color: #B469FF;" styleClass="upgrade-button" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </children>
+      </GridPane>
+      <Button layoutX="190.0" layoutY="729.0" mnemonicParsing="false" onAction="#PDF" onMouseClicked="#selection" prefHeight="27.0" prefWidth="422.0" styleClass="btn" stylesheets="@style.css" text="PDF" />
+    </children>
+    <effect>
+        <ColorAdjust />
+    </effect>
+</AnchorPane>

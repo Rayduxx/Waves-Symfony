@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ajouterEvent">
+
+   <children>
+      <ImageView fitHeight="824.0" fitWidth="1315.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="658.0" layoutY="533.0" mnemonicParsing="false" onAction="#ajouterEvent" prefHeight="27.0" prefWidth="115.0" styleClass="btn" text="Ajouter" />
+      <Button layoutX="405.0" layoutY="533.0" mnemonicParsing="false" onAction="#afficherEvent" styleClass="btn" text="Afficher" />
+      <ImageView fitHeight="72.0" fitWidth="200.0" layoutX="567.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waves.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="393.0" layoutY="277.0" prefHeight="224.0" prefWidth="510.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="156.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="354.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="Nom" GridPane.columnIndex="1" />
+            <Label text="Nom" />
+            <TextField fx:id="adresse" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Adresse" GridPane.rowIndex="1" />
+            <Label text="Date" GridPane.rowIndex="2" />
+            <TextField fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="desc" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Description" GridPane.rowIndex="3" />
+             <Label text="image" GridPane.rowIndex="4" />
+             <Button mnemonicParsing="false" onAction="#importerImage" text="Ajouter une photo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="552.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.gif" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>

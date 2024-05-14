@@ -1,0 +1,82 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}
+	Admin Dashboard - Utilisatuer
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card">
+					<h5 class="card-header">Liste des utilisateurs</h5>
+					<div class="card-datatable table-responsive">
+						<div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap5">
+							<table class="dt-fixedheader table border-top dataTable dtr-column" id="userTable" aria-describedby="DataTables_Table_1_info" style="width: 1388px;">
+								<thead>
+									<tr>
+										<th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=""></th>
+										<th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 260px;" aria-label="Name: activate to sort column ascending">Utilisatuer</th>
+										<th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 200px;" aria-label="Email: activate to sort column ascending">Email</th>
+										<th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 108px;" aria-label="Date: activate to sort column ascending">DDN</th>
+										<th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 106px;" aria-label="Salary: activate to sort column ascending">Tel</th>
+										<th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 144px;" aria-label="Status: activate to sort column ascending">Verifier</th>
+										<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 87px;" aria-label="Actions">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for user in user %}
+										<tr class="odd">
+											<td class="  control" tabindex="0" style="display: none;"></td>
+											<td>
+												<div class="d-flex justify-content-start align-items-center">
+													<div class="avatar-wrapper">
+														<div class="avatar me-2"><img src="{{asset('uploads/' ~ user.image)}}" class="avatar-initial rounded-circle">
+														</div>
+													</div>
+													<div class="d-flex flex-column">
+														<span class="emp_name text-truncate">{{user.name}}
+															{{user.prename}}</span>
+														<small class="emp_post text-truncate text-muted">
+															{% for role in user.roles %}
+																{% if role == "ROLE_USER" %}User
+																	{% elseif role == "ROLE_ADMIN" %}Admin
+																{% endif %}
+																{% if not loop.last %},
+																{% endif %}
+															{% endfor %}
+														</small>
+													</div>
+												</div>
+											</td>
+											<td>{{user.email}}</td>
+											<td>{{user.birthday ? user.birthday|date('d F Y') : ''}}</td>
+											<td>{{user.phone}}</td>
+											<td>
+												{% if user.isVerified == 1 %}
+													<span class="badge bg-label-success">Vérifié</span>
+												{% elseif user.isVerified == 0 %}
+													<span class="badge bg-label-danger">Non vérifié</span>
+												{% endif %}
+											</td>
+											<td>
+												<a href="{{ path('app_userSupp_dashboard',{'id':user.id}) }}" class="btn btn-sm btn-icon item-edit">
+													<i class="bx bx-trash"></i>
+												</a>
+												<a href="{{ path('app_userEdit_dashboard', {'id': user.id}) }}" class="btn btn-sm btn-icon item-edit">
+													<i class="bx bxs-edit"></i>
+												</a>
+											</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+							<div style="width: 1%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="content-backdrop fade"></div>
+			</div>
+		</div>
+	</div>
+	 
+{% endblock %}
+

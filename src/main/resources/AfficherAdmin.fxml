@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="765.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherAdminController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1315.0" layoutY="-2.0" opacity="0.58" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <Pane layoutY="-2.0" prefHeight="80.0" prefWidth="1315.0" styleClass="pane">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/waves.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="1033.0" layoutY="26.0" text="Gestion des Formations">
+               <font>
+                  <Font name="Roboto Regular" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="78.0" prefHeight="689.0" prefWidth="166.0" styleClass="pane">
+         <children>
+            <VBox layoutX="7.0" layoutY="52.0" spacing="7.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toUserAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Utilisateurs">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-users-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toEventAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Evenement">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-event-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toContAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Contenus">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-grid-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toMarAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Marché">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-marketplace-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toProdAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Production">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-music-notation-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toFormAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Formations">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-teach-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Button layoutX="10.0" layoutY="638.0" mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-logout-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="26.0" layoutY="579.0" mnemonicParsing="false" onAction="#Menu1" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <TableView fx:id="tableView" layoutX="817.0" layoutY="179.0" onMouseClicked="#selection" prefHeight="267.0" prefWidth="457.0">
+        <columns>
+          <TableColumn fx:id="rtitre" prefWidth="96.800048828125" text="titre" />
+          <TableColumn fx:id="rdescription" prefWidth="116.0" text="Description" />
+          <TableColumn fx:id="raffiche" prefWidth="116.0" text="affiche" />
+          <TableColumn fx:id="rvideo" prefWidth="127.0" text="video" />
+        </columns>
+      </TableView>
+      <Button layoutX="533.0" layoutY="511.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="27.0" prefWidth="95.0" styleClass="btn" text="supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+
+            
+       <Button layoutX="817.0" layoutY="144.0" mnemonicParsing="false" onAction="#trier" prefHeight="25.0" prefWidth="86.0" styleClass="btn" text="Trier" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="recherche" layoutX="970.0" layoutY="144.0" promptText="Recherche par titre" />
+      <Button fx:id="Brecherche" layoutX="1138.0" layoutY="144.0" mnemonicParsing="false" onAction="#recherche" prefHeight="25.0" prefWidth="86.0" styleClass="btn" text="Recherche" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="389.0" layoutY="511.0" mnemonicParsing="false" onAction="#modifier" prefHeight="27.0" prefWidth="95.0" styleClass="btn" text="Modifier">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <GridPane layoutX="245.0" layoutY="158.0" prefHeight="347.0" prefWidth="409.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="91.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="318.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="Ttitre" prefHeight="25.0" prefWidth="160.0" promptText="Titre" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Tdescription" promptText="Description" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Taffiche" promptText="Affiche" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </TextField>
+             <TextField fx:id="Tvideo" promptText="Video" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </TextField>
+            <Label text="Affiche :" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Roboto Regular" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Description :" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Roboto Regular" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Titre :">
+               <font>
+                  <Font name="Roboto Regular" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Video :" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Roboto Regular" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Button layoutX="463.0" layoutY="565.0" mnemonicParsing="false" onAction="#ajoutercour" prefHeight="27.0" prefWidth="95.0" styleClass="btn" text="Ajouter Cour">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
