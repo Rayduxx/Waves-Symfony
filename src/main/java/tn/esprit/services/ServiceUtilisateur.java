@@ -168,12 +168,17 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
             while (rs.next()) {
                 Utilisateur user = new Utilisateur();
                 user.setId(rs.getInt("id"));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
                 user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                user.setNumtel(rs.getInt("numtel"));
-                user.setRole(rs.getString("role"));
+                user.setNom(rs.getString("name"));
+                user.setPrenom(rs.getString("prename"));
+                user.setRole(rs.getString("roles"));
+                user.setNumtel(rs.getInt("phone"));
+                user.setIs_verified(rs.getBoolean("is_verified"));
+                user.setBirthday(rs.getDate("birthday"));
+                user.setImage(rs.getString("image"));
+                user.setCreated_at(rs.getDate("created_at"));
+                user.setCountry(rs.getString("country"));
+                user.setProjects(rs.getInt("projets"));
                 users.add(user);
             }
         } catch (SQLException e) {

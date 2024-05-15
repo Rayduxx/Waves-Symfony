@@ -114,15 +114,12 @@ public class adminPosteController {
         List<Poste> postes = ps.getAll();
         ObservableList<Poste> observableList = FXCollections.observableList(postes);
         Ctable.setItems(observableList);
-
         Ctitre.setCellValueFactory(new PropertyValueFactory<>("Titre"));
         Cartiste.setCellValueFactory(new PropertyValueFactory<>("Artiste"));
         Cgenre.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         Cimage.setCellValueFactory(new PropertyValueFactory<>("image"));
         Cmorceau.setCellValueFactory(new PropertyValueFactory<>("morceau"));
         Cdescription.setCellValueFactory(new PropertyValueFactory<>("Desscription"));
-
-        // Afficher les statistiques sur les genres
         afficherStatistiquesGenres(postes);
     }
 
@@ -236,7 +233,6 @@ public class adminPosteController {
         ObservableList<Poste> observableResultats = FXCollections.observableList(resultats);
         Ctable.setItems(observableResultats);
     }
-
 
     private void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource(scenePath));
@@ -363,7 +359,6 @@ public class adminPosteController {
             e.printStackTrace();
         }
     }
-
 
     public void PDF(ActionEvent actionEvent) {
         // Créer un sélecteur de fichiers pour enregistrer le PDF

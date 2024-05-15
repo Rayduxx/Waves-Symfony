@@ -20,7 +20,6 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\HttpFoundation\IpUtils;
 
 class UserController extends AbstractController
 {
@@ -49,16 +48,8 @@ class UserController extends AbstractController
         $form = $this->createForm(ProfileEditType::class, $userinfo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $password = $form->get('password')->getData();
-            if (empty($password)) {
-                $user->setPassword($userinfo->getPassword());
-            } else {
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $password
-                );
-            }
+            $password = $form['password']->getData();
+            $userinfo->setPassword($userPasswordHasher->hashPassword($userinfo,$password));
             $imageFile = $form['image']->getData();
             if ($imageFile) {
                 try {
@@ -104,7 +95,6 @@ class UserController extends AbstractController
             $user->setPassword($hashedPassword);*/
             $user->setRoles(array("ROLE_USER"));
             $user->setCountry("Tunisia");
-            $user->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($user);
             $entityManager->flush();
             $this->emailVerifier->sendEmailConfirmation(

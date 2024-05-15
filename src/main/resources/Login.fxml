@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ConnectionUserController">
    <children>
-      <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" />
+      <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" text="alamousssa1@gmail.com" />
       <Pane layoutX="679.0" prefHeight="768.0" prefWidth="636.0" style="-fx-background-color: #e2c3fa;">
          <children>
             <VBox prefHeight="777.0" prefWidth="655.0">
@@ -43,7 +43,7 @@
             </ImageView>
          </children>
       </Pane>
-      <PasswordField fx:id="password_login" layoutX="168.0" layoutY="375.0" prefHeight="45.0" prefWidth="295.0" promptText="Mot de passe" />
+      <PasswordField fx:id="password_login" layoutX="168.0" layoutY="375.0" prefHeight="45.0" prefWidth="295.0" promptText="Mot de passe" text="ALAmoussa1" />
       <Label alignment="CENTER" layoutX="105.0" layoutY="120.0" prefHeight="45.0" prefWidth="422.0" text="Connectez-vous à votre compte">
          <font>
             <Font name="Roboto Bold" size="24.0" />

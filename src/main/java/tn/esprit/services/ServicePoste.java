@@ -10,10 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ServicePoste implements IService<Poste> {
-  private Connection cnx ;
-  public ServicePoste(){
-      cnx =MyDataBase.getInstance().getCnx();
-  }
+    private Connection cnx;
+
+    public ServicePoste() {
+        cnx = MyDataBase.getInstance().getCnx();
+    }
 
     @Override
     public void add(Poste poste) {
@@ -36,45 +37,28 @@ public class ServicePoste implements IService<Poste> {
             System.out.println(e.getMessage());
 
         }
-
-
-
-
     }
 
     @Override
     public ArrayList<Poste> getAll() {
-
-
-        //retourner toute les perosnnes dans la bd
-        //1- req SQL done
-        //2 -execution de la req done
-        // 3- remplire la liste done
-        // 4 - retourner la liste done
         ArrayList<Poste> postes = new ArrayList();
-        String qry ="SELECT * FROM `poste`";
+        String qry = "SELECT * FROM `poste`";
         try {
             Statement stm = cnx.createStatement();
-          ResultSet rs = stm.executeQuery(qry);
-          while (rs.next()){
-              Poste p = new Poste();
-              p.setId(rs.getInt(1));
-              p.setTitre(rs.getString(2));
-              p.setArtiste(rs.getString(3));
-              p.setGenre(rs.getString(4));
-              p.setImage(rs.getString(5));
-              p.setMorceau(rs.getString(6));
-              p.setDescription(rs.getString(7));
-              postes.add(p);
-          }
-
-
-
+            ResultSet rs = stm.executeQuery(qry);
+            while (rs.next()) {
+                Poste p = new Poste();
+                p.setId(rs.getInt(1));
+                p.setTitre(rs.getString(2));
+                p.setArtiste(rs.getString(3));
+                p.setImage(rs.getString(4));
+                p.setMorceau(rs.getString(5));
+                p.setDescription(rs.getString(6));
+                postes.add(p);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
         return postes;
     }
 

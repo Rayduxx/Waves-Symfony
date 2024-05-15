@@ -115,7 +115,6 @@ public class ConnectionUserController implements Initializable {
             stm.setString(2, HashedPassword);
             ResultSet rs = stm.executeQuery();
             Utilisateur CurUser;
-            System.out.println(HashedPassword);
             if (rs.next()) {
                 CurUser = new Utilisateur(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getString("email"), rs.getString("password"), rs.getInt("phone"), rs.getString("roles"), rs.getString("image"), rs.getBoolean("is_verified"), rs.getDate("created_at"), rs.getDate("birthday"),rs.getString("country"),rs.getInt("projets") );
                 Utilisateur.setCurrent_User(CurUser);

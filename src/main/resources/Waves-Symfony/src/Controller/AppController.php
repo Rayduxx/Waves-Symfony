@@ -68,18 +68,9 @@ class AppController extends AbstractController
                     ->setPrename($prename)
                     ->setEmail($email)
                     ->setRoles(array("ROLE_USER"))
-                    ->setPassword($userPasswordHasher->hashPassword($new_user, $name . $prename . 1))
-                    ->setImage($filename);
-                    $this->$emailVerifier->sendEmailConfirmation(
-                        'app_verify_email',
-                        $user,
-                        (new TemplatedEmail())
-                            ->from(new Address('admin@security-demo.com', 'Security'))
-                            ->to($new_user->getEmail())
-                            ->subject('Please Confirm your Email')
-                            ->htmlTemplate('security/register-done.html.twig')
-                    );
-                $this->addFlash('info', 'Votre mot de passe : ' . $userPasswordHasher->hashPassword($new_user, $name . $prename . 1));
+                    ->setPassword($userPasswordHasher->hashPassword($new_user, 0000))
+                    ->setImage($filename)
+                    ->setIsVerified(true);
                 $manager->persist($new_user);
                 $manager->flush();
                 return $this->redirectToRoute('app_login');
