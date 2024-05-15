@@ -17,7 +17,7 @@ public class ServiceReservation implements IReservation<Reservation> {
 
     @Override
     public void Add(Reservation reservation) {
-        String qry = "INSERT INTO `reservation`( `date_reservation`, `statut`,`Eid`,`Nom`,`Prenom`,`NbPersonne`,`Email`) VALUES (?,?,?,?,?,?,?)";
+        String qry = "INSERT INTO `reservation`( `date_reservation`, `statut`,`eid`,`nom`,`prenom`,`nb_personne`,`email`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
 
@@ -28,6 +28,8 @@ public class ServiceReservation implements IReservation<Reservation> {
             stm.setString(5, reservation.getPrenom());
             stm.setInt(6,reservation.getNbPersonne());
             stm.setString(7, reservation.getEmail());
+
+
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -45,11 +47,12 @@ public class ServiceReservation implements IReservation<Reservation> {
                 Reservation p = new Reservation();
                 p.setDate_reservation(rs.getString("date_reservation"));
                 p.setStatut(rs.getString("statut"));
-                p.setId_evenement(rs.getInt("Eid"));
+                p.setId_evenement(rs.getInt("eid"));
                 p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("Prenom"));
-                p.setNbPersonne(rs.getInt("NbPersonne"));
-                p.setEmail(rs.getString("Email"));
+                p.setPrenom(rs.getString("prenom"));
+                p.setNbPersonne(rs.getInt("nb_personne"));
+                p.setEmail(rs.getString("email"));
+
                 reservations.add(p);
             }
         } catch (SQLException e) {
