@@ -1,0 +1,7 @@
+//download all files of the bunldes li masboubin aand moussa fel pc
+
+symfony console doctrine:database:create //taamel database b esm eli fel .env
+
+php bin/console make:migration //taamel migration (maaneha ficher SQL fiha l les entites f dossier enitity lkol) bch najmou naamlou l command li tahtha
+
+php bin/console doctrine:migrations:migrate //npushiw l migation (fichier fiha SQL) lkol l database

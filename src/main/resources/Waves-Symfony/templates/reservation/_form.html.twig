@@ -1,0 +1,20 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+{% for field in form %}
+    <div class="form-group row">
+        {{ form_label(field, null, {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(field) }}
+        </div>
+    </div>
+{% endfor %}
+
+<div class="form-group row">
+    <div class="col-sm-9 offset-sm-3">
+        <button type="submit" id="save-button" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+
+{{ form_end(form) }}

@@ -1,0 +1,93 @@
+@font-face {
+    -fx-font-family: "Roboto";
+}
+
+.text {
+    -fx-font-family: "Roboto";
+}
+
+.pane{
+    -fx-background-color: #f4cfff;
+}
+.btn{
+    -fx-background-color:linear-gradient(to right, #e483ff 0%, #e054ff 50%, #e483ff  100%);
+    -fx-background-radius: 15px;
+    -fx-border-width:1px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #d72dff;
+    -fx-text-fill: white;
+}
+.btn:hover{
+    -fx-transition: -fx-background-color 1s;
+    -fx-border-color: white;
+    -fx-background-color: #e483ff;
+}
+.text-field {
+    -fx-border-width: 0.1em;
+    -fx-border-color: rgba(224, 117, 255, 0.6);
+}
+.text-field:focused, .text-field:hover {
+    -fx-border-color: rgba(94, 0, 119, 0.6);
+}
+.combo-box{
+    -fx-background-color: white;
+    -fx-border-color: #d72dff;
+}
+.combo-box .arrow{
+    -fx-background-color: #d72dff;
+}
+.infolabel{
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: #e483ff;
+}
+.MainButton{
+    -fx-background-radius: 15px;
+    -fx-border-width:1px;
+    -fx-border-radius: 15px;
+    -fx-background-color: #e483ff;
+    -fx-border-color: #ddb5ec;
+}
+.MainButton:hover{
+    -fx-border-color: #bd55e0;
+}
+.scrollpanes{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.tab-pane > .tab-header-area {
+    -fx-padding: 3;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: rgba(0, 0, 0, 0.07);
+    -fx-background-insets: 0, 0 0 1px 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #f3ccff;
+    -fx-background-insets: 0 0 1px 0;
+    -fx-padding: 4px;
+    -fx-border-color: #c9c9c9;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab >.tab-container >.tab-label {
+    -fx-text-fill: #4c2965;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #e483ff, white;
+    -fx-background-insets: 0, 0 0 2px 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected >.tab-container >.tab-label {
+    -fx-text-fill: #c42bf8;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected >.tab-container >.focus-indicator {
+    -fx-opacity: 0;
+}
+.hboxcard{
+    -fx-background-image:url("/assets/cardbg.png"); ;
+}

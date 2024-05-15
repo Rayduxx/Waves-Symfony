@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherCours1Controller">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="768.0" prefWidth="1315.0">
+         <children>
+            <ImageView fitHeight="765.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/background.png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="tableC" layoutX="73.0" layoutY="95.0" onMouseClicked="#selection" prefHeight="315.0" prefWidth="335.0">
+              <columns>
+                <TableColumn fx:id="idC" prefWidth="75.0" text="id_cours" />
+                <TableColumn fx:id="titreC" prefWidth="94.0" text="titre_cours" />
+                  <TableColumn fx:id="dureeC" prefWidth="89.0" text="duree_cours" />
+                  <TableColumn fx:id="formationC" prefWidth="75.0" text="Formation" />
+              </columns>
+            </TableView>
+            <Button layoutX="606.0" layoutY="363.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="70.0" styleClass="btn" text="modifier" />
+            <Button layoutX="180.0" layoutY="462.0" mnemonicParsing="false" onAction="#Supprimer" styleClass="btn" text="supprimer" />
+            <TextField fx:id="Ttitre_cours" layoutX="567.0" layoutY="196.0" promptText="Titre cours">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="Tduree_cours" layoutX="567.0" layoutY="253.0" promptText="duree cours">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </TextField>
+            <Button layoutX="284.0" layoutY="462.0" mnemonicParsing="false" onAction="#trier" prefHeight="25.0" prefWidth="62.0" styleClass="btn" text="trier" />
+            <ChoiceBox fx:id="Tformation" layoutX="566.0" layoutY="309.0" prefWidth="150.0" styleClass="combo-box" />
+            <Button layoutX="577.0" layoutY="721.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="162.0" styleClass="btn" text="Retour" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

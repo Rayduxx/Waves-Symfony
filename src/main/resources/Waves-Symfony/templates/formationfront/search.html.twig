@@ -1,0 +1,26 @@
+
+{% block main %}
+    {% block body %}
+           <div class="row justify-content-center">
+            {% for formation in formations %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div id="results" class="card mx-auto">
+                        {% if formation.affiche %}
+                            <img src="{{ asset('uploads/images/' ~ formation.affiche) }}" class="card-img-top img-fluid" alt="Image de la formation {{ formation.titre }}">
+                        {% else %}
+                            <div class="text-center py-5">
+                                Pas d'image associée
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ formation.titre }}</h5>
+                            <p class="card-text">{{ formation.description }}</p>
+                            <h5 class="card-title">{{ formation.video }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+       
+    {% endblock %}
+{% endblock %}

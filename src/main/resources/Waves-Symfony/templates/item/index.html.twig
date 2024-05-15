@@ -1,0 +1,213 @@
+{% extends 'dashboard/adminbase.html.twig' %}
+
+{% block title %}Item index
+{% endblock %}
+
+{% block AdminContent %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4">
+							<div class="card">
+								<h5 class="card-header">Items du Marché</h5>
+								<form action="{{ path('app_item_index') }}" method="GET" style="display: flex; align-items: center; margin-left: 15px;">
+									<div class="btn-group">
+										<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+											Trier par
+										</button>
+										<ul class="dropdown-menu">
+											<li>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'titre'}) }}">Titre</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'auteur'}) }}">Auteur</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'prix'}) }}">Prix</a>
+											</li>
+										</ul>
+									</div>
+									<input class="form-control me-2" id="search" placeholder="Search..." style="width: auto; margin-left: 10px">
+								</form>
+								<div class="table-responsive text-nowrap">
+									<table class="table table-hover" id="tableac">
+										<thead>
+											<tr>
+												<th>Titre</th>
+												<th>Description</th>
+												<th>Auteur</th>
+												<th>Prix</th>
+												<th>actions</th>
+											</tr>
+										</thead>
+										<tbody class="table-border-bottom-0">
+											{% for item in items %}
+												<tr>
+													<td>{{ item.titre }}</td>
+													<td>{{ item.description }}</td>
+													<td>{{ item.auteur }}</td>
+													<td>{{ item.prix }}dt</td>
+													<td>
+														<a href="{{ path('app_item_show', {'id': item.id}) }}">show</a>
+														<a href="{{ path('app_item_edit', {'id': item.id}) }}">edit</a>
+													</td>
+												</tr>
+											{% else %}
+												<tr>
+													<td colspan="6">no records found</td>
+												</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<div class="card mb-4">
+							<div class="card">
+								<h5 class="card-header">Commandes du Marché</h5>
+								<form action="{{ path('app_item_index') }}" method="GET" style="display: flex; align-items: center; margin-left: 15px;">
+									<div class="btn-group">
+										<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+											Trier par
+										</button>
+										<ul class="dropdown-menu">
+											<li>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'titre'}) }}">Titre</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'auteur'}) }}">Auteur</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="{{ path('app_item_index', {'sort': 'prix'}) }}">Prix</a>
+											</li>
+										</ul>
+									</div>
+									<input class="form-control me-2" id="search" placeholder="Search..." style="width: auto; margin-left: 10px">
+								</form>
+								<div class="table-responsive text-nowrap">
+									<table class="table table-hover" id="tableac">
+										<thead>
+											<tr>
+												<th>Utilisateur</th>
+												<th>Articles</th>
+												<th>Total</th>
+												<th>Date</th>
+												<th>actions</th>
+											</tr>
+										</thead>
+										<tbody class="table-border-bottom-0">
+											{% for userId, groupedCommande in groupedCommandes %}
+												<tr>
+													<td>{{ groupedCommande.user.name }}
+														{{ groupedCommande.user.prename }}</td>
+													<td>
+														{% for item in groupedCommande.items %}
+															{{ item.titre }}<br>
+														{% endfor %}
+													</td>
+													<td>{{ groupedCommande.total }}</td>
+													<td>{{ groupedCommande.dateC|date('Y-m-d H:i:s') }}</td>
+													<td>
+														<a href="{{ path('app_commande_showAdmin', {'id': userId}) }}">show</a>
+														<form method="post" action="{{ path('app_commande_delete_group', {'id': userId}) }}">
+															<input type="hidden" name="_method" value="DELETE">
+															<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userId) }}">
+															<button type="submit">Delete</button>
+														</form>
+													</td>
+												</tr>
+											{% else %}
+												<tr>
+													<td colspan="6">no records found</td>
+												</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="buy-now">
+						<button type="button" class="btn btn-primary btn-buy-now" data-bs-toggle="modal" data-bs-target="#basicModal">Create new</button>
+					</div>
+					<div class="modal fade" id="basicModal" tabindex="-1" style="display: none;" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<form method="POST">
+									{{ form_start(form) }}
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel1">Ajouter un Item</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col mb-3">
+												<label for="nameBasic" class="form-label">Titre</label>
+												{{ form_row(form.titre) }}
+											</div>
+										</div>
+										<div class="row g-2">
+											<div class="col mb-0">
+												<label for="emailBasic" class="form-label">Auteur</label>
+												{{ form_row(form.auteur) }}
+											</div>
+											<div class="col mb-0">
+												<label for="dobBasic" class="form-label">Prix</label>
+												<div class="input-group input-group-merge">
+													<span class="input-group-text">TND</span>
+													{{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': '50'}}) }}
+													<span class="input-group-text">
+														.00</span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col mb-3">
+												<label for="nameBasic" class="form-label">Description</label>
+												{{ form_row(form.description) }}
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+											Close
+										</button>
+										<button type="submit" class="btn btn-primary">Save changes</button>
+									</div>
+									{{ form_end(form) }}
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.getElementById('search').addEventListener('input', function () {
+var searchQuery = this.value.toLowerCase();
+var table = document.getElementById('tableac');
+var rows = table.getElementsByTagName('tr');
+
+for (var i = 1; i < rows.length; i++) { // Skip the header row
+var cells = rows[i].getElementsByTagName('td');
+var match = false;
+
+for (var j = 0; j < cells.length; j++) {
+var cellText = cells[j].textContent.toLowerCase();
+if (cellText.includes(searchQuery)) {
+match = true;
+break;
+}
+}
+
+rows[i].style.display = match ? '' : 'none';
+}
+});
+	</script>
+{% endblock %}

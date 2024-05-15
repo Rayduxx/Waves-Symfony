@@ -1,0 +1,435 @@
+:root {
+    --bs-facebook: #3b5998;
+}
+
+.bg-facebook {
+    background-color: #3b5998 !important
+}
+
+a.bg-facebook:hover,
+a.bg-facebook:focus {
+    background-color: #385590 !important
+}
+
+.bg-label-facebook {
+    background-color: #e0e4ef !important;
+    color: #3b5998 !important
+}
+
+.bg-label-hover-facebook {
+    background-color: #e0e4ef !important;
+    color: #3b5998 !important
+}
+
+.bg-label-hover-facebook:hover {
+    background-color: #3b5998 !important;
+    color: #fff !important
+}
+
+.border-label-facebook {
+    border: 3px solid #b1bdd6
+}
+
+.border-light-facebook {
+    border: 3px solid rgba(59, 89, 152, .08)
+}
+
+.btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #3b5998;
+    box-shadow: 0 .125rem .25rem 0 rgba(59, 89, 152, .4)
+}
+
+.btn-facebook:hover {
+    color: #fff !important;
+    background-color: #355089 !important;
+    border-color: #355089 !important;
+    transform: translateY(-1px) !important
+}
+
+.btn-check:focus+.btn-facebook,
+.btn-facebook:focus,
+.btn-facebook.focus {
+    color: #fff;
+    background-color: #355089;
+    border-color: #355089;
+    transform: translateY(0);
+    box-shadow: none
+}
+
+.btn-check:checked+.btn-facebook,
+.btn-check:active+.btn-facebook,
+.btn-facebook:active,
+.btn-facebook.active,
+.btn-facebook.show.dropdown-toggle,
+.show>.btn-facebook.dropdown-toggle {
+    color: #fff !important;
+    background-color: #324c81 !important;
+    border-color: #324c81 !important
+}
+
+.btn-check:checked+.btn-facebook:focus,
+.btn-check:active+.btn-facebook:focus,
+.btn-facebook:active:focus,
+.btn-facebook.active:focus,
+.btn-facebook.show.dropdown-toggle:focus,
+.show>.btn-facebook.dropdown-toggle:focus {
+    box-shadow: none
+}
+
+.btn-facebook.disabled,
+.btn-facebook:disabled {
+    color: #fff !important;
+    background-color: #3b5998 !important;
+    border-color: #3b5998 !important;
+    box-shadow: none !important
+}
+
+.btn-label-facebook {
+    color: #3b5998;
+    border-color: rgba(0, 0, 0, 0);
+    background: #e0e4ef
+}
+
+.btn-label-facebook:hover {
+    border-color: rgba(0, 0, 0, 0) !important;
+    background: #355089 !important;
+    color: #fff !important;
+    box-shadow: 0 .125rem .25rem 0 rgba(59, 89, 152, .4) !important;
+    transform: translateY(-1px) !important
+}
+
+.btn-label-facebook:focus,
+.btn-label-facebook.focus {
+    color: #fff;
+    background: #355089;
+    box-shadow: none !important;
+    transform: translateY(0)
+}
+
+.btn-label-facebook:active,
+.btn-label-facebook.active,
+.btn-label-facebook.show.dropdown-toggle,
+.show>.btn-label-facebook.dropdown-toggle {
+    color: #fff !important;
+    background-color: #324c81 !important;
+    border-color: rgba(0, 0, 0, 0) !important
+}
+
+.btn-label-facebook:active:focus,
+.btn-label-facebook.active:focus,
+.btn-label-facebook.show.dropdown-toggle:focus,
+.show>.btn-label-facebook.dropdown-toggle:focus {
+    box-shadow: none
+}
+
+.btn-label-facebook.disabled,
+.btn-label-facebook:disabled {
+    color: #3b5998 !important;
+    background-color: #e0e4ef !important;
+    border-color: rgba(0, 0, 0, 0) !important
+}
+
+.btn-outline-facebook {
+    color: #3b5998;
+    border-color: #3b5998;
+    background: rgba(0, 0, 0, 0)
+}
+
+.btn-outline-facebook:hover {
+    color: #fff !important;
+    background-color: #355089 !important;
+    border-color: #355089 !important;
+    box-shadow: 0 .125rem .25rem 0 rgba(59, 89, 152, .4) !important;
+    transform: translateY(-1px) !important
+}
+
+.btn-check:focus+.btn-outline-facebook,
+.btn-outline-facebook:focus {
+    color: #fff;
+    background-color: #355089;
+    border-color: #355089;
+    box-shadow: none;
+    transform: translateY(0)
+}
+
+.btn-check:checked+.btn-outline-facebook,
+.btn-check:active+.btn-outline-facebook,
+.btn-outline-facebook:active,
+.btn-outline-facebook.active,
+.btn-outline-facebook.dropdown-toggle.show {
+    color: #fff !important;
+    background-color: #324c81 !important;
+    border-color: #324c81 !important
+}
+
+.btn-check:checked+.btn-outline-facebook:focus,
+.btn-check:active+.btn-outline-facebook:focus,
+.btn-outline-facebook:active:focus,
+.btn-outline-facebook.active:focus,
+.btn-outline-facebook.dropdown-toggle.show:focus {
+    box-shadow: none
+}
+
+.btn-outline-facebook.disabled,
+.btn-outline-facebook:disabled {
+    box-shadow: none !important;
+    color: #3b5998 !important;
+    background-color: rgba(0, 0, 0, 0) !important
+}
+
+.btn-outline-facebook .badge {
+    background: #3b5998;
+    border-color: #3b5998;
+    color: #fff
+}
+
+.btn-outline-facebook:hover .badge,
+.btn-outline-facebook:focus:hover .badge,
+.btn-outline-facebook:active .badge,
+.btn-outline-facebook.active .badge,
+.show>.btn-outline-facebook.dropdown-toggle .badge {
+    background: #fff;
+    border-color: #fff;
+    color: #3b5998
+}
+
+.bg-google-plus {
+    background-color: #dd4b39 !important
+}
+
+a.bg-google-plus:hover,
+a.bg-google-plus:focus {
+    background-color: #d24736 !important
+}
+
+.bg-label-google-plus {
+    background-color: #fae2df !important;
+    color: #dd4b39 !important
+}
+
+.bg-label-hover-google-plus {
+    background-color: #fae2df !important;
+    color: #dd4b39 !important
+}
+
+.bg-label-hover-google-plus:hover {
+    background-color: #dd4b39 !important;
+    color: #fff !important
+}
+
+.border-label-google-plus {
+    border: 3px solid #f1b7b0
+}
+
+.border-light-google-plus {
+    border: 3px solid rgba(221, 75, 57, .08)
+}
+
+.btn-google-plus {
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: #dd4b39;
+    box-shadow: 0 .125rem .25rem 0 rgba(221, 75, 57, .4)
+}
+
+.btn-google-plus:hover {
+    color: #fff !important;
+    background-color: #c74433 !important;
+    border-color: #c74433 !important;
+    transform: translateY(-1px) !important
+}
+
+.btn-check:focus+.btn-google-plus,
+.btn-google-plus:focus,
+.btn-google-plus.focus {
+    color: #fff;
+    background-color: #c74433;
+    border-color: #c74433;
+    transform: translateY(0);
+    box-shadow: none
+}
+
+.btn-check:checked+.btn-google-plus,
+.btn-check:active+.btn-google-plus,
+.btn-google-plus:active,
+.btn-google-plus.active,
+.btn-google-plus.show.dropdown-toggle,
+.show>.btn-google-plus.dropdown-toggle {
+    color: #fff !important;
+    background-color: #bc4030 !important;
+    border-color: #bc4030 !important
+}
+
+.btn-check:checked+.btn-google-plus:focus,
+.btn-check:active+.btn-google-plus:focus,
+.btn-google-plus:active:focus,
+.btn-google-plus.active:focus,
+.btn-google-plus.show.dropdown-toggle:focus,
+.show>.btn-google-plus.dropdown-toggle:focus {
+    box-shadow: none
+}
+
+.btn-google-plus.disabled,
+.btn-google-plus:disabled {
+    color: #fff !important;
+    background-color: #dd4b39 !important;
+    border-color: #dd4b39 !important;
+    box-shadow: none !important
+}
+
+.btn-label-google-plus {
+    color: #dd4b39;
+    border-color: rgba(0, 0, 0, 0);
+    background: #fae2df
+}
+
+.btn-label-google-plus:hover {
+    border-color: rgba(0, 0, 0, 0) !important;
+    background: #c74433 !important;
+    color: #fff !important;
+    box-shadow: 0 .125rem .25rem 0 rgba(221, 75, 57, .4) !important;
+    transform: translateY(-1px) !important
+}
+
+.btn-label-google-plus:focus,
+.btn-label-google-plus.focus {
+    color: #fff;
+    background: #c74433;
+    box-shadow: none !important;
+    transform: translateY(0)
+}
+
+.btn-label-google-plus:active,
+.btn-label-google-plus.active,
+.btn-label-google-plus.show.dropdown-toggle,
+.show>.btn-label-google-plus.dropdown-toggle {
+    color: #fff !important;
+    background-color: #bc4030 !important;
+    border-color: rgba(0, 0, 0, 0) !important
+}
+
+.btn-label-google-plus:active:focus,
+.btn-label-google-plus.active:focus,
+.btn-label-google-plus.show.dropdown-toggle:focus,
+.show>.btn-label-google-plus.dropdown-toggle:focus {
+    box-shadow: none
+}
+
+.btn-label-google-plus.disabled,
+.btn-label-google-plus:disabled {
+    color: #dd4b39 !important;
+    background-color: #fae2df !important;
+    border-color: rgba(0, 0, 0, 0) !important
+}
+
+.btn-outline-google-plus {
+    color: #dd4b39;
+    border-color: #dd4b39;
+    background: rgba(0, 0, 0, 0)
+}
+
+.btn-outline-google-plus:hover {
+    color: #fff !important;
+    background-color: #c74433 !important;
+    border-color: #c74433 !important;
+    box-shadow: 0 .125rem .25rem 0 rgba(221, 75, 57, .4) !important;
+    transform: translateY(-1px) !important
+}
+
+.btn-check:focus+.btn-outline-google-plus,
+.btn-outline-google-plus:focus {
+    color: #fff;
+    background-color: #c74433;
+    border-color: #c74433;
+    box-shadow: none;
+    transform: translateY(0)
+}
+
+.btn-check:checked+.btn-outline-google-plus,
+.btn-check:active+.btn-outline-google-plus,
+.btn-outline-google-plus:active,
+.btn-outline-google-plus.active,
+.btn-outline-google-plus.dropdown-toggle.show {
+    color: #fff !important;
+    background-color: #bc4030 !important;
+    border-color: #bc4030 !important
+}
+
+.btn-check:checked+.btn-outline-google-plus:focus,
+.btn-check:active+.btn-outline-google-plus:focus,
+.btn-outline-google-plus:active:focus,
+.btn-outline-google-plus.active:focus,
+.btn-outline-google-plus.dropdown-toggle.show:focus {
+    box-shadow: none
+}
+
+.btn-outline-google-plus.disabled,
+.btn-outline-google-plus:disabled {
+    box-shadow: none !important;
+    color: #dd4b39 !important;
+    background-color: rgba(0, 0, 0, 0) !important
+}
+
+.btn-outline-google-plus .badge {
+    background: #dd4b39;
+    border-color: #dd4b39;
+    color: #fff
+}
+
+.btn-outline-google-plus:hover .badge,
+.btn-outline-google-plus:focus:hover .badge,
+.btn-outline-google-plus:active .badge,
+.btn-outline-google-plus.active .badge,
+.show>.btn-outline-google-plus.dropdown-toggle .badge {
+    background: #fff;
+    border-color: #fff;
+    color: #dd4b39
+}
+
+#imgbacktemp {
+    height: 151% !important;
+}
+.user-profile-header-banner img {
+    width: 100%;
+    object-fit: cover;
+    height: 250px
+}
+
+.user-profile-header {
+    margin-top: -2rem
+}
+
+.user-profile-header .user-profile-img {
+    border: 5px solid;
+    width: 120px
+}
+
+.light-style .user-profile-header .user-profile-img {
+    border-color: #fff
+}
+
+.dark-style .user-profile-header .user-profile-img {
+    border-color: #2b2c40
+}
+
+.dataTables_wrapper .card-header .dataTables_filter label {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important
+}
+
+@media(max-width: 767.98px) {
+    .user-profile-header-banner img {
+        height: 150px
+    }
+
+    .user-profile-header .user-profile-img {
+        width: 100px
+    }
+}
+.btn-label-primary {
+    color: #dc69ff;
+    border-color: rgba(0,0,0,0);
+    background: #fbe7ff
+}

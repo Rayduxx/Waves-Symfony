@@ -1,0 +1,146 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Evenement
+{% endblock %}
+
+{% block AdminContent %}
+<div class="content-wrapper">
+	<div class="container-xxl flex-grow-1 container-p-y">
+
+		<div class="nav-align-top mb-4">
+			<ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+				<li class="nav-item">
+					<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+						data-bs-target="#navs-pills-justified-profile" aria-controls="navs-pills-justified-profile"
+						aria-selected="true">
+						<i class="tf-icons bx bx-list-ul"></i>
+						Liste
+					</button>
+				</li>
+				<li class="nav-item">
+					<button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+						data-bs-target="#navs-pills-justified-messages" aria-controls="navs-pills-justified-messages"
+						aria-selected="false">
+						<i class="tf-icons bx bxs-bar-chart-alt-2"></i>
+						Statistiques
+					</button>
+				</li>
+			</ul>
+			<div class="card mb-4">
+				<div class="tab-content">
+					<div class="tab-pane fade  active show" id="navs-pills-justified-profile" role="tabpanel">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Nom de l'event</th>
+									<th>Adresse</th>
+									<th>Description</th>
+									<th>Date</th>
+									<th>Image</th>
+									<th>actions</th>
+								</tr>
+							</thead>
+							<tbody id="tabv">
+								{% for event in events %}
+								<tr>
+									<td>{{ event.id }}</td>
+									<td>{{ event.nomE }}</td>
+									<td>{{ event.adrE }}</td>
+									<td>{{ event.descr }}</td>
+									<td>{{ event.date }}</td>
+									<td>
+										<div class="avatar-wrapper">
+											<div class="avatar me-2"><img src="{{asset('uploads/' ~ event.image)}}"
+													class="avatar-initial rounded-circle">
+											</div>
+										</div>
+									</td>
+									<td>
+										<a href="{{ path('app_event_show', {'id': event.id}) }}"
+											class="btn btn-sm btn-icon item-edit">
+											<i class="bx bx-show"></i>
+										</a>
+										<a href="{{ path('app_event_edit', {'id': event.id}) }}"
+											class="btn btn-sm btn-icon item-edit">
+											<i class="bx bxs-edit"></i>
+										</a>
+										<a href="{{ path('app_event_delete', {'id': event.id}) }}"
+											class="btn btn-sm btn-icon item-edit">
+											<i class="bx bx-trash"></i>
+										</a>
+									</td>
+								</tr>
+								{% else %}
+								<tr>
+									<td colspan="7">no records found</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade" id="navs-pills-justified-messages" role="tabpanel">
+						<canvas id="reservationChart" width="400" height="200"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="buy-now">
+	<a href="{{path('app_event_new')}}" class="btn btn-primary btn-buy-now">Créer un evenement</a>
+
+	
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var ctx = document.getElementById('reservationChart').getContext('2d');
+		var chartData = {{ chartData| json_encode | raw
+	}};
+	new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: Object.keys(chartData),
+			datasets: [
+				{
+					label: 'Nombre de réservations par événement',
+					data: Object.values(chartData),
+					backgroundColor: 'rgba(192, 75, 186, 0.2)',
+					borderColor: 'rgba(192, 75, 186, 1)',
+					borderWidth: 1
+				}
+			]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true
+				}
+			}
+		}
+	});
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#search').on('keyup', function () {
+			var query = $(this).val(); 
+			console.log(query);
+			$.ajax({
+				url: '{{ path('rechercheAjax') }}',
+				type: 'GET',
+				data: {
+					q: query
+				},
+				success: function (response) {
+					console.log(response);
+					$('#tabv').html('');
+					response.forEach(function (event) { });
+				}
+			});
+		});
+	});
+</script>
+
+{% endblock %}

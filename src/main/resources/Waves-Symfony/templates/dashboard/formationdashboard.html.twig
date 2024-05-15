@@ -1,0 +1,62 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Formations
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card">
+					<h5 class="card-header">Liste des formations</h5>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Titre</th>
+								<th>Description</th>
+								<th>Affiche</th>
+								<th>Video</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for formation in formations %}
+								<tr>
+									<td>{{ formation.id }}</td>
+									<td>{{ formation.titre }}</td>
+									<td>{{ formation.description }}</td>
+									<td>
+										{% if formation.affiche %}
+											<img src="{{ asset('uploads/images/' ~ formation.affiche) }}" alt="Image de la formation {{ formation.titre }}" style="max-width: 100px; max-height: 100px;">
+										{% else %}
+											Pas d'image associée
+										{% endif %}
+									</td>
+									<td>{{ formation.video }}</td>
+									<td>
+										<a href="{{ path('app_formation_show', {'id': formation.id}) }}">show</a>
+										<a href="{{ path('app_formation_edit', {'id': formation.id}) }}">edit</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="6">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{# Pagination #}
+					<div class="pagination-container" style="text-align: center; margin-top: 20px;">
+						{{ knp_pagination_render(formations) }}
+					</div>
+					{# End Pagination #}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="buy-now">
+		<a href="{{path('app_formation_new')}}" class="btn btn-primary btn-buy-now">Ajouter une formation</a>
+		<a href="{{path('generate_formations_pdf')}}" style="right: 243px;" class="btn btn-primary btn-buy-now">Générer des PDF</a>
+	</div>
+{% endblock %}
+

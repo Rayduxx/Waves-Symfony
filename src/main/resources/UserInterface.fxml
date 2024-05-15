@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.UserInterfaceController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1396.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="83.0" prefWidth="1315.0" styleClass="pane">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/waves.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="590.0" layoutY="24.0" text="Utilisateurs">
+               <font>
+                  <Font name="Roboto Bold" size="26.0" />
+               </font>
+            </Label>
+            <Button layoutX="1169.0" layoutY="25.0" mnemonicParsing="false" onAction="#Menu" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <ScrollPane layoutY="135.0" prefHeight="633.0" prefWidth="1315.0" styleClass="scrollpanes">
+         <content>
+            <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0" />
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="91.0" prefHeight="38.0" prefWidth="312.0" spacing="18.0">
+         <children>
+            <Label text="Trier :">
+               <font>
+                  <Font name="Roboto Regular" size="17.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="20.0" prefWidth="95.0" styleClass="btn" text="Nom">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-sort-60.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="15.0" prefWidth="92.0" styleClass="btn" text="Email">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-sort-60.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Button layoutX="431.0" layoutY="95.0" mnemonicParsing="false" onAction="#refresh" prefHeight="30.0" prefWidth="99.0" styleClass="btn" text="Rafraîchir">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons8-refresh-60.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Roboto Regular" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="usersearch" layoutX="1067.0" layoutY="97.0" onAction="#RechercheNom" prefHeight="27.0" prefWidth="234.0" promptText="Recherche" styleClass="recherchefield" />
+   </children>
+</AnchorPane>

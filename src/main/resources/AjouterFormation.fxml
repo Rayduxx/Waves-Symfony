@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterFormationController">
+   <children>
+      <ImageView fitHeight="842.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="titreTf" layoutX="509.0" layoutY="364.0" prefHeight="25.0" prefWidth="264.0" promptText="Titre" />
+      <TextField fx:id="descriptionTf" layoutX="509.0" layoutY="418.0" prefHeight="25.0" prefWidth="264.0" promptText="Description" />
+      <TextField fx:id="afficheTf" layoutX="509.0" layoutY="471.0" prefHeight="25.0" prefWidth="264.0" promptText="Affiche" />
+      <Button fx:id="Ajouter" layoutX="500.0" layoutY="581.0" mnemonicParsing="false" onAction="#add" prefHeight="19.0" prefWidth="111.0" styleClass="btn" stylesheets="@styles.css" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="Afficher" layoutX="664.0" layoutY="581.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="17.0" prefWidth="111.0" styleClass="btn" text="Afficher" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="videoTf" layoutX="509.0" layoutY="521.0" prefHeight="25.0" prefWidth="264.0" promptText="Video" />
+      <Button fx:id="upload" layoutX="775.0" layoutY="471.0" mnemonicParsing="false" onAction="#handleUpload" prefHeight="25.0" prefWidth="25.0" text="upload" />
+      <ImageView fitHeight="202.0" fitWidth="214.0" layoutX="534.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="214.0" layoutX="552.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waves.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="507.0" layoutY="281.0" text="Ajouter Formation">
+         <font>
+            <Font name="Roboto Regular" size="33.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

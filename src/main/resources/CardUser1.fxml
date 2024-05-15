@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="userpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="240.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardUser1Controller">
+   <children>
+      <ImageView fitHeight="330.0" fitWidth="250.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/cardbg1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pdpimage" fitHeight="117.0" fitWidth="114.0" layoutX="69.0" layoutY="25.0" pickOnBounds="true">
+         <image>
+            <Image url="@assets/uploads/default.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="27.0" layoutY="228.0" prefHeight="19.0" prefWidth="200.0" />
+      <Separator layoutX="27.0" layoutY="189.0" prefHeight="19.0" prefWidth="200.0" />
+      <Label fx:id="nomprenomlb" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="165.0" prefHeight="19.0" prefWidth="200.0" text="Nom Prenom" textAlignment="CENTER">
+         <font>
+            <Font name="Roboto Regular" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="emaillb" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="208.0" prefHeight="19.0" prefWidth="200.0" text="Email" textAlignment="CENTER">
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Label>
+      <Separator layoutX="27.0" layoutY="267.0" prefHeight="19.0" prefWidth="200.0" />
+      <Label fx:id="numtellb" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="247.0" prefHeight="19.0" prefWidth="200.0" text="num" textAlignment="CENTER">
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="rolelb" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="286.0" prefHeight="19.0" prefWidth="200.0" text="role" textAlignment="CENTER">
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

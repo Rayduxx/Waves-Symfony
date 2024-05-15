@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="348.0" style="-fx-border-color: #b3b3b3;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardCommController">
+   <children>
+      <VBox prefHeight="60.0" prefWidth="348.0" style="-fx-background-color: #e483ff57;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="com" alignment="TOP_LEFT" prefHeight="60.0" prefWidth="377.0" text="Label">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="3.0" top="3.0" />
+                     </padding>
+                     <font>
+                        <Font name="Roboto Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+                     <children>
+                        <Button fx:id="modbtn" mnemonicParsing="false" onAction="#supp" prefHeight="25.0" prefWidth="35.0" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/icons8-delete-60.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="suppbtn" mnemonicParsing="false" onAction="#upd" prefHeight="25.0" prefWidth="34.0" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/icons8-edit-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

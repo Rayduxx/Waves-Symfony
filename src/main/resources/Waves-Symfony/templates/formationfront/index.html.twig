@@ -1,0 +1,109 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des Formations
+{% endblock %}
+{% block content %}
+<div class="layout-wrapper layout-content-navbar layout-without-menu">
+	<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+	<div class="layout-container">
+		<div class="layout-page">
+			<div class="content-wrapper">
+				<div class="container-xxl flex-grow-1 container-p-y">
+					<div class="card mb-4" style="padding: 9px;">
+						<h5 class="card-header">Foramtions</h5>
+                        <input type="text" id="search" name="search" class="form-control" placeholder="Recherche par titre">
+						<div class="row justify-content-center">
+							{% for formation in formations %}
+								<div class="col-md-6 col-lg-4 mb-4">
+									<div id="results" class="card mx-auto">
+										{% if formation.affiche %}
+											<img src="{{ asset('uploads/' ~ formation.affiche) }}" class="card-img-top img-fluid" alt="Image de la formation {{ formation.titre }}">
+										{% else %}
+											<div class="text-center py-5">
+												Pas d'image associée
+											</div>
+										{% endif %}
+										<div class="card-body">
+											<h5 class="card-title">{{ formation.titre }}</h5>
+											<p class="card-text">{{ formation.description }}</p>
+											<h5 class="card-title">{{ formation.video }}</h5>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+
+
+
+
+
+$('#search').keyup(function () {
+
+
+
+
+
+var query = $(this).val();
+$.ajax({
+
+
+
+
+
+url: "{{ path('app_formation_searchFront') }}",
+type: "POST",
+data: {
+
+
+
+
+
+query: query
+
+
+
+
+
+},
+success: function (data) {
+
+
+
+
+
+$('#results').html(data);
+$('#results').css('width', '100%');
+$('#results').css('position', 'static');
+
+
+
+
+
+}
+
+});
+
+
+
+
+
+});
+
+
+
+
+
+});
+	</script>
+{% endblock %}
+{% endblock %}
+

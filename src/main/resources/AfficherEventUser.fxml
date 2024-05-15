@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsUser">
+   <ImageView fitHeight="768.0" fitWidth="1396.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@assets/background.png" />
+      </image>
+   </ImageView>
+   <Pane layoutX="1.0" layoutY="1.0" prefHeight="83.0" prefWidth="1315.0" styleClass="pane">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@assets/waves.png" />
+            </image>
+         </ImageView>
+         <Label layoutX="586.0" layoutY="24.0" text="Evenements">
+            <font>
+               <Font name="Roboto Bold" size="26.0" />
+            </font>
+         </Label>
+         <Button layoutX="1169.0" layoutY="25.0" mnemonicParsing="false" onAction="#Menu" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+            <graphic>
+               <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@assets/icons8-menu-50.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <font>
+               <Font name="Roboto Regular" size="16.0" />
+            </font>
+         </Button>
+      </children>
+   </Pane>
+    <GridPane fx:id="eventGrid" hgap="10" layoutY="83.0" vgap="10" />
+
+</AnchorPane>

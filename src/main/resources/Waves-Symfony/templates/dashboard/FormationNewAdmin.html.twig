@@ -1,0 +1,21 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Formations
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card-header d-flex align-items-center justify-content-between">
+					<h5 class="mb-0">Ajouter une formation</h5>
+				</div>
+				<div class="card-body">
+					{{ include('formation/_form.html.twig') }}
+				</div>
+				<div class="card-footer">
+					<a href="{{ path('app_formation_index') }}" class="btn btn-secondary">Back to list</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

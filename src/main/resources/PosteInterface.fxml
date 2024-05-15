@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherPosteController">
+   <center>
+
+
+            <ScrollPane prefHeight="437.0" prefWidth="826.0">
+         <content>
+            <GridPane fx:id="posteContainer" prefHeight="0.0" prefWidth="0.0">
+              
+            </GridPane>
+         </content>
+            </ScrollPane>
+
+   </center>
+   <top>
+      <Pane prefHeight="83.0" prefWidth="1315.0" styleClass="pane" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/waves.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="617.0" layoutY="24.0" text="Postes">
+               <font>
+                  <Font name="Roboto Bold" size="26.0" />
+               </font>
+            </Label>
+            <Button layoutX="1169.0" layoutY="25.0" mnemonicParsing="false" onAction="#Menu" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="recherche" layoutX="799.0" layoutY="27.0" prefHeight="27.0" prefWidth="283.0" promptText="Chercher titre" style="-fx-background-radius: 100; -fx-border-radius: 40 40 40;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="Crecherche" ellipsisString="upgrade" layoutX="1092.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="26.0" styleClass="btn" stylesheets="@/css/style.css" text="search">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+            <Button ellipsisString="upgrade" layoutX="282.0" layoutY="27.0" mnemonicParsing="false" onAction="#ajouterposte" prefHeight="27.0" prefWidth="95.0" styleClass="btn" stylesheets="@/css/style.css" text="Ajouter">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

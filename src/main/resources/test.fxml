@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchp" prefHeight="500.0" prefWidth="350.0" style="-fx-border-color: #310047;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardController">
+   <children>
+      <ImageView fitHeight="500.0" fitWidth="350.0" opacity="0.54" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/cardcom.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="500.0" prefWidth="350.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="titreL" alignment="CENTER" prefHeight="20.0" prefWidth="461.0" stylesheets="@css/style.css" text="Label" textAlignment="JUSTIFY" textOverrun="CLIP">
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="8.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imageL" fitHeight="98.0" fitWidth="123.0" pickOnBounds="true" />
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
+            <Separator minHeight="11.0" prefHeight="54.0" prefWidth="350.0" />
+            <Label fx:id="artisteL" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="350.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <padding>
+                  <Insets top="4.0" />
+               </padding>
+            </Label>
+            <Label fx:id="genreL" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="350.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <padding>
+                  <Insets top="4.0" />
+               </padding>
+            </Label>
+            <Label fx:id="descriptionL" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="350.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <padding>
+                  <Insets top="4.0" />
+               </padding>
+            </Label>
+            <Separator minHeight="11.0" prefHeight="54.0" prefWidth="350.0" />
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="291.0" spacing="4.0">
+               <children>
+                  <TextField fx:id="AJ" prefHeight="27.0" prefWidth="303.0" />
+                  <Button mnemonicParsing="false" onAction="#AjouterCom" prefHeight="26.0" prefWidth="31.0">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-comment-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator minHeight="11.0" prefHeight="54.0" prefWidth="350.0" />
+            <ScrollPane prefHeight="373.0" prefWidth="350.0">
+               <content>
+                  <VBox fx:id="Box" prefHeight="60.0" prefWidth="348.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

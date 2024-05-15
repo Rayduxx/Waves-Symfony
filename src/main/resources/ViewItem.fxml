@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ViewItem">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="300.0" pickOnBounds="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="TTitre" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="72.0" text="Label" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font></Label>
+      <Label fx:id="TAuteur" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="127.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font></Label>
+      <Label fx:id="TDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="218.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="TPrix" alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" layoutY="350.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

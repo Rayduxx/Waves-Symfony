@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="130.0" style="-fx-border-color: #310047;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardControllerA">
+   <children>
+      <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" prefHeight="200.0" prefWidth="130.0" styleClass="secondary-color">
+         <children>
+            <Label fx:id="nom" text="Label" textAlignment="RIGHT">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="ACaslonPro-Semibold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageL" fitHeight="80.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-color">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </VBox.margin>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Label fx:id="adr" text="Label">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="ACaslonPro-Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="date" text="Label">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="ACaslonPro-Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="desc" text="Label">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Button fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" prefHeight="27.0" prefWidth="44.0" styleClass="btn" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-delete-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="edit" mnemonicParsing="false" onAction="#modifier" prefHeight="27.0" prefWidth="44.0" styleClass="btn">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-edit-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

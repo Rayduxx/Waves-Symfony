@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.afficherEvent">
+   <children>
+      <ImageView fitHeight="762.0" fitWidth="1332.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="eventTable" layoutX="87.0" layoutY="227.0" prefHeight="379.0" prefWidth="1141.0">
+         <columns>
+            <TableColumn fx:id="nomColumn" prefWidth="161.0" text="Nom" />
+            <TableColumn fx:id="adresseColumn" prefWidth="113.0" text="Adresse" />
+            <TableColumn fx:id="dateColumn" prefWidth="148.0" text="Date" />
+            <TableColumn fx:id="descColumn" prefWidth="634.0" text="Description" />
+            <TableColumn fx:id="EditColumn" prefWidth="83.0" text="Edit" />
+            
+         </columns>
+      </TableView>
+      <Button layoutX="253.0" layoutY="612.0" mnemonicParsing="false" onAction="#ajouterEvent" styleClass="btn" text="Ajouter" />
+      <Button layoutX="831.0" layoutY="612.0" mnemonicParsing="false" onAction="#ajouterReservation" styleClass="btn" text="Ajouter Reservation" />
+      <Label layoutX="540.0" layoutY="162.0" text="Liste des évenements" textFill="#20387b">
+         <font>
+            <Font name="Roboto Regular" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="552.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.gif" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>

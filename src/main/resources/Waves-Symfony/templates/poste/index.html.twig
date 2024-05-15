@@ -1,0 +1,126 @@
+{% extends "dashboard/adminbase.html.twig" %}
+{% block title %}Admin Dashboard - Poste
+{% endblock %}
+{% block AdminContent %}
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="card mb-4">
+				<div class="card">
+					<h5 class="card-header">Liste des postes</h5>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Idposte</th>
+								<th>Titre</th>
+								<th>Artiste</th>
+								<th>Image</th>
+								<th>Morceau</th>
+								<th>Description</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for poste in postes %}
+								<tr>
+									<td>{{ poste.idposte }}</td>
+									<td>{{ poste.titre }}</td>
+									<td>{{ poste.artiste }}</td>
+									<td>
+										{% if poste.image %}
+											<div class="avatar-wrapper">
+												<div class="avatar avatar me-2 rounded-2 bg-label-secondary"><img src="{{asset('uploads/' ~ poste.image)}}" alt="Product-9" class="rounded-2"></div>
+											</div>
+										{% else %}
+											Pas d'image associée
+										{% endif %}
+									</td>
+
+
+									<td>
+										{% if poste.morceau %}
+											<audio controls>
+												<source src="{{ asset('uploads/audio/' ~ poste.morceau) }}" type="audio/mp3">
+												Your browser does not support the audio element.
+											</audio>
+										{% else %}
+											Pas de morceau associé
+										{% endif %}
+									</td>
+									<td>{{ poste.description }}</td>
+									<td>
+										<a href="{{ path('app_poste_show', {'idposte': poste.idposte}) }}" class="btn btn-sm btn-icon item-edit">
+											<i class="bx bx-show"></i>
+										</a>
+										<a href="{{ path('app_poste_edit', {'idposte': poste.idposte}) }}"
+											class="btn btn-sm btn-icon item-edit">
+											<i class="bx bxs-edit"></i>
+										</a>
+										<a href="{{ path('app_poste_delete', {'idposte': poste.idposte}) }}"
+											class="btn btn-sm btn-icon item-edit">
+											<i class="bx bx-trash"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="8">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+						<div class="pagination-container" style="text-align: center;">
+							{{ knp_pagination_render(postes) }}
+						</div>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div></div><div class="buy-now"><a href="{{path('app_poste_new')}}" class="btn btn-primary btn-buy-now">Ajouter un Poste</a><a href="{{path('pdf_export')}}" style="right: 243px;" class="btn btn-primary btn-buy-now">Générer des PDF</a></div><script src="{{ asset('https://code.jquery.com/jquery-3.5.1.min.js') }}"></script><script>$(document).ready(function () { // Set up click event listener for pagination links
+$('#pagination-container').on('click', 'a', function (event) {
+
+
+
+event.preventDefault();
+
+// Get the URL of the next page of results from the pagination link
+var url = $(this).attr('href');
+// Send an AJAX request to load the next page of results
+$.ajax({
+
+
+
+url: url,
+type: 'GET',
+success: function (response) {
+
+
+
+console.log(response);
+// Log the response to the console
+// Replace the current content with the new content from the AJAX response
+$('#tabv').html($(response).find('#tabv').html());
+$('#pagination-container').html($(response).find('#pagination-container').html());
+
+
+
+},
+error: function (jqXHR, textStatus, errorThrown) {
+
+
+
+console.log('AJAX error: ' + textStatus + ' - ' + errorThrown);
+
+
+
+}
+
+});
+
+
+
+});
+
+
+
+});</script>{# Pagination #}{% endblock %}
+

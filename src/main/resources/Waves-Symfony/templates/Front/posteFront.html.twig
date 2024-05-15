@@ -1,0 +1,125 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}Liste des Postes
+{% endblock %}
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu">
+		<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100" style="height: 121% !important;"/>
+		<div class="layout-container">
+			<div class="layout-page">
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<div class="card mb-4" style="padding: 9px;">
+							<h5 class="card-header">Postes</h5>
+							<input type="text" id="search" name="search" class="form-control" placeholder="Recherche par titre">
+							<div id="results" class="container">
+								<div class="row mb-5" id="postes">
+									{% for poste in postes %}
+										<div class="col-md-6 col-lg-4 mb-3">
+											<div class="card h-100">
+												{% if poste.image %}
+													<img src="{{ asset('uploads/' ~ poste.image) }}" style="max-width: 445.328;max-height: 445.328;" class="card-img-top img-fluid post-image" alt="Image du poste {{ poste.titre }}">
+												{% else %}
+													<div class="text-center py-5">
+														Pas d'image associée
+													</div>
+												{% endif %}
+												<div class="card-body">	
+													<h5 class="card-title">{{ poste.titre }}</h5>
+													<h5 class="card-title">{{ poste.artiste }}</h6>
+													<p class="card-text">{{ poste.description }}</p>
+													<audio controls>
+														<source src="{{ asset('uploads/audio/' ~ poste.morceau) }}" type="audio/mpeg">
+														Your browser does not support the audio element.
+													</audio>
+													<a href="{{ path('app_commentFront_indexC', {'idposte': poste.idposte}) }}" class="btn btn-outline-primary">Commentaires</a>
+												</div>
+											</div>
+										</div>
+
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+
+
+
+
+
+$('#search').keyup(function () {
+
+
+
+
+
+var query = $(this).val();
+$.ajax({
+
+
+
+
+
+url: "{{ path('app_poste_search') }}",
+type: "POST",
+data: {
+
+
+
+
+
+query: query
+
+
+
+
+
+},
+success: function (data) {
+
+
+
+
+
+$('#results').html(data);
+$('#results').css('width', '100%');
+$('#results').css('position', 'static');
+
+
+
+
+
+}
+
+});
+
+
+
+
+
+});
+
+
+
+
+
+});
+	</script>
+
+	{% block stylesheets %}
+		<style>
+			.post-image {
+				width: 100%;
+				height: auto;
+			}
+		</style>
+	{% endblock %}
+{% endblock %}
+

@@ -1,0 +1,124 @@
+{% extends '_bases/base.html.twig' %}
+{% block title %}Marché
+{% endblock %}
+{% block content %}
+	<div class="layout-wrapper layout-content-navbar layout-without-menu" style="background: url({{ asset('nav/img/front-pages/backgrounds/cta-bg-light.png') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+		<div class="layout-page">
+			<div class="content-wrapper">
+				<div class="container-xxl flex-grow-1 container-p-y">
+					<ul class="nav nav-pills flex-column flex-md-row mb-3">
+						<li>
+							<form action="{{ path('app_item_indexUser') }}" method="GET">
+								<div class="btn-group">
+									<button type="button" class="btn btn-outline-primary" data-bs-toggle="dropdown" aria-expanded="false">
+										Trier par
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="{{ path('app_item_indexUser', {'sort': 'titre'}) }}">Titre</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="{{ path('app_item_indexUser', {'sort': 'auteur'}) }}">Auteur</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="{{ path('app_item_indexUser', {'sort': 'prix'}) }}">Prix</a>
+										</li>
+									</ul>
+								</div>
+							</form>
+						</li>
+						<li class="nav-item ms-auto" style="display: flex; align-items: center; ">
+							<input class="form-control me-2" id="search" placeholder="Rechercher..." style="width: auto;">
+							{% if app.user %}
+								<a href="{{ path('app_commande_show', {'id': app.user.id}) }}" class="btn btn-primary form-control" style="height: auto;">
+									<i class="bx bx-cart me-1"></i>
+									Panier
+								</a>
+							{% endif %}
+						</li>
+					</ul>
+					<div id="search-results" style="width: auto; margin-top: 10px;"></div>
+					<div class="row" data-masonry="{&quot;percentPosition&quot;: true }" style="position: relative; height: relative;">
+						{% for item in items %}
+							<div class="col-md-6 col-lg-4 mb-3">
+								<div class="card h-100">
+									<div class="card-body">
+										<h5 class="card-title">{{ item.titre }}</h5>
+										<h6 class="card-subtitle text-muted">{{ item.auteur }}</h6>
+										<p class="card-text">{{ item.description }}</p>
+										<p class="card-text">{{ item.prix }}dt</p>
+										{% if previews[item.id] %}
+											<div style="display: flex; align-items: center;">
+												<audio id="player" controls style="margin-right: 20px;">
+													<source src="{{ previews[item.id] }}" type="audio/mpeg">
+													Your browser does not support the audio element.
+												</audio>
+												<button type="button" class="btn btn-primary" onclick="window.location.href='{{ path('app_item_showUser', {'id': item.id}) }}'">show</button>
+											</div>
+										{% else %}
+											<p>No preview available</p>
+										{% endif %}
+										<div class="d-flex justify-content-between" style="margin-top: 10px">
+											<form action="{{ path('app_commande_new', {'id': item.id}) }}" method="POST" style="display: inline;">
+												<button class="btn rounded-pill btn-outline-primary">+</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% else %}
+							<h1>No items found</h1>
+						{% endfor %}
+					</div>
+					<div class="text-center" style="position: fixed; bottom: 20px; right: 20px;">
+						{% if not app.session.get('spotify_access_token') %}
+							<a href="{{ path('app_spotify_authorize') }}" class="btn btn-primary">
+								<i class="bx bx-log-in-circle me-1"></i>
+								Connecter à Spotify
+							</a>
+						{% else %}
+							<p>Spotify Access Token:
+								{{ app.session.get('spotify_access_token') }}</p>
+						{% endif %}
+						<a href="{{ path('app_item_new') }}" class="btn btn-primary">Ajouter Item</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var items = [{% for item in items %}{
+titre: '{{ item.titre|e('js') }}',
+auteur: '{{ item.auteur|e('js') }}',
+description: '{{ item.description|e('js') }}',
+prix: '{{ item.prix|e('js') }}'
+},{% endfor %}];
+
+document.getElementById('search').addEventListener('input', function () {
+var searchQuery = this.value.toLowerCase();
+var resultsDiv = document.getElementById('search-results');
+if (searchQuery === '') {
+resultsDiv.innerHTML = '';
+} else {
+var filteredItems = items.filter(function (item) {
+return item.titre.toLowerCase().includes(searchQuery) || item.auteur.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery);
+});
+updateDisplay(filteredItems);
+}
+});
+
+function updateDisplay(items) {
+var resultsDiv = document.getElementById('search-results');
+resultsDiv.innerHTML = '';
+var resultsList = document.createElement('ul');
+resultsList.style.listStyleType = 'none';
+for (var i = 0; i < items.length; i++) {
+var listItem = document.createElement('li');
+listItem.innerHTML = '<a href="/item/marketplace/' + items[i].id + '"><h5>' + items[i].titre + '</h5></a>' + '<h6>' + items[i].auteur + '</h6>';
+resultsList.appendChild(listItem);
+}
+resultsDiv.appendChild(resultsList);
+}
+	</script>
+{% endblock %}

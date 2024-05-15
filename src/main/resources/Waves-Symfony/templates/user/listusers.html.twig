@@ -1,0 +1,57 @@
+{% extends "_bases/base.html.twig" %}
+{% block title %}List des utilisateurs
+{% endblock %}
+{% block content %}
+	<div data-bs-spy="scroll" class="scrollspy-example">
+		<section id="landingFeatures" class="section-py landing-features" style=" padding: 7rem 0;">
+			<img src="../nav/img/front-pages/backgrounds/cta-bg-light.png" id="imgbacktemp" class="position-absolute top-0 start-50 translate-middle-x object-fit-contain w-100 h-100"/>
+				<div style="margin-left: 133.5px;margin-right: 133.5px;">
+				<div class="row g-4">
+					{% for user in users %}
+						<div class="col-xl-2 col-lg-6 col-md-6">
+							<div class="card">
+								<div class="card-body text-center">
+									<div class="dropdown btn-pinned">
+										<button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown" aria-expanded="false">
+											<i class="bx bx-dots-vertical-rounded"></i>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-end">
+											<li>
+												<a class="dropdown-item" href="{{ path('app_userprofile',{'id':user.id}) }}">Profile</a>
+											</li>
+											<li>
+												<a class="dropdown-item text-danger" href="javascript:void(0);">Signaler
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="mx-auto mb-3">
+										<img src="{{asset('uploads/' ~ user.image)}}" alt="Avatar Image" class="rounded-circle w-px-100">
+									</div>
+									<h5 class="mb-1 card-title">{{user.name}}
+										{{user.prename}}</h5>
+									<span>
+										{% for role in user.roles %}
+											{% if role == "ROLE_USER" %}User
+												{% elseif role == "ROLE_ADMIN" %}Admin
+											{% endif %}
+											{% if not loop.last %},
+											{% endif %}
+										{% endfor %}
+									</span>
+									<div class="d-flex align-items-center justify-content-around my-4 py-2">
+										<div>
+											<span>Projects</span>
+											<h4 class="mb-1">{% if user.projets==null %}0{% else %}{{user.projets}}{% endif %}</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterCoursController">
+    <children>
+      <ImageView fitHeight="807.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+        <TextField fx:id="titreTF" layoutX="501.0" layoutY="300.0" prefHeight="25.0" prefWidth="264.0" promptText="Titre" />
+        <Button fx:id="Ajouter" layoutX="501.0" layoutY="485.0" mnemonicParsing="false" onAction="#addC" prefHeight="19.0" prefWidth="111.0" styleClass="btn" stylesheets="@styles.css" text="Ajouter" textFill="WHITE">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="Afficher" layoutX="651.0" layoutY="485.0" mnemonicParsing="false" onAction="#AfficherC1" prefHeight="17.0" prefWidth="111.0" styleClass="btn" text="Afficher" textFill="WHITE">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+        <TextField fx:id="dureeTF" layoutX="501.0" layoutY="364.0" prefHeight="25.0" prefWidth="264.0" promptText="Duree" />
+      <ChoiceBox fx:id="idTF" layoutX="498.0" layoutY="422.0" prefHeight="25.0" prefWidth="264.0" />
+      <Label layoutX="563.0" layoutY="260.0" text="Ajouter Cour">
+         <font>
+            <Font name="Roboto Regular" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="537.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="135.0" layoutX="563.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waves.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>
