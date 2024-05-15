@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -53,9 +56,20 @@ public class CardcontrollerU {
         adr.setText(event.getAdrE());
         date.setText(event.getDate());
         desc.setText(event.getDesc());
-        String formattedImagePath = Paths.get(event.getImage()).toUri().toString();
-        Image image = new Image(formattedImagePath);
-        imageL.setImage(image);
+        /*String ImagePath = "src/main/resources/Waves-Symfony/public/uploads/"+event.getImage();
+        Image image = new Image(ImagePath);
+        imageL.setImage(image);*/
+        String imagePath = "src/main/resources/Waves-Symfony/public/uploads/"+event.getImage();
+        if (imagePath != null) {
+            try {
+                File file = new File(imagePath);
+                FileInputStream inputStream = new FileInputStream(file);
+                Image image = new Image(inputStream);
+                imageL.setImage(image);
+            } catch (FileNotFoundException e) {
+                System.err.println("Image file not found: " + imagePath);
+            }
+        }
     }
 
     @FXML
