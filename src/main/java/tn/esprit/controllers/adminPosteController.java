@@ -1,7 +1,5 @@
 package tn.esprit.controllers;
 
-import com.itextpdf.io.image.ImageData;
-import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
@@ -23,22 +21,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Poste;
 import tn.esprit.services.ServicePoste;
 import tn.esprit.utils.SessionManager;
 import com.itextpdf.layout.Document;
-
-import com.itextpdf.kernel.pdf.PdfDocument;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -46,64 +37,40 @@ import java.util.List;
 import java.util.Map;
 
 public class adminPosteController {
-    ServicePoste servicePoste=new ServicePoste();
     @FXML
     private TableColumn<Poste, String> Cartiste;
-
     @FXML
     private TableColumn<Poste, String> Cdescription;
-
-    @FXML
-    private TableColumn<Poste, String> Cgenre;
-
     @FXML
     private TableColumn<Poste, String> Cimage;
-
     @FXML
     private Button Cmodif;
-
     @FXML
     private TableColumn<Poste, String> Cmorceau;
-
     @FXML
     private Button Crecherche;
-
     @FXML
     private Button Csupp;
-
     @FXML
     private TableView<Poste> Ctable;
-
     @FXML
     private TableColumn<Poste, String> Ctitre;
-
     @FXML
     private Button nomrech;
-
     @FXML
     private Button Ctrier;
-
     @FXML
     private TextField artisteT;
-
     @FXML
     private TextField descriptionT;
-
-    @FXML
-    private ChoiceBox<String> genreT;
-
     @FXML
     private TextField imageT;
-
     @FXML
     private TextField morceauT;
-
     @FXML
     private TextField recherche;
-
     @FXML
     private TextField titreT;
-
     @FXML
     private BarChart<String, Integer> genreChart;
 
@@ -116,10 +83,9 @@ public class adminPosteController {
         Ctable.setItems(observableList);
         Ctitre.setCellValueFactory(new PropertyValueFactory<>("Titre"));
         Cartiste.setCellValueFactory(new PropertyValueFactory<>("Artiste"));
-        Cgenre.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         Cimage.setCellValueFactory(new PropertyValueFactory<>("image"));
         Cmorceau.setCellValueFactory(new PropertyValueFactory<>("morceau"));
-        Cdescription.setCellValueFactory(new PropertyValueFactory<>("Desscription"));
+        Cdescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         afficherStatistiquesGenres(postes);
     }
 
@@ -127,21 +93,20 @@ public class adminPosteController {
         Map<String, Integer> genreCounts = new HashMap<>();
         for (Poste poste : postes) {
             String genre = poste.getGenre();
-            genreCounts.put(genre, genreCounts.getOrDefault(genre, 0) + 1);
+            if (genre != null) {  // Ensure the genre is not null
+                genreCounts.put(genre, genreCounts.getOrDefault(genre, 0) + 1);
+            } else {
+                System.out.println("Null genre found for poste: " + poste);
+            }
         }
-
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        genreCounts.forEach((genre, count) -> series.getData().add(new XYChart.Data<>(genre, count)));
+        genreCounts.forEach((genre, count) -> {
+            if (genre != null) { // Add non-null check here too
+                series.getData().add(new XYChart.Data<>(genre, count));
+            }
+        });
+        genreChart.getData().clear(); // Clear existing data before adding new
         genreChart.getData().add(series);
-
-        // Définir la largeur des barres de statistiques
-        for (XYChart.Data<String, Integer> data : series.getData()) {
-            data.getNode().setStyle(data.getNode().getStyle() + "-fx-bar-width: 5px;");
-            data.getNode().setStyle(data.getNode().getStyle() + "-fx-bar-fill: #B469FF;");
-            genreChart.setBarGap(50);
-            genreChart.setCategoryGap(10);
-            genreChart.setLegendSide(Side.TOP);
-        }
     }
     @FXML
     void supprimer(ActionEvent actionEvent) {
@@ -165,14 +130,12 @@ public class adminPosteController {
         if (posteSelectionne != null) {
             String titre = titreT.getText();
             String artiste = artisteT.getText();
-            String genre = genreT.getValue();
             String image = imageT.getText();
             String morceau = morceauT.getText();
             String description = descriptionT.getText();
 
             posteSelectionne.setTitre(titre);
             posteSelectionne.setArtiste(artiste);
-            posteSelectionne.setGenre(genre);
             posteSelectionne.setImage(image);
             posteSelectionne.setDescription(description);
 
@@ -182,7 +145,6 @@ public class adminPosteController {
 
             titreT.clear();
             artisteT.clear();
-            genreT.getSelectionModel().clearSelection();
             imageT.clear();
             morceauT.clear();
             descriptionT.clear();
@@ -205,7 +167,6 @@ public class adminPosteController {
         if (selectedPoste != null) {
             titreT.setText(selectedPoste.getTitre());
             artisteT.setText(selectedPoste.getArtiste());
-            genreT.setValue(selectedPoste.getGenre());
             imageT.setText(selectedPoste.getImage());
             morceauT.setText(selectedPoste.getMorceau());
             descriptionT.setText(selectedPoste.getDescription());
@@ -219,7 +180,6 @@ public class adminPosteController {
 
         Ctitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         Cartiste.setCellValueFactory(new PropertyValueFactory<>("artiste"));
-        Cgenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         Cimage.setCellValueFactory(new PropertyValueFactory<>("image"));
         Cmorceau.setCellValueFactory(new PropertyValueFactory<>("morceau"));
         Cdescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -232,14 +192,6 @@ public class adminPosteController {
         List<Poste> resultats = ps.recherchePoste(String.valueOf(nomRecherche)); // Appel de la méthode rechercheParNom
         ObservableList<Poste> observableResultats = FXCollections.observableList(resultats);
         Ctable.setItems(observableResultats);
-    }
-
-    private void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource(scenePath));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
     }
     @FXML
     public void Menu1(ActionEvent actionEvent) {
