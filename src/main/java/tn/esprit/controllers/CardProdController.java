@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -16,11 +18,16 @@ import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceProduction;
 import tn.esprit.services.ServiceUtilisateur;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class CardProdController {
     @FXML
     private Pane Card;
+    @FXML
+    private ImageView coverPlace;
     @FXML
     private Label carddesc;
     @FXML
@@ -31,13 +38,27 @@ public class CardProdController {
     private Label cardtitre;
     private final ServiceProduction ProdS = new ServiceProduction();
     int pid;
-    String ptitre, pdesc, pgenre, ptag;
+    String ptitre, pdesc, pgenre, ptag,pcover;
     private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
             "#F4C2D7", "#FFD4E2", "#FFB7D0", "#A6D9FF", "#8BC8FF",
             "#E6A9CB", "#FFBFD3", "#FFA7C1", "#9AC2FF", "#74AFFA",
             "#D8B6D8", "#FFC9D7", "#FFB3C8", "#B0E1FF", "#8DCFFD",
             "#D3AADB", "#FFBEDF", "#FFA9CC", "#AFD5FF", "#93C5FF"};
     public void setData(Production prod) {
+        String imagePath = "src/main/resources/Waves-Symfony/public/uploads/"+prod.getCover();
+        if (imagePath != null) {
+            try {
+                File file = new File(imagePath);
+                FileInputStream inputStream = new FileInputStream(file);
+                Image image = new Image(inputStream);
+                coverPlace.setImage(image);
+            } catch (FileNotFoundException e) {
+                System.err.println("Image file not found: " + imagePath);
+            }
+        } else {
+            System.err.println("Image path is null for user: " + prod);
+        }
+
         cardtitre.setText(prod.getNom());
         carddesc.setText(prod.getDesc());
         cardgenre.setText(prod.getGenre());
@@ -45,6 +66,7 @@ public class CardProdController {
         Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
 
+        pcover = prod.getCover();
         ptitre = prod.getNom();
         pdesc = prod.getDesc();
         pgenre = prod.getGenre();
@@ -65,6 +87,18 @@ public class CardProdController {
             PAC.desctf.setText(String.valueOf(pdesc));
             PAC.titretf.setText(ptitre);
             PAC.genretf.setText(pgenre);
+            PAC.covertf.setText(pcover);
+            String imagePath = "src/main/resources/Waves-Symfony/public/uploads/"+pcover;
+            if (imagePath != null) {
+                try {
+                    File file = new File(imagePath);
+                    FileInputStream inputStream = new FileInputStream(file);
+                    Image image = new Image(inputStream);
+                    PAC.imageCover.setImage(image);
+                } catch (FileNotFoundException e) {
+                    System.err.println("Image file not found: " + imagePath);
+                }
+            }
             stage.setScene(scene);
             stage.show();
 

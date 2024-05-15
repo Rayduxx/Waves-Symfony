@@ -6,6 +6,7 @@ import tn.esprit.interfaces.IProduction;
 import tn.esprit.models.Production;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.utils.MyDataBase;
+import tn.esprit.utils.SessionManager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,14 +20,16 @@ public class ServiceProduction implements IProduction<Production> {
     }
 
     @Override
-    public void Add(Production user) {
-        String qry = "INSERT INTO `production`(`nom`,`genre`, `description`, `moodtag`) VALUES (?,?,?,?)";
+    public void Add(Production prod) {
+        String qry = "INSERT INTO `production`(`nom`, `description`, `genre`, `moodtag`, `cover`, `idUser`) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setString(1, user.getNom());
-            stm.setString(2, user.getGenre());
-            stm.setString(3, user.getDesc());
-            stm.setString(4, user.getTags());
+            stm.setString(1, prod.getNom());
+            stm.setString(2, prod.getDesc());
+            stm.setString(3, prod.getGenre());
+            stm.setString(4, prod.getTags());
+            stm.setString(5, prod.getCover());
+            stm.setInt(6, SessionManager.getId_user());
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -44,11 +47,12 @@ public class ServiceProduction implements IProduction<Production> {
                 Production prod = new Production();
                 prod.setId(rs.getInt("id"));
                 prod.setNom(rs.getString("nom"));
-                prod.setNom(rs.getString("genre"));
-                prod.setNom(rs.getString("description"));
-                prod.setNom(rs.getString("moodtag"));
+                prod.setDesc(rs.getString("description"));
+                prod.setGenre(rs.getString("genre"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setCover(rs.getString("cover"));
+                prod.setIdUser(rs.getInt("idUser"));
                 production.add(prod);
-                System.out.println("Ajout effectué");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,15 +63,32 @@ public class ServiceProduction implements IProduction<Production> {
     @Override
     public void Update(Production prod) {
         try {
-            String qry = "UPDATE `production` SET `titre`=?,`genre`=?,`description`=?,`moodtag`=? WHERE `id`=?";
+            String qry = "UPDATE `production` SET `nom`=?,`description`=?,`genre`=?,`moodtag`=?,`cover`=?,`idUser`=? WHERE `id`=?";
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, prod.getNom());
-            stm.setString(2, prod.getGenre());
-            stm.setString(3, prod.getDesc());
+            stm.setString(2, prod.getDesc());
+            stm.setString(3, prod.getGenre());
             stm.setString(4, prod.getTags());
-            stm.setInt(5, prod.getId());
+            stm.setString(5, prod.getCover());
+            stm.setInt(6, prod.getIdUser());
+            stm.setInt(7, prod.getId());
             stm.executeUpdate();
-            System.out.println("Modification effectué");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    @Override
+    public void Update2(Production prod) {
+        try {
+            String qry = "UPDATE `production` SET `nom`=?,`description`=?,`genre`=?,`moodtag`=?,`cover`=? WHERE `id`=?";
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setString(1, prod.getNom());
+            stm.setString(2, prod.getDesc());
+            stm.setString(3, prod.getGenre());
+            stm.setString(4, prod.getTags());
+            stm.setString(5, prod.getCover());
+            stm.setInt(6, prod.getId());
+            stm.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -110,8 +131,10 @@ public class ServiceProduction implements IProduction<Production> {
                 prod.setId(rs.getInt("id"));
                 prod.setNom(rs.getString("nom"));
                 prod.setDesc(rs.getString("description"));
-                prod.setTags(rs.getString("moodtag"));
                 prod.setGenre(rs.getString("genre"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setCover(rs.getString("cover"));
+                prod.setIdUser(rs.getInt("idUser"));
                 prods.add(prod);
             }
         } catch (SQLException ex) {
@@ -131,8 +154,10 @@ public class ServiceProduction implements IProduction<Production> {
                 prod.setId(rs.getInt("id"));
                 prod.setNom(rs.getString("nom"));
                 prod.setDesc(rs.getString("description"));
-                prod.setTags(rs.getString("moodtag"));
                 prod.setGenre(rs.getString("genre"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setCover(rs.getString("cover"));
+                prod.setIdUser(rs.getInt("idUser"));
                 prods.add(prod);
             }
         } catch (SQLException ex) {
@@ -153,8 +178,10 @@ public class ServiceProduction implements IProduction<Production> {
                 prod.setId(rs.getInt("id"));
                 prod.setNom(rs.getString("nom"));
                 prod.setDesc(rs.getString("description"));
-                prod.setTags(rs.getString("moodtag"));
                 prod.setGenre(rs.getString("genre"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setCover(rs.getString("cover"));
+                prod.setIdUser(rs.getInt("idUser"));
                 prods.add(prod);
             }
         } catch (SQLException ex) {
@@ -174,8 +201,10 @@ public class ServiceProduction implements IProduction<Production> {
                 prod.setId(rs.getInt("id"));
                 prod.setNom(rs.getString("nom"));
                 prod.setDesc(rs.getString("description"));
-                prod.setTags(rs.getString("moodtag"));
                 prod.setGenre(rs.getString("genre"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setCover(rs.getString("cover"));
+                prod.setIdUser(rs.getInt("idUser"));
                 prods.add(prod);
             }
         } catch (SQLException ex) {

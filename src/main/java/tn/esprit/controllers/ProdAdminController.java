@@ -9,19 +9,34 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Production;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceProduction;
 import tn.esprit.utils.SessionManager;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class ProdAdminController implements Initializable {
+    @FXML
+    public TextField covertf;
+    @FXML
+    public ImageView imageCover;
     @FXML
     public TextField idtf;
     @FXML
@@ -50,17 +65,53 @@ public class ProdAdminController implements Initializable {
     load();
     }
     @FXML
+    void uploadPDP(ActionEvent event) {
+        String imagePath = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Image File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        Stage stage = (Stage) titretf.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            try {
+                Path destinationFolder = Paths.get("src/main/resources/Waves-Symfony/public/uploads");
+                if (!Files.exists(destinationFolder)) {
+                    Files.createDirectories(destinationFolder);
+                }
+                String fileName = UUID.randomUUID().toString() + "_" + selectedFile.getName();
+                Path destinationPath = destinationFolder.resolve(fileName);
+                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                imagePath = destinationPath.toString();
+                System.out.println("Image uploaded successfully: " + imagePath);
+                covertf.setText(fileName);
+                if (imagePath != null) {
+                    try {
+                        File file = new File(imagePath);
+                        FileInputStream inputStream = new FileInputStream(file);
+                        Image image = new Image(inputStream);
+                        imageCover.setImage(image);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @FXML
     public void AjouterProd(ActionEvent actionEvent) {
         String TITRE = titretf.getText();
         String DESC = desctf.getText();
         String GENRE = genretf.getText();
         String TAG = null;
+        String COVER = covertf.getText();
         if (radbonh.isPickOnBounds()){TAG="Bonheur";}
         if (radcalm.isPickOnBounds()){TAG="Calme";}
         if (radsent.isPickOnBounds()){TAG="Sentimental";}
         if (radenergie.isPickOnBounds()){TAG="Energie";}
         if (TITRE.matches("^[_A-Za-z-\\+ ]+$") && GENRE.matches("^[_A-Za-z-\\+ ]+$")){
-            ProdS.Add(new Production(0, TITRE, GENRE, DESC, TAG));
+            ProdS.Add(new Production(0, SessionManager.getId_user(), TITRE, GENRE, DESC, TAG, COVER));
             uinfolabel.setText("Ajout d'un projet avec success");
         }else{
             uinfolabel.setText("Titre doit pas etre avec des chiffres");
@@ -68,16 +119,18 @@ public class ProdAdminController implements Initializable {
     }
     @FXML
     public void ModifierProd(ActionEvent actionEvent) {
+        int ID = Integer.parseInt(idtf.getText());
         String TITRE = titretf.getText();
         String DESC = desctf.getText();
         String GENRE = genretf.getText();
         String TAG = null;
+        String COVER = covertf.getText();
         if (radbonh.isPickOnBounds()){TAG="Bonheur";}
         if (radcalm.isPickOnBounds()){TAG="Calme";}
         if (radsent.isPickOnBounds()){TAG="Sentimental";}
         if (radenergie.isPickOnBounds()){TAG="Energie";}
         if (TITRE.matches("^[_A-Za-z-\\+ ]+$") && GENRE.matches("^[_A-Za-z-\\+ ]+$")){
-            ProdS.Update(new Production(0, TITRE, GENRE, DESC, TAG));
+            ProdS.Update2(new Production(ID, TITRE, GENRE, DESC, TAG,COVER));
         }else{
             uinfolabel.setText("Titre doit pas etre avec des chiffres");
         }

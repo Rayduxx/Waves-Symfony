@@ -44,7 +44,7 @@ public class CardUserController {
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
 
     int uid,unumtel;
-    String unom, uprenom, uemail, umdp, urole,upays;
+    String unom, uprenom, uemail, umdp, updp,urole,upays;
     boolean uverf;
     Date uddn;
 
@@ -55,7 +55,7 @@ public class CardUserController {
             "#D3AADB", "#FFBEDF", "#FFA9CC", "#AFD5FF", "#93C5FF"};
 
     public void setData(Utilisateur user) {
-        String imagePath = user.getImage();
+        String imagePath = "src/main/resources/Waves-Symfony/public/uploads/"+user.getImage();
         if (imagePath != null) {
             try {
                 File file = new File(imagePath);
@@ -92,6 +92,7 @@ public class CardUserController {
         uverf = user.isIs_verified();
         uddn = user.getBirthday();
         upays = user.getCountry();
+        updp = user.getImage();
     }
 
     public void suppuser(ActionEvent actionEvent) throws IOException {
@@ -113,6 +114,18 @@ public class CardUserController {
             AUC.mdptf.setText(umdp);
             AUC.ddntf.setValue(uddn.toLocalDate());
             AUC.paystf.setText(upays);
+            AUC.pdptf.setText(updp);
+            String imagePath = "src/main/resources/Waves-Symfony/public/uploads/"+updp;
+            if (imagePath != null) {
+                try {
+                    File file = new File(imagePath);
+                    FileInputStream inputStream = new FileInputStream(file);
+                    Image image = new Image(inputStream);
+                    AUC.imagepdp.setImage(image);
+                } catch (FileNotFoundException e) {
+                    System.err.println("Image file not found: " + imagePath);
+                }
+            }
             if (uverf){AUC.activatedtf.setText("1");}
             if (!uverf){AUC.activatedtf.setText("0");}
             AUC.rolecb.setValue(urole);

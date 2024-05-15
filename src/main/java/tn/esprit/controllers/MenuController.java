@@ -31,10 +31,10 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (SessionManager.getRole().equals("User")) {
+        if (SessionManager.getRole().equals("[\"ROLE_USER\"]")) {
             AdminP.setVisible(false);
         }
-        if (SessionManager.getRole().equals("Admin")) {
+        if (SessionManager.getRole().equals("[\"ROLE_ADMIN\"]")) {
             AdminP.setVisible(true);
         }
     }

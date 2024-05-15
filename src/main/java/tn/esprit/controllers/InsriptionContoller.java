@@ -162,7 +162,7 @@ public class InsriptionContoller {
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 imagePath = destinationPath.toString();
                 System.out.println("Image uploaded successfully: " + imagePath);
-                imagereg.setText(imagePath);
+                imagereg.setText(fileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }

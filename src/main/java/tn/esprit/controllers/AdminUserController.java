@@ -69,7 +69,7 @@ public class AdminUserController implements Initializable {
     @FXML
     public GridPane userContainer;
     @FXML
-    private ImageView imagepdp;
+    public ImageView imagepdp;
     @FXML
     private Label uinfolabel;
     @FXML
@@ -208,7 +208,7 @@ public class AdminUserController implements Initializable {
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 imagePath = destinationPath.toString();
                 System.out.println("Image uploaded successfully: " + imagePath);
-                pdptf.setText(imagePath);
+                pdptf.setText(fileName);
                 if (imagePath != null) {
                     try {
                         File file = new File(imagePath);

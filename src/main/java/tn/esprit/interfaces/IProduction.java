@@ -11,6 +11,7 @@ public interface IProduction<T> {
     List<T> TriparGenre();
     List<T> Rechreche(String recherche);
     void Update(T t);
+    void Update2(T t);
     void Delete(T t);
     void DeleteByID(int id);
 }
